@@ -1,4 +1,4 @@
-#imports essential functions from the duality module.
+#imports essential functions from the duality package.
 from duality.eoq import eoq
 from duality.hub import hub
 from duality.misc.global_functions import *
