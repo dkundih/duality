@@ -42,7 +42,7 @@ class Configuration:
                         start = time.time()
                         results = func(self, *args, **kwargs)
                         with open('duality Logs.txt', 'a') as f:
-                            f.write('Perfomed a function ' + func_name + ' at: ' + str(datetime.datetime.now()) + '.' + ' Time spent performing the action: ' + str(time.time() - start) + ' seconds.' + '\n')
+                            f.write('Performed a function ' + func_name + ' at: ' + str(datetime.datetime.now()) + '.' + ' Time spent performing the action: ' + str(time.time() - start) + ' seconds.' + '\n')
                             return results
                     else:
                             results = func(self, *args, **kwargs)
