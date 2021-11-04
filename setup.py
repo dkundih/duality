@@ -20,7 +20,7 @@ classifiers = [
  
 setup(
   name='duality',
-  version='3.0.0',
+  version='3.0.1',
   description='Data science, Data manipulation and Machine learning package.',
   long_description_content_type='text/markdown',
   long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(), 

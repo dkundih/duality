@@ -163,3 +163,6 @@ CHANGELOG
 3.0.0 (03/11/2021)
 - initial release
 - now properly shows CHANGELOG of vandal package history.
+
+3.0.1 (04/11/2021)
+-code tweaks.
