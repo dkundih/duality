@@ -45,7 +45,7 @@ class MonteCarlo:
         .hist() - plots the histogram of Monte Carlo simulation.
             * takes 5 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), method = 'b').
             If method = 'e' is chosen, no customization arguments apply.
-                graph_title - title of the graph
+                graph_title - title of the graph.
                 x_title - title of the X axis.
                 y_title - title on the Y axis.
                 plot_size - desired size of the graph. eg. - (x_lenght_num, y_lenght_num). - NOTE: values must be inside the parentheses and divided by a comma.
