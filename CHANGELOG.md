@@ -178,3 +178,6 @@ CHANGELOG
 
 3.1.2 (06/11/2021)
 - complete redesign pushed to public.
+
+3.1.3 (06/11/2021)
+- initial import now imports hub module as well as associated contents in order to enable print(help(duality.hub)) function.
