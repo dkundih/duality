@@ -18,18 +18,21 @@ classifiers = [
     'Topic :: Office/Business'
 ]
  
+#import current duality version.
+from duality.misc._meta import __version__
+
 setup(
-  name='duality',
-  version='3.0.1',
-  description='Data science, Data manipulation and Machine learning package.',
-  long_description_content_type='text/markdown',
-  long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(), 
-  author='David Kundih',
-  author_email='kundihdavid@gmail.com',
-  url='http://github.com/dkundih/duality',
-  license='Apache Software License', 
-  classifiers=classifiers,
-  keywords='data science, machine learning, data manipulation, artificial intelligence, AI, duality, duality-py, duality.py',
-  packages=find_packages(),
-  install_requires=['pandas >= 1.2.3', 'numpy >= 1.19.5', 'matplotlib >= 3.4.3']
+  name = 'duality',
+  version = __version__,
+  description = 'Data science, Data manipulation and Machine learning package.',
+  long_description_content_type = 'text/markdown',
+  long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(), 
+  author = 'David Kundih',
+  author_email = 'kundihdavid@gmail.com',
+  url = 'http://github.com/dkundih/duality',
+  license = 'Apache Software License', 
+  classifiers = classifiers,
+  keywords = 'data science, machine learning, data manipulation, artificial intelligence, AI, duality, duality-py, duality.py',
+  packages = find_packages(),
+  install_requires = ['pandas >= 1.2.3', 'numpy >= 1.19.5', 'matplotlib >= 3.4.3']
 )

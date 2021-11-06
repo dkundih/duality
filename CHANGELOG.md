@@ -165,4 +165,16 @@ CHANGELOG
 - now properly shows CHANGELOG of vandal package history.
 
 3.0.1 (04/11/2021)
--code tweaks.
+- code tweaks.
+
+3.1.1 (06/11/2021)
+- MonteCarlo and EOQ now automatically perform .execute() function.
+- MonteCarlo.hist() now executes get_stats() alongside to get info about standard deviation.
+- MonteCarlo and EOQ are now being imported as objects.
+- global_functions removed and merged into _meta.
+
+3.1.1+ (06/11/2021)
+- functionality tests.
+
+3.1.2 (06/11/2021)
+- complete redesign pushed to public.
