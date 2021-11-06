@@ -1,21 +1,41 @@
-#imports essential functions from the duality module.
-from duality.misc.global_functions import *
-
-#shows detailed overview of available functions.
-def help():  
-    print('duality.eoq CALLABLE FUNCTIONS:\n')
-    print('.help() - information about the available functions in the duality.eoq module.\n * takes no additional arguments.\n')
-    print('.Configuration() - main class that defines the data needed for the calculation.\n * takes 4 additional arguments.\n   annual_demand_quantity - integer of demanded quantity in a year.\n   order_fixed_cost - integer or float presenting the fixed cost of the order.\n   annual_holding_cost - cost of holding the goods in a year.\n   log_summary (default: log_summary = False) - event log of executed functions.')
-
 #object that contains the calculation data.
-class Configuration:
+class EOQ:
 
-    #shows detailed overview of available functions. Performing this action will not be tracked in class logs.
-    def help():
-        print('duality.eoq.Configuration CALLABLE FUNCTIONS:\n')
-        print('.help() - information about the available functions in the duality.eoq.Configuration class.\n * takes no additional arguments.\n')
-        print('.execute() - executes the calculation of EOQ over the defined parameters.\n * takes no additional arguments.\n')
-        print('.get_logs() - shows the event log of executed functions.\n * takes no additional arguments.\n * Requirements:\n   duality.eoq.Configuration.execute().\n   log_summary = True.\n')
+    '''
+    
+    (OBJECT INFO)
+    ---
+    duality.EOQ - main class that defines the data needed for the calculation.
+        * takes 4 additional arguments.
+            annual_demand_quantity - integer of demanded quantity in a year.
+            order_fixed_cost - integer or float presenting the fixed cost of the order.
+            annual_holding_cost - cost of holding the goods in a year.
+            log_summary (default: log_summary = False) - event log of executed functions.
+        * automatically executes the .execute() function.
+
+    duality.EOQ CALLABLE FUNCTIONS:
+
+        .execute() - executes the calculation of EOQ over the defined parameters.
+            *is automatically executed with the Object setup.
+
+        .get_logs() - shows the event log of executed functions.
+            * takes no additional arguments.
+            * Requirements:
+                log_summary = True.
+
+    '''
+
+    #metadata of the used package.
+    from duality.misc._meta import (
+	__author__,
+	__copyright__,
+	__credits__,
+	__license__,
+	__version__,
+	__documentation__,
+	__contact__,
+	__donate__
+)
  
     #initial value configuration.
     def __init__(self, annual_demand_quantity, order_fixed_cost, annual_holding_cost, log_summary = False):
@@ -24,7 +44,8 @@ class Configuration:
         self.annual_holding_cost = annual_holding_cost
         self.log_summary = log_summary
         print(f'EOQ has been set up with annual demand quantity of {self.annual_demand_quantity} pieces, fixed cost of the order of {self.order_fixed_cost} and with the annual holding cost of {self.annual_holding_cost}.')
-
+        self.execute()
+        
     #creates an event log that tracks the function execution time and duration.
     def classLog(func_name):
         def log(func):
@@ -43,24 +64,26 @@ class Configuration:
                 return logsaver
         return log
         
-    #class information.
     @classLog('__str__()')
+    #class information.
     def __str__(self):
         return f'EOQ defining object that contains annual demand quantity of {self.annual_demand_quantity} pieces, fixed cost of the order of {self.order_fixed_cost} and with the annual holding cost of {self.annual_holding_cost}.'
 
-    #class information.
     @classLog('__repr__()')
+    #class information.
     def __repr__(self):
         return f'EOQ defining object that contains annual demand quantity of {self.annual_demand_quantity} pieces, fixed cost of the order of {self.order_fixed_cost} and with the annual holding cost of {self.annual_holding_cost}.'
 
+    @classLog('execute() - built in function.')
     #executes the calculation of EOQ over the defined parameters.
-    @classLog('execute()')
     def execute(self):
         import math 
         eoq = math.sqrt((((2 * self.annual_demand_quantity) * self.order_fixed_cost) / self.annual_holding_cost))
+        print('EOQ is: ', eoq)
         return eoq
 
     @classLog('get_logs()')
+    #returns the saved logs of executed functions.
     def get_logs(self):
         f = open('duality Logs.txt', 'r')
         print(f.read())
