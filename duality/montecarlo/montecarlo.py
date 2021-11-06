@@ -85,8 +85,7 @@ class Configuration:
                 if simulated_index > (index_array[-1] * 2):
                     raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation cannot be executed properly.')
                         
-                for num_day in range(self.time_seq):
-                    
+                for num_day in range(self.time_seq):   
                     rand_change = random_value(self.list_of_values.pct_change().mean(), self.list_of_values.pct_change().std())
                     if count == self.time_seq:
                         break
