@@ -27,6 +27,7 @@ sys.dont_write_bytecode = True
 
 #imports essential functions from the duality package.
 from duality.eoq.eoq import EOQ
+from duality.hub import hub
 from duality.hub.hub import *
 from duality.montecarlo.montecarlo import MonteCarlo
 from duality.misc._meta import (
@@ -39,4 +40,3 @@ from duality.misc._meta import (
 	__contact__,
 	__donate__
 )
-
