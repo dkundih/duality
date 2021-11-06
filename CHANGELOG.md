@@ -165,4 +165,4 @@ CHANGELOG
 - now properly shows CHANGELOG of vandal package history.
 
 3.0.1 (04/11/2021)
--code tweaks.
+- code tweaks.
