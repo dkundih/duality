@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/duality-license-license?color=179&style=flat-square)](https://github.com/dkundih/duality/blob/main/LICENSE.txt)
 [![PyPi Version](https://img.shields.io/pypi/v/duality?color=178&&label=PyPi%20Version&style=flat-square)](https://pypi.org/package/duality)
 [![Latest Change](https://img.shields.io/github/last-commit/dkundih/duality?color=178&label=Latest%20change&style=flat-square)](https://github.com/dkundih/duality)
+[![Format](https://img.shields.io/pypi/format/duality?color=178&label=Format&style=flat-square)](https://pypi.org/package/duality)
 
 **duality** 
 
