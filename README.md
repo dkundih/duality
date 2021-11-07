@@ -1,8 +1,8 @@
 ![duality-header](https://raw.githubusercontent.com/dkundih/duality/main/.logistics/duality.jpg)
 
 ![Downloads](https://img.shields.io/pypi/dm/duality?color=179&style=flat-square)
-[![License](https://img.shields.io/badge/duality-license-license?color=179&style=flat-square)](https://github.com/dkundih/duality/blob/main/LICENSE.txt)
-[![PyPI Latest Release](https://img.shields.io/badge/duality-license-license?color=179&style=flat-square(https://pypi.org/project/duality/)
+![License](https://img.shields.io/badge/duality-license-license?color=179&style=flat-square)](https://github.com/dkundih/duality/blob/main/LICENSE.txt)
+![PyPI Latest Release](https://img.shields.io/badge/duality-release-license?color=179&style=flat-square(https://pypi.org/project/duality/)
 
 **duality** 
 
