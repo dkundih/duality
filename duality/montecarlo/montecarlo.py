@@ -45,7 +45,7 @@ class MonteCarlo:
         .hist() - plots the histogram of Monte Carlo simulation.
             * takes 5 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), method = 'b').
             If method = 'e' is chosen, no customization arguments apply.
-                graph_title - title of the graph
+                graph_title - title of the graph.
                 x_title - title of the X axis.
                 y_title - title on the Y axis.
                 plot_size - desired size of the graph. eg. - (x_lenght_num, y_lenght_num). - NOTE: values must be inside the parentheses and divided by a comma.
@@ -111,10 +111,10 @@ class MonteCarlo:
             print('Monte Carlo simulation has been executed')
             print('NOTE: Use data with reasonable standard deviation in order to prevent exponential growth of the function that cannot be plotted properly, recognize such abnormal values by a + sign anywhere in the data executed below.\nThe model that will be able to handle big standard deviations is currently being worked on, thank you for your patience.\n')
             import pandas as pd
-            #This removes pandas warning of highly fragmented DataFrame for newer pandas versions.
+            #this removes pandas warning of highly fragmented DataFrame for newer pandas versions.
             from warnings import simplefilter
-            simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
-            #End of pandas warning removal block.
+            simplefilter(action = 'ignore', category = pd.errors.PerformanceWarning)
+            #end of pandas warning removal block.
             today_value = self.list_of_values.iloc[self.ref_value_index]
             data = pd.DataFrame()
             loading = 0
@@ -248,7 +248,6 @@ class MonteCarlo:
             plt.suptitle(graph_title, fontsize = 25, weight = 'bold')
             
         if method.get("method") == "e":
-
             print('CHOSEN METHOD: Empirical rule.')
             plt.suptitle('Value division based on the Empirical rule', fontsize = 25, weight = 'bold')
             plt.axvline(x = std_plus, color = 'g', linestyle = 'dashed')
@@ -258,6 +257,7 @@ class MonteCarlo:
             plt.axvline(x = std_minus2, color = 'r', linestyle = 'dashed')
             plt.axvline(x = std_plus3, color = 'g', linestyle = 'dashed')
             plt.axvline(x = std_minus3, color = 'r', linestyle = 'dashed')
+            
         plt.hist(self.results, bins = self.time_seq , ec = 'm')
         plt.xlabel(x_title, weight = 'semibold')
         plt.ylabel(y_title, weight= 'semibold')
