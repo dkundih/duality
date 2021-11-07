@@ -7,7 +7,8 @@
 [![Latest change](https://img.shields.io/github/last-commit/dkundih/duality?color=178&label=Latest%20change&style=flat-square)](https://github.com/dkundih/duality)
 [![Format](https://img.shields.io/pypi/format/duality?color=178&label=Format&style=flat-square)](https://pypi.org/package/duality)
 
-**duality** 
+duality
+=====
 
 Data science, Data manipulation and Machine learning package.
 Use permitted according to the terms of use and conditions set by the attached license.
