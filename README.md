@@ -1,6 +1,6 @@
 ![duality-header](https://raw.githubusercontent.com/dkundih/duality/main/.logistics/duality.jpg)
 
-[![Downloads](https://img.shields.io/pypi/dm/duality?color=179&style=for-the-badge)
+[![Downloads](https://img.shields.io/pypi/dm/duality?color=179&style=flat-square)
 
 **duality** 
 
