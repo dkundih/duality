@@ -1,7 +1,7 @@
 ![duality-header](https://raw.githubusercontent.com/dkundih/duality/main/.logistics/duality.jpg)
 
 ![Downloads](https://img.shields.io/pypi/dm/duality?color=179&style=flat-square)
-[![License](https://img.shields.io/badge/duality-license-blue&style=flat-square)](https://github.com/pandas-dev/pandas/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/duality-license?color=179&style=flat-square)](https://github.com/pandas-dev/pandas/blob/master/LICENSE)
 
 **duality** 
 
