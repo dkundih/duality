@@ -248,7 +248,6 @@ class MonteCarlo:
             plt.suptitle(graph_title, fontsize = 25, weight = 'bold')
             
         if method.get("method") == "e":
-
             print('CHOSEN METHOD: Empirical rule.')
             plt.suptitle('Value division based on the Empirical rule', fontsize = 25, weight = 'bold')
             plt.axvline(x = std_plus, color = 'g', linestyle = 'dashed')
@@ -258,6 +257,7 @@ class MonteCarlo:
             plt.axvline(x = std_minus2, color = 'r', linestyle = 'dashed')
             plt.axvline(x = std_plus3, color = 'g', linestyle = 'dashed')
             plt.axvline(x = std_minus3, color = 'r', linestyle = 'dashed')
+            
         plt.hist(self.results, bins = self.time_seq , ec = 'm')
         plt.xlabel(x_title, weight = 'semibold')
         plt.ylabel(y_title, weight= 'semibold')
