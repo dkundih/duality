@@ -181,3 +181,6 @@ CHANGELOG
 
 3.1.3 (06/11/2021)
 - initial import now imports hub module as well as associated contents in order to enable print(help(duality.hub)) function.
+
+3.1.4 (07/11/2021)
+- updated README.
