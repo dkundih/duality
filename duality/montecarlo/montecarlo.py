@@ -111,10 +111,10 @@ class MonteCarlo:
             print('Monte Carlo simulation has been executed')
             print('NOTE: Use data with reasonable standard deviation in order to prevent exponential growth of the function that cannot be plotted properly, recognize such abnormal values by a + sign anywhere in the data executed below.\nThe model that will be able to handle big standard deviations is currently being worked on, thank you for your patience.\n')
             import pandas as pd
-            #This removes pandas warning of highly fragmented DataFrame for newer pandas versions.
+            #this removes pandas warning of highly fragmented DataFrame for newer pandas versions.
             from warnings import simplefilter
-            simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
-            #End of pandas warning removal block.
+            simplefilter(action = 'ignore', category = pd.errors.PerformanceWarning)
+            #end of pandas warning removal block.
             today_value = self.list_of_values.iloc[self.ref_value_index]
             data = pd.DataFrame()
             loading = 0
