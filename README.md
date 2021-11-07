@@ -2,10 +2,10 @@
 
 ![Downloads](https://img.shields.io/pypi/dm/duality?color=179&&label=Downloads&style=flat-square)
 [![License](https://img.shields.io/pypi/l/duality?color=178&label=License&style=flat-square)](https://github.com/dkundih/duality/blob/main/LICENSE.txt)
-[![PyPi version](https://img.shields.io/pypi/v/duality?color=178&&label=PyPi%20version&style=flat-square)](https://pypi.org/package/duality)
-[![Python version](https://img.shields.io/pypi/pyversions/duality?color=178&label=Python%20version&style=flat-square)](https://pypi.org/package/duality)
+[![PyPi version](https://img.shields.io/pypi/v/duality?color=178&&label=PyPi%20version&style=flat-square)](https://pypi.org/project/duality)
+[![Python version](https://img.shields.io/pypi/pyversions/duality?color=178&label=Python%20version&style=flat-square)](https://pypi.org/project/duality)
 [![Latest change](https://img.shields.io/github/last-commit/dkundih/duality?color=178&label=Latest%20change&style=flat-square)](https://github.com/dkundih/duality)
-[![Format](https://img.shields.io/pypi/format/duality?color=178&label=Format&style=flat-square)](https://pypi.org/package/duality)
+[![Format](https://img.shields.io/pypi/format/duality?color=178&label=Format&style=flat-square)](https://pypi.org/project/duality)
 
 duality
 =====
