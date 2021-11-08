@@ -9,7 +9,7 @@ __credits__ = [
 	'dkundih <https://github.com/dkundih>',
 
 ]
-__license__ = 'Copyright (c) 2021- David Kundih. All rights reserved.\nLicensed under the Apache License, Version 2.0. | For more details about the license and terms of use visit the official duality documentation linked at https://github.com/dkundih/duality and https://pypi.org/project/duality'
+__license__ = 'Copyright © 2021- David Kundih. All rights reserved.\nLicensed under the Apache License, Version 2.0 | For more details about the license and terms of use visit the official duality documentation linked at https://github.com/dkundih/duality and https://pypi.org/project/duality'
 __version__ = '3.1.4'
 __documentation__ = 'https://github.com/dkundih/duality | https://pypi.org/project/duality'
 __contact__ = 'dakundih@unin.hr | kundihdavid@gmail.com'
