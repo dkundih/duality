@@ -42,6 +42,8 @@ print(help(duality))
 print(help(duality.MonteCarlo))
 ```
 
+**Meta data**
+
 ```sh
 # meta data (individual)
 print(duality.__version__)
@@ -51,6 +53,8 @@ print(duality.__version__)
 # all meta data
 print(help(duality.misc._meta))
 ```
+
+**Package location**
 
 ```sh
 # file location after installation
