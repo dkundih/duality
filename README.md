@@ -19,7 +19,7 @@ Visit https://github.com/dkundih/dualityDemonstrationRepo in order to see the de
 
 **Installation**
 
-```sh
+```py
 # using pip
 pip install duality
 ```
