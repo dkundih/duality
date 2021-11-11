@@ -188,5 +188,8 @@ CHANGELOG
 3.1.5 (08/11/2021)
 - untracked changes.
 
-3.1.6 (12/11/2021) 
+3.1.6 (12/11/2021) - not useable.
 - code cleanup in hub and montecarlo modules.
+
+3.1.7 (12/11/2021)
+- quick bug fix.

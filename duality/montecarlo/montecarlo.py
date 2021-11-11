@@ -125,7 +125,7 @@ class MonteCarlo:
                 index_array = []
                 index_array += [today_value * (1 + rand_change)]
                 
-                if index_array > (index_array[-1] * 2):
+                if index_array[count] > (index_array[-1] * 2):
                     raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation cannot be executed properly.')
                         
                 for num_day in range(self.time_seq):   
@@ -135,7 +135,7 @@ class MonteCarlo:
                     index_array += [index_array[count] * (1 + rand_change)]
                     count += 1
 
-                    if index_array > (index_array[-1] * 2):
+                    if index_array[count] > (index_array[-1] * 2):
                         raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation function cannot be executed properly.')
                 
                 loading +=1
