@@ -55,36 +55,31 @@ def random_pool(mean, st_dev, pool_size, **rounded):
 def split_values(data, split_method):
         split_values = []
         for i in data:
-                i = i.split(split_method)
-                split_values.append(i)
+                split_values += [i.split(split_method)]
         return split_values
 
 #joins the data using a join metod character.
 def join_values(data, join_method):
         join_values = []
         for i in data:
-                i = join_method.join(i)
-                join_values.append(i)
+                join_values += [join_method.join(i)]
         return join_values
 
 #replaces a defined value with a desired value.
 def replace_values(data, replaced_value, replacing_value):
         replaced_values = []
         for i in data:
-                i = i.split(replaced_value)
-                replaced_values.append(i)
+                replaced_values += [i.split(replaced_value)]
         replace_values = []
         for i in replaced_values:
-                i = replacing_value.join(i)
-                replace_values.append(i)
+                replace_values += [replacing_value.join(i)]
         return replace_values
 
 #manually sorts data depending on defined array of indexes.
 def list_sort(data, array):
         redefined_data = []
         for d in array:
-                t = data[d]
-                redefined_data.append(t)
+                redefined_data += [data[d]]
         return redefined_data
 
 #sorts the indicies in a list of values based on the index array defined as [x,x,x].
@@ -93,13 +88,11 @@ def index_sort(data, split_method, index_array):
         remixed_data = []
         array_count = 0
         for i in data:
-                n = i.split(split_method)
-                result.append(n)
+                result += [i.split(split_method)]
         array_lenght = len(result)
         for i in result:
                 y1 = [i[x] for x in index_array]
-                y2 = split_method.join(y1)
-                remixed_data.append(y2)
+                remixed_data += [split_method.join(y1)]
                 if array_count == array_lenght:
                         break
                 array_count += 1
@@ -110,10 +103,8 @@ def auto_sort(data, split_method, trigger = lambda x: x[0]):
         split_values = []
         merged_final = []
         for i in data:
-                i = i.split(split_method)
-                split_values.append(i)
-        auto_sort = sorted(split_values, key= trigger)
+                split_values += [i.split(split_method)]
+        auto_sort = sorted(split_values, key = trigger)
         for i in auto_sort:
-                d = '-'.join(i)
-                merged_final.append(d)
+                merged_final += ['-'.join(i)]
         return merged_final

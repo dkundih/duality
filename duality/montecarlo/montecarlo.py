@@ -123,21 +123,19 @@ class MonteCarlo:
                 rand_change = random_value(self.list_of_values.pct_change().mean(), self.list_of_values.pct_change().std())
                 count = 0
                 index_array = []
-                simulated_index = today_value * (1 + rand_change)
-                index_array.append(simulated_index)
+                index_array += [today_value * (1 + rand_change)]
                 
-                if simulated_index > (index_array[-1] * 2):
+                if index_array > (index_array[-1] * 2):
                     raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation cannot be executed properly.')
                         
                 for num_day in range(self.time_seq):   
                     rand_change = random_value(self.list_of_values.pct_change().mean(), self.list_of_values.pct_change().std())
                     if count == self.time_seq:
                         break
-                    simulated_index = index_array[count] * (1 + rand_change)
-                    index_array.append(simulated_index)
+                    index_array += [index_array[count] * (1 + rand_change)]
                     count += 1
 
-                    if simulated_index > (index_array[-1] * 2):
+                    if index_array > (index_array[-1] * 2):
                         raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation function cannot be executed properly.')
                 
                 loading +=1
@@ -173,13 +171,12 @@ class MonteCarlo:
             random_change = random.choice(percent_change)
             index_array = []
 
-            simulated_index = today_value * (1 + (random_change))
-            index_array.append(simulated_index)
+            index_array += [today_value * (1 + (random_change))]
             data[num_sim] = index_array
 
             for sim in data[num_sim]:
                 if sim < today_value:
-                    smaller.append(sim)
+                    smaller += [sim]
         NRisk = len(smaller) / num_sim * 100
 
         assert (NRisk < 100), 'Time sequence and/or number of iterations are too low for the proper risk calculation.'
