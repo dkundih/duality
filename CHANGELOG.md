@@ -19,7 +19,7 @@ CHANGELOG
 - functionality confirmed in testing environment (Visual Studio Code, PyCharm, JupyterLab, Google Colab).
 
 0.0.5 (23/08/2021)
--minor README update with Documentation link changed.
+- minor README update with Documentation link changed.
 
 1.0.0 (28/08/2021)
 - first stable release.
@@ -104,7 +104,7 @@ CHANGELOG
 - Configuration function now prints the confirmation of the simulation set up.
 
 1.3.7+ (11/10/2021)
--redefined hist() function test.
+- redefined hist() function test.
 
 **as vandal**
 
