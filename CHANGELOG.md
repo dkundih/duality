@@ -193,3 +193,6 @@ CHANGELOG
 
 3.1.7 (12/11/2021)
 - quick bug fix.
+
+3.1.8 (12/11/2021)
+- sync with recent GitHub changes.
