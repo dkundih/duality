@@ -211,7 +211,6 @@ class MonteCarlo:
             print('Maximum: ', maximum_value)
             print('Minimum: ', minimum_value)
 
-
     @classLog('hist()')
     #plots the histogram of Monte Carlo simulation.
     def hist(self, graph_title = 'Histogram of value frequencies', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), **method):
