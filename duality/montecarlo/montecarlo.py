@@ -2,7 +2,6 @@
 class MonteCarlo:
 
     '''
-
     (OBJECT INFO)
     --- 
     duality.MonteCarlo - main class that defines the data, desired time sequence and number of simulations.
@@ -15,25 +14,19 @@ class MonteCarlo:
             pandas Python module.
             pd.DataFrame() defined data set.
         * automatically executes the .execute() function.
-
     duality.MonteCarlo CALLABLE FUNCTIONS:
-
         .execute() - executes a Monte Carlo simulation on a defined data set.
             *is automatically executed with the Object setup.
-
         .graph() - plots the Monte Carlo simulation on a graph.
             * takes 4 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10)).
                 graph_title - title of the graph.
                 x_title - title of the X axis.
                 y_title - title on the Y axis.
                 plot_size - desired size of the graph. eg. - (x_lenght_num, y_lenght_num). - NOTE: values must be inside the parentheses and divided by a comma.
-
         .get_risk() - calculates the risk of value decrease over time.
             * takes 1 optional argument (default: risk_sims = 5000).
-
         .get_stats() - shows the statistics of the Monte Carlo simulation.
             * takes no additional arguments.
-
         .get_logs() - shows the event log of executed functions.
             * takes no additional arguments.
             * Requirements:
@@ -41,7 +34,6 @@ class MonteCarlo:
         
         .get_change() - shows the percentage of Monte Carlo simulation value change for every iteration.
             * takes no additional arguments.
-
         .hist() - plots the histogram of Monte Carlo simulation.
             * takes 5 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), method = 'b').
             If method = 'e' is chosen, no customization arguments apply.
@@ -51,7 +43,6 @@ class MonteCarlo:
                 plot_size - desired size of the graph. eg. - (x_lenght_num, y_lenght_num). - NOTE: values must be inside the parentheses and divided by a comma.
                 method - default method is Basic histogram and it's performed by automation. In order to plot Empirical rule histogram add method = 'e' as the last argument. - NOTE: method of a histogram must be placed within quotation marks.
             * automatically executes the .get_stats(filtered = True) function in order to get standard deviation for the Empirical rule plotting.
-
     '''
     
     #metadata of the used package.
