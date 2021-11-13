@@ -196,3 +196,6 @@ CHANGELOG
 
 3.1.8 (12/11/2021)
 - sync with recent GitHub changes.
+
+3.1.9 (12/11/2021)
+- README style update.
