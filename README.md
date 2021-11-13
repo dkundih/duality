@@ -82,7 +82,7 @@ The module itself, it's maintenance, updates and stability, logo, videos, promot
 <img src='https://raw.githubusercontent.com/dkundih/dkundih/main/.logistics/BLUERED_GHiLI.jpg'/>
 
 <p align='center'>
-MY name is David Kundih and I am a Data science & Machine learning Python package developer from 🇭🇷 Croatia, currently being the Management of Logistics Systems master's student at the University North also serving as a Demonstrator at the Logistics and Mobility department.
+My name is David Kundih and I am a Data science & Machine learning Python package developer from 🇭🇷 Croatia, currently being the Management of Logistics Systems master's student at the University North also serving as a Demonstrator at the Logistics and Mobility department.
 </p>
  
 <h4 align='center'>My latest projects:</h4>
