@@ -5,11 +5,12 @@ class MonteCarlo:
     (OBJECT INFO)
     --- 
     duality.MonteCarlo - main class that defines the data, desired time sequence and number of simulations.
-        * takes 5 additional arguments.
+        * takes 6 additional arguments.
             list_of_values - pandas dataframe of values.
             time_seq - desired time sequence.
             num_sims - desired number of simulation iterations.
             log_summary (default: log_summary = False) - event log of executed functions.
+            return_data (default: return_data = True) - initiates execute() function after data setup.
         * Requirements:
             pandas Python module.
             pd.DataFrame() defined data set.
@@ -58,14 +59,18 @@ class MonteCarlo:
     )
 
     #initial value configuration.
-    def __init__(self, list_of_values, time_seq, num_sims, ref_value_index = 0, log_summary = False): 
+    def __init__(self, list_of_values, time_seq, num_sims, ref_value_index = 0, log_summary = False, return_data = True): 
         self.list_of_values = list_of_values
         self.time_seq = time_seq
         self.num_sims = num_sims
         self.log_summary = log_summary
         self.ref_value_index = ref_value_index
+        self.return_data = return_data
         print(f'Monte Carlo has been set up for {self.num_sims} simulations in a period of {self.time_seq} time measurement units.')
-        self.execute()
+
+        #initiates execute() function after data setup
+        if return_data == True:
+            self.execute()
 
     #creates an event log that tracks the function execution time and duration.
     def classLog(func_name):
