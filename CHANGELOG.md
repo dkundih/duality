@@ -202,3 +202,6 @@ CHANGELOG
 
 3.2.0 (13/11/2021)
 - return_data = True added into MonteCarlo object for decision of the time of execution manually.
+
+3.2.1 (14/11/2021)
+- setup.py redefined with metadata.
