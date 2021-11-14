@@ -134,12 +134,12 @@ class MonteCarlo:
                     if index_array[count] > (index_array[-1] * 2):
                         raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation function cannot be executed properly.')
                 
-                loading +=1
-                print(end='\r')
+                loading += 1
+                print(end = '\r')
                 print(loading, 'iterations out of', self.num_sims, 'executed so far', end = '')
                 
                 data[num_sim] = index_array
-            print(end='\r')
+            print(end = '\r')
             print('Monte Carlo simulation set up and ready to plot.')
             self.results = data
             return data
