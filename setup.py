@@ -51,7 +51,7 @@ setup(
     'Source Code': 'https://github.com/dkundih/duality/tree/main/duality'
   }, 
   classifiers = classifiers,
-  keywords = 'data science, machine learning, data manipulation, artificial intelligence, AI, duality, duality-py, duality.py',
+  keywords = 'data science, machine learning, data manipulation, artificial intelligence, AI, unin, duality, duality-py, duality.py',
   packages = find_packages(),
   install_requires = ['pandas >= 1.2.3', 'numpy >= 1.19.5', 'matplotlib >= 3.4.3']
 )
