@@ -1,6 +1,6 @@
 ![duality-header](https://raw.githubusercontent.com/dkundih/duality/main/.logistics/duality.jpg)
 
-[![Downloads](https://pepy.tech/badge/duality)](https://pepy.tech/project/duality)
+[![Downloads](https://static.pepy.tech/personalized-badge/duality?period=total&units=none&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/duality)
 [![License](https://img.shields.io/pypi/l/duality?color=178&label=License&style=flat-square)](https://github.com/dkundih/duality/blob/main/LICENSE)
 [![PyPi version](https://img.shields.io/pypi/v/duality?color=178&&label=PyPi%20version&style=flat-square)](https://pypi.org/project/duality)
 [![Python version](https://img.shields.io/pypi/pyversions/duality?color=178&label=Python%20version&style=flat-square)](https://pypi.org/project/duality)
