@@ -205,3 +205,6 @@ CHANGELOG
 
 3.2.1 (14/11/2021)
 - setup.py redefined with metadata.
+
+3.2.2 (17/11/2021)
+- regular maintainance.
