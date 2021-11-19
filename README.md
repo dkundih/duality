@@ -10,7 +10,7 @@
 duality
 =====
 
-Data science, Data manipulation and Machine learning package.
+Data science, Data manipulation and Machine learning library.
 Use permitted according to the terms of use and conditions set by the attached license.
 
 **Example of use**
@@ -33,7 +33,7 @@ import duality
 **Help**
 
 ```sh
-# package help
+# library help
 print(help(duality))
 ```
 
@@ -54,7 +54,7 @@ print(duality.__version__)
 print(help(duality.misc._meta))
 ```
 
-**Package location**
+**Library location**
 
 ```sh
 # file location after installation
@@ -63,11 +63,11 @@ print(help(duality.__file__))
 
 **For whom is duality made for?**
 
-duality is a Python package for Data science and Machine learning, designed to aid researchers and engineers to meet their goals with small effort.
+duality is a Python library for Data science and Machine learning, designed to aid researchers and engineers to meet their goals with small effort.
 
 **Why duality?**
 
-duality disrupts the monotone world of data and gives it meaning.
+duality shows the different perspective of the same thing.
 
 **Is duality free to use?**
 

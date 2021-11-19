@@ -208,3 +208,15 @@ CHANGELOG
 
 3.2.2 (17/11/2021)
 - regular maintainance.
+
+3.3.0 (19/11/2021)
+- package now becomes a library.
+- DEVELOPER MODE introduced.
+- disables @classlog functions outside of DEVELOPER MODE.
+- code readability improved.
+- duality.hub.hub is now duality.hub.toolkit.
+- eoq and montecarlo folders merged into objects folder.
+- added support for import __all__ contents of a module.
+
+3.3.2 (19/11/2021)
+- republish and 3.3.1 ghost overwrite.
