@@ -220,3 +220,6 @@ CHANGELOG
 
 3.3.2 (19/11/2021)
 - republish and 3.3.1 ghost overwrite.
+
+3.3.3 (20/11/2021)
+- initial bug fix deployed.

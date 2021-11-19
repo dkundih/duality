@@ -12,8 +12,8 @@ class MonteCarlo:
             list_of_values - pandas dataframe of values.
             time_seq - desired time sequence.
             num_sims - desired number of simulation iterations.
-            log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE
             return_data (default: return_data = True) - initiates execute() function after data setup.
+            log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE ONLY
         * Requirements:
             pandas Python module.
             pd.DataFrame() defined data set.
@@ -40,11 +40,6 @@ class MonteCarlo:
         .get_stats() - shows the statistics of the Monte Carlo simulation.
             * takes no additional arguments.
 
-        .get_logs() - shows the event log of executed functions. - DEVELOPER MODE
-            * takes no additional arguments.
-            * Requirements:
-                log_summary = True.
-
         .get_change() - shows the percentage of Monte Carlo simulation value change for every iteration.
             * takes no additional arguments.
 
@@ -63,6 +58,12 @@ class MonteCarlo:
 
     Developer mode functions can only be set up manually by removing the '#DEVELOPER MODE -' in the source code.
 
+        .get_logs() - shows the event log of executed functions.
+        * takes no additional arguments.
+        * Requirements:
+            log_summary = True.
+            '#DEVELOPER MODE -' removed in the code.
+
     '''
     
     #metadata of the used library.
@@ -78,16 +79,16 @@ class MonteCarlo:
     )
 
     #initial value configuration.
-    def __init__(self, list_of_values, time_seq, num_sims, ref_value_index = 0, log_summary = False, return_data = True): 
+    def __init__(self, list_of_values, time_seq, num_sims, ref_value_index = 0, return_data = True, log_summary = False): 
         self.list_of_values = list_of_values
         self.time_seq = time_seq
         self.num_sims = num_sims
-        self.log_summary = log_summary
         self.ref_value_index = ref_value_index
         self.return_data = return_data
+        self.log_summary = log_summary
         print(f'Monte Carlo has been set up for {self.num_sims} simulations in a period of {self.time_seq} time measurement units.')
 
-        #initiates execute() function after data setup
+        #initiates execute() function after data setup.
         if return_data == True:
             self.execute()
 

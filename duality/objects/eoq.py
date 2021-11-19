@@ -8,11 +8,12 @@ class EOQ:
 
     duality.EOQ - main class that defines the data needed for the calculation.
 
-        * takes 4 additional arguments.
+        * takes 5 additional arguments.
             annual_demand_quantity - integer of demanded quantity in a year.
             order_fixed_cost - integer or float presenting the fixed cost of the order.
             annual_holding_cost - cost of holding the goods in a year.
-            log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE
+            return_data (default: return_data = True) - initiates execute() function after data setup.
+            log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE ONLY
         * automatically executes the .execute() function.
 
     (OBJECT FUNCTIONS)
@@ -23,15 +24,16 @@ class EOQ:
         .execute() - executes the calculation of EOQ over the defined parameters.
             *is automatically executed with the Object setup.
 
-        .get_logs() - shows the event log of executed functions. - DEVELOPER MODE
-            * takes no additional arguments.
-            * Requirements:
-                log_summary = True.
-
     (DEVELOPER MODE)
     ----------------
 
     Developer mode functions can only be set up manually by removing the '#DEVELOPER MODE -' in the source code.
+
+        .get_logs() - shows the event log of executed functions.
+        * takes no additional arguments.
+        * Requirements:
+            log_summary = True.
+            '#DEVELOPER MODE -' removed in the code.
 
     '''
 
@@ -48,13 +50,17 @@ class EOQ:
 )
  
     #initial value configuration.
-    def __init__(self, annual_demand_quantity, order_fixed_cost, annual_holding_cost, log_summary = False):
+    def __init__(self, annual_demand_quantity, order_fixed_cost, annual_holding_cost, return_data = True, log_summary = False):
         self.annual_demand_quantity = annual_demand_quantity
         self.order_fixed_cost = order_fixed_cost
         self.annual_holding_cost = annual_holding_cost
+        self.return_data = return_data
         self.log_summary = log_summary
         print(f'EOQ has been set up with annual demand quantity of {self.annual_demand_quantity} pieces, fixed cost of the order of {self.order_fixed_cost} and with the annual holding cost of {self.annual_holding_cost}.')
-        self.execute()
+        
+        #initiates execute() function after data setup.
+        if return_data == True:
+            self.execute()
         
     #DEVELOPER MODE - creates an event log that tracks the function execution time and duration.
     def classLog(func_name):
