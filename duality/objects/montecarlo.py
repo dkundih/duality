@@ -12,6 +12,7 @@ class MonteCarlo:
             list_of_values - pandas dataframe of values.
             time_seq - desired time sequence.
             num_sims - desired number of simulation iterations.
+            ref_value_index (default: ref_value_index = 0) - index on which the starting point of the simulation is created.
             return_data (default: return_data = True) - initiates execute() function after data setup.
             log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE ONLY
         * Requirements:

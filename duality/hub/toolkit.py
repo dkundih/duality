@@ -3,7 +3,7 @@
 (MODULE FUNCTIONS)
 ------------------
 
-The following functions are available in the duality.hub.toolkit module, but can be directly accessed from the main module as duality.function()
+duality.toolkit is a set of data manipulation tools that can be directly accessed from the main module as duality.function()
 
         .random_value(mean, st_dev, **rounded) - gives a random value of mean and standard deviation inputed, if rounded = 'y', value will be rounded.
 

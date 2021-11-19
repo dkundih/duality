@@ -7,7 +7,7 @@ AVAILABLE MODULES IN THE LIBRARY:
 	TOOLKIT
 	-------
 
-	duality.toolkit is a set of data manipulation tools that can be directly accessed from the main module.
+	duality.toolkit is a set of data manipulation tools that can be directly accessed from the main module as duality.function()
 		print(help(duality.toolkit)) in order to see available features.
 
 	MONTECARLO

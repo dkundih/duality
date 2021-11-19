@@ -223,3 +223,6 @@ CHANGELOG
 
 3.3.3 (20/11/2021)
 - initial bug fix deployed.
+
+3.3.4 (20/11/2021)
+- additional bug fixes deployed.
