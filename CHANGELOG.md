@@ -233,3 +233,6 @@ CHANGELOG
 
 3.3.6 (20/11/2021)
 - confirmed functionality and stability.
+
+3.3.7 (20/11/2021)
+- code reconstruction.
