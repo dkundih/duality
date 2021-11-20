@@ -209,7 +209,7 @@ CHANGELOG
 3.2.2 (17/11/2021)
 - regular maintainance.
 
-3.3.0 (19/11/2021)
+3.3.0 (19/11/2021) - UNSTABLE
 - package now becomes a library.
 - DEVELOPER MODE introduced.
 - disables @classlog functions outside of DEVELOPER MODE.
@@ -218,11 +218,15 @@ CHANGELOG
 - eoq and montecarlo folders merged into objects folder.
 - added support for import __all__ contents of a module.
 
-3.3.2 (19/11/2021)
+3.3.2 (19/11/2021) - UNSTABLE
 - republish and 3.3.1 ghost overwrite.
 
-3.3.3 (20/11/2021)
+3.3.3 (20/11/2021) - UNSTABLE
 - initial bug fix deployed.
 
-3.3.4 (20/11/2021)
+3.3.4 (20/11/2021) - UNSTABLE
 - additional bug fixes deployed.
+
+3.3.5 (20/11/2021) - UNSTABLE
+- additional bug fixes deployed.
+- code readability improved.

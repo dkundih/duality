@@ -1,23 +1,42 @@
 '''
 
-This is a connection to the main folder of the duality library.
+duality - Data science, Data manipulation and Machine learning library.
+=====================================================================
 
-AVAILABLE MODULES IN THE LIBRARY:
+This is a connection to the main __init__ file of the duality library.
 
-	TOOLKIT
-	-------
+AVAILABLE FEATURES IN THE LIBRARY:
 
-	duality.toolkit is a set of data manipulation tools that can be directly accessed from the main module as duality.function()
-		print(help(duality.toolkit)) in order to see available features.
+	TOOLKIT (MODULE FUNCTIONS)
+	--------------------------
 
-	MONTECARLO
-	----------
+	set of available data manipulation functions from the duality library.
+		print(help(any_function_listed_below)) in order to see the function details or print(help(duality.toolkit)) for all functions at once.
+
+	    random_value(mean, st_dev, **rounded) - gives a random value of mean and standard deviation inputed, if rounded = 'y', value will be rounded.
+
+        random_pool(mean, st_dev, pool_size, **rounded) - gives random values of mean and standard deviation inputed for the amount of values defined in the pool size, if rounded = 'y', values will be rounded.
+
+        split_values(data, split_method) - splits the data using a split method character.
+
+        join_values(data, join_method) - joins the data using a join metod character.
+
+        replace_values(data, replaced_value, replacing_value) - replaces a defined value with a desired value.
+
+        list_sort(data, array) - manually sorts data depending on defined array of indexes.
+
+        index_sort(data, split_method, index_array) - sorts the indicies in a list of values based on the index array defined as [x,x,x].
+
+        auto_sort(data, split_method, trigger = lambda x: x[0]) - automatically splits all values in a list and sorts them based on the added trigger as lambda x: [x[i], x[i]] and joins them back together.
+
+	MONTECARLO (OBJECT)
+	-------------------
 
 	duality.MonteCarlo is a module for performing the Monte Carlo simulation over the defined data with a lot of useful features.
 		print(help(duality.MonteCarlo)) in order to see available features.
 
-	EOQ
-	---
+	EOQ (OBJECT)
+	------------
 	
 	duality.EOQ is a module for finding an Economic order quantity over the defined data with a lot of useful features.
 		print(help(duality.EOQ)) in order to see available features.
@@ -28,11 +47,7 @@ AVAILABLE MODULES IN THE LIBRARY:
 import sys
 sys.dont_write_bytecode = True
 
-#imports essential functions from the duality library.
-from duality.hub import toolkit
-from duality.hub.toolkit import *
-from duality.objects.eoq import EOQ
-from duality.objects.montecarlo import MonteCarlo
+#meta data imports from the duality library.
 from duality.misc._meta import (
 	__author__,
 	__copyright__,
@@ -41,11 +56,36 @@ from duality.misc._meta import (
 	__version__,
 	__documentation__,
 	__contact__,
-	__donate__
+	__donate__,
+)
+
+#object and module imports.
+from duality.hub import toolkit
+from duality.objects.eoq import EOQ
+from duality.objects.montecarlo import MonteCarlo
+
+#hub imports.
+from duality.hub.toolkit import (
+    random_value,
+    random_pool,
+    split_values,
+    join_values,
+    replace_values,
+    list_sort,
+    index_sort,
+    auto_sort,
 )
 
 #all relevant contents.
 __all__ = [
+	random_value,
+    random_pool,
+    split_values,
+    join_values,
+    replace_values,
+    list_sort,
+    index_sort,
+    auto_sort,
 	toolkit,
 	MonteCarlo,
 	EOQ,
