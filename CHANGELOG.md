@@ -230,3 +230,6 @@ CHANGELOG
 3.3.5 (20/11/2021) - UNSTABLE
 - additional bug fixes deployed.
 - code readability improved.
+
+3.3.6 (20/11/2021)
+- confirmed functionality and stability.

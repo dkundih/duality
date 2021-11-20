@@ -13,7 +13,10 @@ AVAILABLE FEATURES IN THE LIBRARY:
 	set of available data manipulation functions from the duality library.
 		print(help(any_function_listed_below)) in order to see the function details or print(help(duality.toolkit)) for all functions at once.
 
-	    random_value(mean, st_dev, **rounded) - gives a random value of mean and standard deviation inputed, if rounded = 'y', value will be rounded.
+		FUNCTIONS (ACCESSIBLE DIRECTLY FROM THE LIBRARY)
+		---------
+
+		random_value(mean, st_dev, **rounded) - gives a random value of mean and standard deviation inputed, if rounded = 'y', value will be rounded.
 
         random_pool(mean, st_dev, pool_size, **rounded) - gives random values of mean and standard deviation inputed for the amount of values defined in the pool size, if rounded = 'y', values will be rounded.
 
