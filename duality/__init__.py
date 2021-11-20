@@ -52,14 +52,14 @@ sys.dont_write_bytecode = True
 
 #meta data imports from the duality library.
 from duality.misc._meta import (
-	__author__,
-	__copyright__,
-	__credits__,
-	__license__,
-	__version__,
-	__documentation__,
-	__contact__,
-	__donate__,
+    __author__,
+    __copyright__,
+    __credits__,
+    __license__,
+    __version__,
+    __documentation__,
+    __contact__,
+    __donate__,
 )
 
 #object and module imports.
@@ -81,15 +81,15 @@ from duality.hub.toolkit import (
 
 #all relevant contents.
 __all__ = [
-	random_value,
-        random_pool,
-	split_values,
-	join_values,
-	replace_values,
-	list_sort,
-	index_sort,
-	auto_sort,
-	toolkit,
-	MonteCarlo,
-	EOQ,
+    random_value,
+    random_pool,
+    split_values,
+    join_values,
+    replace_values,
+    list_sort,
+    index_sort,
+    auto_sort,
+    toolkit,
+    MonteCarlo,
+    EOQ,
 ]
