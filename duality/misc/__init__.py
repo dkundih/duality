@@ -12,7 +12,7 @@ from duality.misc._meta import (
 
 #all relevant contents.
 __all__ = [
-    __author__,
+	__author__,
 	__copyright__,
 	__credits__,
 	__license__,
