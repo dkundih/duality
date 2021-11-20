@@ -57,4 +57,4 @@ setup(
     'numpy >= 1.19.5',
     'matplotlib >= 3.4.3',
 ]
-)
+  )
