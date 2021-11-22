@@ -245,3 +245,6 @@ CHANGELOG
 
 3.4.2 (22/11/2021)
 - functionality confirmed.
+
+3.4.3 (22/11/2021)
+- upstream/downstream fix.
