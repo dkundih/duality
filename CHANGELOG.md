@@ -236,3 +236,6 @@ CHANGELOG
 
 3.3.7 (20/11/2021)
 - code reconstruction.
+
+3.4.0 (22/11/2021)
+- NEW FEATURE: duality.Dijkstra algorithm.

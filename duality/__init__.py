@@ -9,7 +9,7 @@ AVAILABLE FEATURES IN THE LIBRARY:
 
 	TOOLKIT (MODULE FUNCTIONS)
 	--------------------------
-
+    
 	set of available data manipulation functions from the duality library.
 		print(help(any_function_listed_below)) in order to see the function details or print(help(duality.toolkit)) for all functions at once.
 
@@ -44,6 +44,12 @@ AVAILABLE FEATURES IN THE LIBRARY:
 	duality.EOQ is a module for finding an Economic order quantity over the defined data with a lot of useful features.
 		print(help(duality.EOQ)) in order to see available features.
 
+    Dijkstra (OBJECT)
+	-----------------
+	
+	duality.Dijkstra is a module for finding the optimal route between the defined nodes from the place of origin to the final destination.
+		print(help(duality.Dijkstra)) in order to see available features.
+
 '''
 
 #ignore __pycache__ from forming inside the library directory.
@@ -66,6 +72,7 @@ from duality.misc._meta import (
 from duality.hub import toolkit
 from duality.objects.eoq import EOQ
 from duality.objects.montecarlo import MonteCarlo
+from duality.objects.dijkstra import Dijkstra
 
 #hub imports.
 from duality.hub.toolkit import (
@@ -92,4 +99,5 @@ __all__ = [
     toolkit,
     MonteCarlo,
     EOQ,
+    Dijkstra,
 ]
