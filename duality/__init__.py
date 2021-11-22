@@ -43,10 +43,10 @@ AVAILABLE FEATURES IN THE LIBRARY:
 	
 	duality.EOQ is a module for finding an Economic order quantity over the defined data with a lot of useful features.
 		print(help(duality.EOQ)) in order to see available features.
-
+	
 	Dijkstra (OBJECT)
 	-----------------
-	
+
 	duality.Dijkstra is a module for finding the optimal route between the defined nodes from the place of origin to the final destination.
 		print(help(duality.Dijkstra)) in order to see available features.
 
