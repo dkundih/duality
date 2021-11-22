@@ -4,37 +4,37 @@ graph = {'a':{'b':10,'c':3},'b':{'c':1,'d':2},'c':{'b':4,'d':8,'e':2},'d':{'e':7
 def dijkstra(nodes, origin, destination):
     shortest_distance = {}
     predecessor = {}
-    nodecollection = nodes
+    nodeCollection = nodes
     path = []
-    for node in nodecollection:
+    for node in nodeCollection:
         shortest_distance[node] = float('inf')
     shortest_distance[origin] = 0
  
-    while nodecollection:
-        minNode = None
-        for node in nodecollection:
-            if minNode is None:
-                minNode = node
-            elif shortest_distance[node] < shortest_distance[minNode]:
-                minNode = node
+    while nodeCollection:
+        closestNode = None
+        for node in nodeCollection:
+            if closestNode is None:
+                closestNode = node
+            elif shortest_distance[node] < shortest_distance[closestNode]:
+                closestNode = node
  
-        for childNode, weight in graph[minNode].items():
-            if weight + shortest_distance[minNode] < shortest_distance[childNode]:
-                shortest_distance[childNode] = weight + shortest_distance[minNode]
-                predecessor[childNode] = minNode
-        nodecollection.pop(minNode)
+        for secondaryNode, weight in graph[closestNode].items():
+            if weight + shortest_distance[closestNode] < shortest_distance[secondaryNode]:
+                shortest_distance[secondaryNode] = weight + shortest_distance[closestNode]
+                predecessor[secondaryNode] = closestNode
+        nodeCollection.pop(closestNode)
  
-    currentNode = destination
-    while currentNode != origin:
+    liveNode = destination
+    while liveNode != origin:
         try:
-            path.insert(0,currentNode)
-            currentNode = predecessor[currentNode]
+            path.insert(0, liveNode)
+            liveNode = predecessor[liveNode]
         except KeyError:
-            print('Path not reachable')
+            print('Path unavailable.')
             break
     path.insert(0, origin)
     if shortest_distance[destination] != float('inf'):
         print('Shortest distance is ' + str(shortest_distance[destination]))
         print('And the path is ' + str(path))
  
-dijkstra(graph, 'a', 'd')
+dijkstra(graph, 'a', 'e')
