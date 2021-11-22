@@ -239,3 +239,6 @@ CHANGELOG
 
 3.4.0 (22/11/2021)
 - NEW FEATURE: duality.Dijkstra algorithm.
+
+3.4.1 (22/11/2021)
+- minor code cleanup.

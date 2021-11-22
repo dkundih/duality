@@ -56,7 +56,7 @@ class Dijkstra:
         __version__,
         __documentation__,
         __contact__,
-        __donate__
+        __donate__,
     )
 
     #initial value configuration.
