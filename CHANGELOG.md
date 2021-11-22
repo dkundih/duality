@@ -242,3 +242,6 @@ CHANGELOG
 
 3.4.1 (22/11/2021)
 - minor code cleanup.
+
+3.4.2 (22/11/2021)
+- functionality confirmed.

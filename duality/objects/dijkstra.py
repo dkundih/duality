@@ -6,7 +6,7 @@ class Dijkstra:
     (OBJECT INFO)
     -------------
 
-    duality.Dijkstra - main class that defines the data, desired time sequence and number of simulations.
+    duality.Dijkstra - main class that contains the data of defined nodes, origin and the desired destination.
 
         * takes 5 additional arguments.
             nodes - dictionary of dictionaries of nodes with their corelating weights.
