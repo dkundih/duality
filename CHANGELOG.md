@@ -281,3 +281,6 @@ CHANGELOG
 3.5.6 (01/12/2021)
 - functionality resolved using pypyxl.
 - duality.dualityCLI and python __main__.py now officially work.
+
+3.5.7 (01/12/2021)
+- added block = False to plt.show() in order to unlock further actions after a graph in dualityCLI.

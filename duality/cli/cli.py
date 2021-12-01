@@ -23,6 +23,7 @@ def dualityCLI():
 
 #MonteCarlo client extension.
 def MonteCarloCLI():
+    import matplotlib.pyplot as plt
     from duality.objects import MonteCarlo
     import pandas as pd
     file = input('File path: ').replace("'", '"').strip('"')

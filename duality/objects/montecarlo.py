@@ -205,7 +205,7 @@ class MonteCarlo:
         plt.axhline(y = self.results[0][0], color = 'k', linestyle = 'solid')
         plt.xlabel(x_title, fontsize = 18, weight = 'semibold')
         plt.ylabel(y_title, fontsize = 18, weight = 'semibold')
-        plt.show()
+        plt.show(block = False)
         print('MonteCarlo() plotting finished.')
    
     #DEVELOPER MODE - @classLog('get_stats()')
@@ -267,7 +267,7 @@ class MonteCarlo:
         plt.hist(self.results, bins = self.time_seq , ec = 'm')
         plt.xlabel(x_title, weight = 'semibold')
         plt.ylabel(y_title, weight= 'semibold')
-        plt.show()
+        plt.show(block = False)
         print('Histogram plotting finished.')
 
     #DEVELOPER MODE - @classLog('get_logs()')
