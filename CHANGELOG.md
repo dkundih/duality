@@ -258,3 +258,7 @@ CHANGELOG
 - MonteCarlo, Dijsktra and EOQ no longer define the data, data config shifted to .execute() function of every object.
 - CLI can now be executed in teminal using 'duality.__main__' for IDE or 'python __main__.py' for CMD or Powershell after locating with cd.
 - stability of 3.5. series will not be guaranteed, it is a transitional phase for future integrations into applications and web applications.
+
+3.5.1 (01/12/2021)
+- CLI environment tests.
+- code readablity improved.

@@ -1,6 +1,6 @@
 #main menu.
 def menu():
-    print('\n = duality Command Line Interface © David Kundih. =')
+    print('\n - duality Command Line Interface © David Kundih. -\n')
     print('AVAILABLE FEATURES')
     print(' 1 | Monte Carlo Simulation')
     print(' 2 | Dijkstra algorithm')
@@ -42,7 +42,7 @@ def MonteCarloCLI():
     period = int(input('Enter desired period: '))
     MC.execute(data, simulations, period)
     while True:
-        action = input('Actions: graph, change, stats, risk, hist, menu, help: ')
+        action = input('ACTIONS: graph, change, stats, risk, hist, menu, help: ')
         if action == 'graph':
             MC.graph()
         if action == 'change':

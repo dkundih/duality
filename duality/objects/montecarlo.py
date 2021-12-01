@@ -118,7 +118,7 @@ class MonteCarlo:
         self.log_summary = log_summary
         print(f'Monte Carlo has been set up for {self.num_sims} simulations in a period of {self.time_seq} time measurement units.')
         from duality.hub.toolkit import random_value
-        print('Monte Carlo simulation has been executed')
+        print('Monte Carlo simulation has been executed.')
         print('NOTE: Use data with reasonable standard deviation in order to prevent exponential growth of the function that cannot be plotted properly, recognize such abnormal values by a + sign anywhere in the data executed below.\nThe model that will be able to handle big standard deviations is currently being worked on, thank you for your patience.\n')
         import pandas as pd
         #this removes pandas warning of highly fragmented DataFrame for newer pandas versions.
@@ -170,7 +170,7 @@ class MonteCarlo:
         import pandas as pd
         #This removes pandas warning of highly fragmented DataFrame for newer pandas versions.
         from warnings import simplefilter
-        simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
+        simplefilter(action = 'ignore', category = pd.errors.PerformanceWarning)
         #End of pandas warning removal block.
         today_value = self.list_of_values.iloc[self.ref_value_index]
         percent_change = self.list_of_values.pct_change()
@@ -189,14 +189,14 @@ class MonteCarlo:
                     smaller += [sim]
         NRisk = len(smaller) / num_sim * 100
 
-        assert (NRisk < 100), 'Time sequence and/or number of iterations are too low for the proper risk calculation.'
+        assert (NRisk < 100), '\nTime sequence and/or number of iterations are too low for the proper risk calculation.'
 
-        print('Risk for this option is', round(NRisk,2), '%.')
+        print('\nRisk for this option is', round(NRisk,2), '%.')
      
     #DEVELOPER MODE - @classLog('graph()')
     #plots the Monte Carlo simulation on a graph.   
     def graph(self, graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10)):
-        print('MonteCarlo() plotting initialized.')
+        print('\nMonteCarlo() plotting initialized.')
         import matplotlib.pyplot as plt
         plt.figure(figsize = plot_size)
         plt.title('duality (c) David Kundih, 2021.', fontsize = 14, weight = 'regular', loc = 'right')
@@ -223,7 +223,7 @@ class MonteCarlo:
         self.standard_deviation = standard_deviation
         self.mean_value = mean_value
         if filtered == False:
-            print('Number of simulations: ', self.time_seq)
+            print('\nNumber of simulations: ', self.time_seq)
             print('Number of iterations: ', self.num_sims)
             print('Mean value: ', mean_value)
             print('Standard deviation: ', standard_deviation)
