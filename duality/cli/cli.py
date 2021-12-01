@@ -1,6 +1,5 @@
-#main menu.
 def menu():
-    print('\n - duality Command Line Interface © David Kundih. -\n')
+    print('\n - duality Command Line Interface © David Kundih -\n')
     print('AVAILABLE FEATURES')
     print(' 1 | Monte Carlo Simulation')
     print(' 2 | Dijkstra algorithm')
@@ -26,7 +25,7 @@ def dualityCLI():
 def MonteCarloCLI():
     from duality.objects import MonteCarlo
     import pandas as pd
-    file = input('File destination (without quotation marks): ')
+    file = input('File path: ').replace("'", '"').strip('"')
     if str(file).endswith('.csv'):
         data = pd.read_csv(file)
     elif str(file).endswith('.xlsx'):
@@ -34,32 +33,66 @@ def MonteCarloCLI():
     elif str(file).endswith('.json'):
         data = pd.read_json(file)
     else:
-        print('Only csv, xlsx and json files supported.')
-    file_col = input('Enter column name (without quotation marks): ')
+        raise Exception('Only csv, xlsx and json files supported.')
+    file_col = input('Enter column name: ').replace("'", '"').strip('"')
     data = data[file_col]
     MC = MonteCarlo()
     simulations = int(input('Enter number of simulations: '))
     period = int(input('Enter desired period: '))
-    MC.execute(data, simulations, period)
+    executed = MC.execute(data, simulations, period)
     while True:
-        action = input('ACTIONS: graph, change, stats, risk, hist, menu, help: ')
+        action = input('ACTIONS: graph, change, values, stats, risk, hist, menu, help: ')
         if action == 'graph':
             MC.graph()
-        if action == 'change':
-            print('Unavailable outside of IPython Notebook.')
-            MC.get_change()
-        if action == 'stats':
+        elif action == 'change':
+            print('1 | csv')
+            print('2 | xlsx')
+            print('3 | json')
+            file_type = input('Enter the number of file type:')
+            output = MC.get_change() 
+            save_to(output, 'change', choice = file_type)
+        elif action == 'values':
+            print('1 | csv')
+            print('2 | xlsx')
+            print('3 | json')
+            file_type = input('Enter the number of file type:')
+            save_to(executed, 'values', choice = file_type)
+        elif action == 'stats':
             MC.get_stats()
-        if action == 'risk':
+        elif action == 'risk':
             sample = int(input('Number of iterations: '))
             MC.get_risk(sample)
-        if action == 'hist':
-            MC.hist()
-        if action == 'menu':
+        elif action == 'hist':
+            print('1 | Basic Histogram')
+            print('2 | Empirical Rule Histogram')
+            method = input('Enter histogram method: ')
+            if method == '1':
+                MC.hist()
+            elif method == '2':
+                MC.hist(method = 'e')
+            else:
+                print('Invalid method.')
+        elif action == 'menu':
             break
-        if action == 'help':
-            print(help(MonteCarlo))
+        elif action == 'help':
+            print('https://github.com/dkundih/duality')
 
+def save_to(file, func_name, choice):
+    import pandas as pd
+    import os
+    if choice == '1':
+        extension = '.csv'
+        file.to_csv('duality.MonteCarlo - ' + func_name + extension)
+        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+    if choice == '2':
+        extension = '.xlsx'
+        file.to_excel('duality.MonteCarlo - ' + func_name + extension)
+        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+    if choice == '3':
+        extension = '.json'
+        file.to_json('duality.MonteCarlo - ' + func_name + extension)
+        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+    
 #Dijkstra client extension.
 def DijkstraCLI():
     from duality.objects import Dijkstra

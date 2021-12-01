@@ -2,6 +2,7 @@
 from duality.cli import cli
 from duality.cli.cli import (
     menu,
+    save_to,
     dualityCLI,
     MonteCarloCLI,
     DijkstraCLI,
@@ -12,6 +13,7 @@ from duality.cli.cli import (
 __all__ = [
     cli,
     menu,
+    save_to,
     dualityCLI,
     MonteCarloCLI,
     DijkstraCLI,

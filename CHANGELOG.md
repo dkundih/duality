@@ -267,3 +267,17 @@ CHANGELOG
 - CLI environment tests.
 - dualityCLI integration into the source.
 - CLI contents added into __all__ and __init__ files.
+
+3.5.3 (01/12/2021) - UNSTABLE
+- first functional CLI for MonteCarlo imlpemented.
+- added saving to .csv, .xlsx and .json for out-of-terminal functions.
+
+3.5.4 (01/12/2021) - UNSTABLE
+- active tests.
+
+3.5.5 (01/12/2021) - UNSTABLE
+- bug fixes.
+
+3.5.6 (01/12/2021)
+- functionality resolved using pypyxl.
+- duality.dualityCLI and python __main__.py now officially work.
