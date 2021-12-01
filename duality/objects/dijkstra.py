@@ -8,7 +8,13 @@ class Dijkstra:
 
     duality.Dijkstra - main class that contains the data of defined nodes, origin and the desired destination.
 
-        * takes 5 additional arguments.
+    (OBJECT FUNCTIONS)
+    ------------------
+
+    eg. duality.Dijkstra.function()
+
+        .execute() - executes a Dijkstra algorithm route scan on a defined path.
+        * takes 4 additional arguments.
             nodes - dictionary of dictionaries of nodes with their corelating weights.
 
             eg.
@@ -22,17 +28,8 @@ class Dijkstra:
 
             origin - origin node as a starting point.
             destination - destination node of the desired route.
-            return_data (default: return_data = True) - initiates execute() function after data setup.
             log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE ONLY
         * automatically executes the .execute() function.
-
-    (OBJECT FUNCTIONS)
-    ------------------
-
-    eg. duality.Dijkstra.function()
-
-        .execute() - executes a Dijkstra algorithm route scan on a defined path.
-            *is automatically executed with the Object setup.
 
     (DEVELOPER MODE)
     ----------------
@@ -60,17 +57,8 @@ class Dijkstra:
     )
 
     #initial value configuration.
-    def __init__(self, nodes, origin, destination, return_data = True, log_summary = False):
-        self.nodes = nodes
-        self.origin = origin
-        self.destination = destination
-        self.return_data = return_data
-        self.log_summary = log_summary
-        print(f'Dijkstra has been set up for for finding the path within {self.nodes} from {self.origin} => {self.destination}.')
-
-        #initiates execute() function after data setup.
-        if return_data == True:
-            self.execute()
+    def __init__(self):
+        pass
 
     #DEVELOPER MODE - creates an event log that tracks the function execution time and duration.
     def classLog(func_name):
@@ -102,7 +90,12 @@ class Dijkstra:
 
     #DEVELOPER MODE - @classLog('execute() - built in function.')
     #executes a Dijkstra algorithm route scan on a defined path.
-    def execute(self):
+    def execute(self, nodes, origin, destination, log_summary = False):
+        self.nodes = nodes
+        self.origin = origin
+        self.destination = destination
+        self.log_summary = log_summary
+        print(f'Dijkstra has been set up for for finding the path from {self.origin} => {self.destination}.')
         Nodes = self.nodes
         preNode = {}
         optimal_distance = {}

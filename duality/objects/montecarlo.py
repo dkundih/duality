@@ -8,25 +8,22 @@ class MonteCarlo:
 
     duality.MonteCarlo - main class that defines the data, desired time sequence and number of simulations.
 
-        * takes 6 additional arguments.
-            list_of_values - pandas dataframe of values.
-            time_seq - desired time sequence.
-            num_sims - desired number of simulation iterations.
-            ref_value_index (default: ref_value_index = 0) - index on which the starting point of the simulation is created.
-            return_data (default: return_data = True) - initiates execute() function after data setup.
-            log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE ONLY
-        * Requirements:
-            pandas Python module.
-            pd.DataFrame() defined data set.
-        * automatically executes the .execute() function.
-
     (OBJECT FUNCTIONS)
     ------------------
 
     eg. duality.MonteCarlo.function()
 
         .execute() - executes a Monte Carlo simulation on a defined data set.
-            *is automatically executed with the Object setup.
+            * takes 5 additional arguments.
+            list_of_values - pandas dataframe of values.
+            time_seq - desired time sequence.
+            num_sims - desired number of simulation iterations.
+            ref_value_index (default: ref_value_index = 0) - index on which the starting point of the simulation is created.
+            log_summary (default: log_summary = False) - event log of executed functions. - DEVELOPER MODE ONLY
+        * Requirements:
+            pandas Python module.
+            pd.DataFrame() defined data set.
+        * automatically executes the .execute() function.
 
         .graph() - plots the Monte Carlo simulation on a graph.
             * takes 4 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10)).
@@ -79,19 +76,9 @@ class MonteCarlo:
         __donate__,
     )
 
-    #initial value configuration.
-    def __init__(self, list_of_values, time_seq, num_sims, ref_value_index = 0, return_data = True, log_summary = False): 
-        self.list_of_values = list_of_values
-        self.time_seq = time_seq
-        self.num_sims = num_sims
-        self.ref_value_index = ref_value_index
-        self.return_data = return_data
-        self.log_summary = log_summary
-        print(f'Monte Carlo has been set up for {self.num_sims} simulations in a period of {self.time_seq} time measurement units.')
-
-        #initiates execute() function after data setup.
-        if return_data == True:
-            self.execute()
+    #initial launch.
+    def __init__(self): 
+        pass
 
     #DEVELOPER MODE - creates an event log that tracks the function execution time and duration.
     def classLog(func_name):
@@ -123,47 +110,53 @@ class MonteCarlo:
 
     #DEVELOPER MODE - @classLog('execute() - built in function.')
     #executes a Monte Carlo simulation on a defined data set.
-    def execute(self):
-            from duality.hub.toolkit import random_value
-            print('Monte Carlo simulation has been executed')
-            print('NOTE: Use data with reasonable standard deviation in order to prevent exponential growth of the function that cannot be plotted properly, recognize such abnormal values by a + sign anywhere in the data executed below.\nThe model that will be able to handle big standard deviations is currently being worked on, thank you for your patience.\n')
-            import pandas as pd
-            #this removes pandas warning of highly fragmented DataFrame for newer pandas versions.
-            from warnings import simplefilter
-            simplefilter(action = 'ignore', category = pd.errors.PerformanceWarning)
-            #end of pandas warning removal block.
-            today_value = self.list_of_values.iloc[self.ref_value_index]
-            data = pd.DataFrame()
-            loading = 0
+    def execute(self, list_of_values, time_seq, num_sims, ref_value_index = 0, log_summary = False): 
+        self.list_of_values = list_of_values
+        self.time_seq = time_seq
+        self.num_sims = num_sims
+        self.ref_value_index = ref_value_index
+        self.log_summary = log_summary
+        print(f'Monte Carlo has been set up for {self.num_sims} simulations in a period of {self.time_seq} time measurement units.')
+        from duality.hub.toolkit import random_value
+        print('Monte Carlo simulation has been executed')
+        print('NOTE: Use data with reasonable standard deviation in order to prevent exponential growth of the function that cannot be plotted properly, recognize such abnormal values by a + sign anywhere in the data executed below.\nThe model that will be able to handle big standard deviations is currently being worked on, thank you for your patience.\n')
+        import pandas as pd
+        #this removes pandas warning of highly fragmented DataFrame for newer pandas versions.
+        from warnings import simplefilter
+        simplefilter(action = 'ignore', category = pd.errors.PerformanceWarning)
+        #end of pandas warning removal block.
+        today_value = self.list_of_values.iloc[self.ref_value_index]
+        data = pd.DataFrame()
+        loading = 0
 
-            for num_sim in range(self.num_sims):
+        for num_sim in range(self.num_sims):
+            rand_change = random_value(self.list_of_values.pct_change().mean(), self.list_of_values.pct_change().std())
+            count = 0
+            index_array = []
+            index_array += [today_value * (1 + rand_change)]
+            
+            if index_array[count] > (index_array[-1] * 2):
+                raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation cannot be executed properly.')
+                    
+            for num_day in range(self.time_seq):   
                 rand_change = random_value(self.list_of_values.pct_change().mean(), self.list_of_values.pct_change().std())
-                count = 0
-                index_array = []
-                index_array += [today_value * (1 + rand_change)]
-                
-                if index_array[count] > (index_array[-1] * 2):
-                    raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation cannot be executed properly.')
-                        
-                for num_day in range(self.time_seq):   
-                    rand_change = random_value(self.list_of_values.pct_change().mean(), self.list_of_values.pct_change().std())
-                    if count == self.time_seq:
-                        break
-                    index_array += [index_array[count] * (1 + rand_change)]
-                    count += 1
+                if count == self.time_seq:
+                    break
+                index_array += [index_array[count] * (1 + rand_change)]
+                count += 1
 
-                    if index_array[count] > (index_array[-1] * 2):
-                        raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation function cannot be executed properly.')
-                
-                loading += 1
-                print(end = '\r')
-                print(loading, 'iterations out of', self.num_sims, 'executed so far', end = '')
-                
-                data[num_sim] = index_array
+                if index_array[count] > (index_array[-1] * 2):
+                    raise Exception('Variation between data is too big, due to detection of exponentional increase of values or non-sequential data Monte Carlo simulation function cannot be executed properly.')
+            
+            loading += 1
             print(end = '\r')
-            print('Monte Carlo simulation set up and ready to plot.')
-            self.results = data
-            return data
+            print(loading, 'iterations out of', self.num_sims, 'executed so far', end = '')
+            
+            data[num_sim] = index_array
+        print(end = '\r')
+        print('Monte Carlo simulation set up and ready to plot.')
+        self.results = data
+        return data
 
     #DEVELOPER MODE - @classLog('get_change()')
     #shows the percentage of Monte Carlo simulation value change for every iteration.
@@ -235,7 +228,7 @@ class MonteCarlo:
             print('Mean value: ', mean_value)
             print('Standard deviation: ', standard_deviation)
             print('Maximum: ', maximum_value)
-            print('Minimum: ', minimum_value)
+            print('Minimum: ', minimum_value, '\n')
 
     #DEVELOPER MODE - @classLog('hist()')
     #plots the histogram of Monte Carlo simulation.
