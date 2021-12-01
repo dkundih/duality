@@ -262,3 +262,8 @@ CHANGELOG
 3.5.1 (01/12/2021)
 - CLI environment tests.
 - code readablity improved.
+
+3.5.2 (01/12/2021)
+- CLI environment tests.
+- dualityCLI integration into the source.
+- CLI contents added into __all__ and __init__ files.

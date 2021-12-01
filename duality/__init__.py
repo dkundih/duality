@@ -54,6 +54,7 @@ AVAILABLE FEATURES IN THE LIBRARY:
 
 #ignore __pycache__ from forming inside the library directory.
 import sys
+from duality.cli.cli import dualityCLI
 sys.dont_write_bytecode = True
 
 #meta data imports from the duality library.
@@ -86,6 +87,10 @@ from duality.hub.toolkit import (
     auto_sort,
 )
 
+#cli imports
+from duality.cli import cli
+from duality.cli.cli import *
+
 #all relevant contents.
 __all__ = [
     random_value,
@@ -100,4 +105,5 @@ __all__ = [
     MonteCarlo,
     EOQ,
     Dijkstra,
+    dualityCLI,
 ]
