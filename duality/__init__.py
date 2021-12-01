@@ -54,7 +54,6 @@ AVAILABLE FEATURES IN THE LIBRARY:
 
 #ignore __pycache__ from forming inside the library directory.
 import sys
-from duality.cli.cli import dualityCLI
 sys.dont_write_bytecode = True
 
 #meta data imports from the duality library.
@@ -68,6 +67,9 @@ from duality.misc._meta import (
     __contact__,
     __donate__,
 )
+
+#dualityCLI.exe version.
+from duality.cli.cli import __CLIexeversion__
 
 #object and module imports.
 from duality.hub import toolkit
@@ -105,5 +107,5 @@ __all__ = [
     MonteCarlo,
     EOQ,
     Dijkstra,
-    dualityCLI,
+    CLI,
 ]

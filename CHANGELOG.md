@@ -284,3 +284,11 @@ CHANGELOG
 
 3.5.7 (01/12/2021)
 - added block = False to plt.show() in order to unlock further actions after a graph in dualityCLI.
+
+3.5.8 (01/12/2021) - UNSTABLE
+- cli code redefined and made user friendly.
+- dualityCLI is not CLI.
+
+3.5.9 (01/12/2021)
+- now contains the executable CLI file with .exe extension within CLIexe folder.
+- dualityCLI.exe v1.0 functionality equalized with 3.5.9 version of python __main__.py and duality.CLI
