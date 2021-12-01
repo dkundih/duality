@@ -15,7 +15,7 @@ Use permitted according to the terms of use and conditions set by the attached l
 
 **Example of use**
 
-Visit https://github.com/dkundih/duality/demo in order to see the demonstration of use in practical examples.
+Visit https://github.com/dkundih/duality/tree/main/demo in order to see the demonstration of use in practical examples.
 
 **Installation**
 
