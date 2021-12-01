@@ -289,9 +289,13 @@ CHANGELOG
 - cli code redefined and made user friendly.
 - dualityCLI is not CLI.
 
-3.5.9 (01/12/2021)
+3.5.9 (01/12/2021) - UNSTABLE
 - now contains the executable CLI file with .exe extension within CLIexe folder.
 - dualityCLI.exe v1.0 functionality equalized with 3.5.9 version of python __main__.py and duality.CLI()
 
-3.5.10 (01/12/2021)
+3.5.10 (01/12/2021) - UNSTABLE
 - dualityCLI.exe release postponed, use python __main__.py or duality.CLI() to execute.
+
+3.5.11 (01/12/2021)
+- dualityCLI.exe files removed from the package.
+- CLIexeversion is now CLIversion.

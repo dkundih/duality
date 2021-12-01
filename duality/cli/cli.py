@@ -1,9 +1,9 @@
-#dualityCLI.exe version.
-__CLIexeversion__ = 'v1.0'
+#dualityCLI version.
+__CLIversion__ = 'v1.0'
 
 #intro to the client.
 def greet():
-    print('\n - duality Command Line Interface © David Kundih -', __CLIexeversion__)
+    print('\n - duality Command Line Interface © David Kundih -', __CLIversion__)
 
 #menu.
 def menu():

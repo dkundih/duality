@@ -69,7 +69,7 @@ from duality.misc._meta import (
 )
 
 #dualityCLI.exe version.
-from duality.cli.cli import __CLIexeversion__
+from duality.cli.cli import __CLIversion__
 
 #object and module imports.
 from duality.hub import toolkit
