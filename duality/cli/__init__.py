@@ -1,11 +1,10 @@
 #import all relevant contents from the associated module.
-from duality.cli import cli
 from duality.cli.cli import (
     __CLIversion__,
     menu,
     greet,
     save_to,
-    CLI, #client.
+    CLI, #main client.
     MonteCarloCLI,
     DijkstraCLI,
     EOQCLI,
@@ -13,12 +12,11 @@ from duality.cli.cli import (
 
 #all relevant contents.
 __all__ = [
-    cli,
     __CLIversion__,
     menu,
     greet,
     save_to,
-    CLI, #client.
+    CLI, #main client.
     MonteCarloCLI,
     DijkstraCLI,
     EOQCLI,

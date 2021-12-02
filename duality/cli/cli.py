@@ -1,5 +1,5 @@
 #dualityCLI version.
-__CLIversion__ = 'v1.0'
+__CLIversion__ = 'v1.1'
 
 #intro to the client.
 def greet():
@@ -15,8 +15,18 @@ def menu():
     print(' 4 | Exit')
     print('-----------------------------')
 
-#client.
+#main client.
 def CLI():
+
+    '''
+
+    (FUNCTION INFO)
+    ---------------
+
+    duality.CLI - main client that serves as an access to other module clients.
+
+    '''
+
     greet()
     while True:
         menu()
@@ -38,6 +48,16 @@ def CLI():
 
 #MonteCarlo client extension.
 def MonteCarloCLI():
+
+    '''
+
+    (FUNCTION INFO)
+    ---------------
+
+    duality.MonteCarloCLI - MonteCarlo client extension.
+
+    '''
+
     import matplotlib.pyplot as plt
     from duality.objects import MonteCarlo
     import pandas as pd
@@ -55,7 +75,7 @@ def MonteCarloCLI():
     MC = MonteCarlo()
     simulations = int(input('Enter number of simulations: '))
     period = int(input('Enter desired period: '))
-    executed = MC.execute(data, simulations, period)
+    executed = MC.execute(list_of_values = data, num_sims = simulations, time_seq = period)
     while True:
         action = input('ACTIONS: graph, change, values, stats, risk, hist, menu, help: ')
         if action == 'graph':
@@ -98,6 +118,7 @@ def MonteCarloCLI():
         elif action == 'help':
             print('https://github.com/dkundih/duality')
 
+#save helper for cleaner code.
 def save_to(file, func_name, choice):
     import pandas as pd
     import os
@@ -116,13 +137,43 @@ def save_to(file, func_name, choice):
     
 #Dijkstra client extension.
 def DijkstraCLI():
+
+    '''
+
+    (FUNCTION INFO)
+    ---------------
+
+    duality.DijkstraCLI - Dijkstra client extension.
+
+    '''
+
     from duality.objects import Dijkstra
-    pass
+    while True:
+        action = input('ACTIONS: menu, help: ')
+        if action == 'menu':
+            break
+        elif action == 'help':
+            print('https://github.com/dkundih/duality')
 
 #EOQ client extension.
 def EOQCLI():
+
+    '''
+
+    (FUNCTION INFO)
+    ---------------
+
+    duality.EOQCLI - EOQ client extension.
+
+    '''
+
     from duality.objects import EOQ
-    pass
+    while True:
+        action = input('ACTIONS: menu, help: ')
+        if action == 'menu':
+            break
+        elif action == 'help':
+            print('https://github.com/dkundih/duality')
 
 #runs client.
 if __name__ == '__main__':

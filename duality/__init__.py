@@ -3,7 +3,7 @@
 duality - Data science, Data manipulation and Machine learning library.
 =====================================================================
 
-This is a connection to the main __init__ file of the duality library.
+This is a connection to the __init__ file of the duality library.
 
 AVAILABLE FEATURES IN THE LIBRARY:
 
@@ -50,6 +50,12 @@ AVAILABLE FEATURES IN THE LIBRARY:
 	duality.Dijkstra is a module for finding the optimal route between the defined nodes from the place of origin to the final destination.
 		print(help(duality.Dijkstra)) in order to see available features.
 
+	CLI (EXECUTABLE FUNCTION)
+	-------------------------
+
+	duality.CLI is an executable function that runs the Command Line Inerface of the duality package.
+		print(help(duality.CLI)) in order to see available features.
+
 '''
 
 #ignore __pycache__ from forming inside the library directory.
@@ -90,7 +96,6 @@ from duality.hub.toolkit import (
 )
 
 #cli imports
-from duality.cli import cli
 from duality.cli.cli import *
 
 #all relevant contents.

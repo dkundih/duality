@@ -299,3 +299,8 @@ CHANGELOG
 3.5.11 (01/12/2021)
 - dualityCLI.exe files removed from the package.
 - CLIexeversion is now CLIversion.
+
+3.5.12 (02/12/2021)
+- CLI v1.1 version replaces the CLI v1.0
+- added menu and help actions to Dijkstra and EOQ until they become implemented.
+- bugfix of MonteCarlo simulations being period and vice versa.
