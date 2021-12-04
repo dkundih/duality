@@ -1,18 +1,25 @@
+#dependency imports.
+import colorama, traceback
+from colorama import Fore
+import os
+
+colorama.init()
+
 #duality version.
 from duality.misc._meta import __version__
 
 #dualityCLI version.
-__CLIversion__ = 'v1.21'
+__CLIversion__ = 'v1.22'
 
 #intro to the client.
 def greet():
-    print('\n - duality Command Line Interface © David Kundih -', __CLIversion__)
-    print(' - duality package version - ', __version__)
+    print(Fore.GREEN + '\n - duality Command Line Interface © David Kundih -', __CLIversion__)
+    print(Fore.GREEN + ' - duality package version - ', __version__, Fore.RESET)
 
 #menu.
 def menu():
     print('-----------------------------')
-    print('AVAILABLE FEATURES')
+    print(Fore.CYAN + 'AVAILABLE FEATURES', Fore.RESET)
     print(' 1 | Monte Carlo simulation')
     print(' 2 | Dijkstra algorithm')
     print(' 3 | Economic Order Quantity')
@@ -33,22 +40,23 @@ def CLI():
     breaker = False
     greet()
     while True:
+        os.system('cls')
         menu()
         choice = input('Choose an option: ')
         if choice == '1':
-            print('=== ENTERING MONTECARLO CLIENT... ===\n')
+            print(Fore.GREEN + '=== ENTERING MONTECARLO CLIENT... ===\n', Fore.RESET)
             MonteCarloCLI()
         elif choice == '2':
-            print('=== ENTERING DIJKSTRA CLIENT... ===\n')
+            print(Fore.GREEN + '=== ENTERING DIJKSTRA CLIENT... ===\n', Fore.RESET)
             DijkstraCLI()
         elif choice == '3':
-            print('=== ENTERING EOQ CLIENT... ===\n')
+            print(Fore.GREEN + '=== ENTERING EOQ CLIENT... ===\n', Fore.RESET)
             EOQCLI()
         elif choice == '4':
-            print('Exiting...')
+            print(Fore.GREEN + 'Exiting...', Fore.RESET)
             break
         else:
-            print('=== OPTION NOT EXISTENT OR AVAILABLE, PLEASE WRITE THE EXISTING NUMBER FROM THE MENU TO CONTINUE. ===')
+            print(Fore.RED + '=== OPTION NOT EXISTENT OR AVAILABLE, PLEASE WRITE THE EXISTING NUMBER FROM THE MENU TO CONTINUE. ===', Fore.RESET)
 
 #MonteCarlo client extension.
 def MonteCarloCLI():
@@ -68,22 +76,21 @@ def MonteCarloCLI():
     file = input('File path: ').replace("'", '"').strip('"')
     if str(file).endswith('.csv'):
         data = pd.read_csv(file)
-        print('AVAILABLE COLUMNS: ')
+        print(Fore.CYAN + 'AVAILABLE COLUMNS: ', Fore.RESET)
         for col in data.columns:
             print(col)
     elif str(file).endswith('.xlsx'):
         data = pd.read_excel(file)
-        print('AVAILABLE COLUMNS: ')
+        print(Fore.CYAN + 'AVAILABLE COLUMNS: ', Fore.RESET)
         for col in data.columns:
             print(col)
     elif str(file).endswith('.json'):
         data = pd.read_json(file)
-        print('AVAILABLE COLUMNS: ')
+        print(Fore.CYAN + 'AVAILABLE COLUMNS: ', Fore.RESET)
         for col in data.columns:
             print(col)
     else:
         raise Exception('=== ONLY CSV, XLSX AND JSON FILES SUPPORTED. ===\n')
-
     file_col = input('\nEnter column name: ').replace("'", '"').strip('"')
     try:
         data = data[file_col]
@@ -109,7 +116,7 @@ def MonteCarloCLI():
             try:
                 save_to(output, 'change', choice = file_type)
             except:
-                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
+                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')     
         if action == 'values':
             print('1 | csv')
             print('2 | xlsx')
@@ -135,14 +142,14 @@ def MonteCarloCLI():
             elif method == '2':
                 MC.hist(x_title = x_axis, y_title = y_axis, method = 'e')
             else:
-                print('=== INVALID METHOD. ===\n')
+                print(Fore.RED + '=== INVALID METHOD. ===\n', Fore.RESET)
         if action == 'home':
             breaker = True
             break
             if breaker == True:
                 break
         if action == 'help':
-            print('https://github.com/dkundih/duality\n')
+            print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
 #save helper for cleaner code.
 def save_to(file, func_name, choice):
@@ -161,7 +168,7 @@ def save_to(file, func_name, choice):
         file.to_json('duality.MonteCarlo - ' + func_name + extension)
         print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
     else:
-        print('=== NO OPTION CHOSEN, EXITING THE MENU... =\n')
+        print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
 #Dijkstra client extension.
 def DijkstraCLI():
 
@@ -183,7 +190,7 @@ def DijkstraCLI():
             if breaker == True:
                 break
         if action == 'help':
-            print('https://github.com/dkundih/duality\n')
+            print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
 #EOQ client extension.
 def EOQCLI():
@@ -206,7 +213,7 @@ def EOQCLI():
             if breaker == True:
                 break
         if action == 'help':
-            print('https://github.com/dkundih/duality\n')
+            print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
 #runs client.
 if __name__ == '__main__':

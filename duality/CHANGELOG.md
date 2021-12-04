@@ -308,3 +308,9 @@ CHANGELOG
 3.6.1 (03/12/2021) - STABLE
 - CLI v1.21 version added.
 - CLI stable after initial tests.
+
+3.6.2 (04/12/2021) - STABLE
+- CLI v1.22 version added.
+- colored CLI functions.
+- colorama added to dependencies.
+- added clear screen after exiting clients.
