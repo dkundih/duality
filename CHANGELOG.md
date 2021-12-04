@@ -300,7 +300,17 @@ CHANGELOG
 - dualityCLI.exe files removed from the package.
 - CLIexeversion is now CLIversion.
 
-3.5.12 (02/12/2021)
+3.5.12+ (02-03/12/2021)
 - CLI v1.1 version replaces the CLI v1.0
 - added menu and help actions to Dijkstra and EOQ until they become implemented.
 - bugfix of MonteCarlo simulations being period and vice versa.
+
+3.6.1 (03/12/2021) - STABLE
+- CLI v1.21 version added.
+- CLI stable after initial tests.
+
+3.6.2 (04/12/2021) - STABLE
+- CLI v1.22 version added.
+- colored CLI functions.
+- colorama added to dependencies.
+- added clear screen after exiting clients.
