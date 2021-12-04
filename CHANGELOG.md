@@ -315,6 +315,7 @@ CHANGELOG
 - colorama added to dependencies.
 - added clear screen after exiting clients.
 
-3.6.3 (04/12/2021)
+3.6.4 (04/12/2021)
+- skips ghost 3.6.3 version.
 - CLI v1.23 version added.
 - quick bugfix of executing greet() after cls in CLI.
