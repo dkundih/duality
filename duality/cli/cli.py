@@ -3,6 +3,7 @@ import colorama, traceback
 from colorama import Fore
 import os
 
+#initiates coloring.
 colorama.init()
 
 #duality version.
@@ -169,6 +170,7 @@ def save_to(file, func_name, choice):
         print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
     else:
         print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
+        
 #Dijkstra client extension.
 def DijkstraCLI():
 
