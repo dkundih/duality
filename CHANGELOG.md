@@ -171,7 +171,7 @@ CHANGELOG
 - MonteCarlo and EOQ now automatically perform .execute() function.
 - MonteCarlo.hist() now executes get_stats() alongside to get info about standard deviation.
 - MonteCarlo and EOQ are now being imported as objects.
-- global_functions removed and merged into _meta.
+- global_functions removed and merged into meta folder.
 
 3.1.1+ (06/11/2021)
 - functionality tests.
@@ -314,3 +314,7 @@ CHANGELOG
 - colored CLI functions.
 - colorama added to dependencies.
 - added clear screen after exiting clients.
+
+3.6.3 (04/12/2021)
+- CLI v1.23 version added.
+- quick bugfix of executing greet() after cls in CLI.
