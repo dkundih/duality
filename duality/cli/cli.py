@@ -10,7 +10,7 @@ colorama.init()
 from duality.misc._meta import __version__
 
 #dualityCLI version.
-__CLIversion__ = 'v1.22'
+__CLIversion__ = 'v1.23'
 
 #intro to the client.
 def greet():
@@ -39,9 +39,9 @@ def CLI():
 
     '''
     breaker = False
-    greet()
     while True:
         os.system('cls')
+        greet()
         menu()
         choice = input('Choose an option: ')
         if choice == '1':
