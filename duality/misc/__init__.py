@@ -1,4 +1,4 @@
-#import all relevant contents from the associated module.
+# import all relevant contents from the associated module.
 from duality.misc._meta import (
     __author__,
     __copyright__,
@@ -10,7 +10,7 @@ from duality.misc._meta import (
     __donate__,
 )
 
-#all relevant contents.
+# all relevant contents.
 __all__ = [
     __author__,
     __copyright__,

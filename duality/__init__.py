@@ -9,7 +9,7 @@ AVAILABLE FEATURES IN THE LIBRARY:
 
 	TOOLKIT (MODULE FUNCTIONS)
 	--------------------------
-    
+
 	set of available data manipulation functions from the duality library.
 		print(help(any_function_listed_below)) in order to see the function details or print(help(duality.toolkit)) for all functions at once.
 
@@ -40,10 +40,10 @@ AVAILABLE FEATURES IN THE LIBRARY:
 
 	EOQ (OBJECT)
 	------------
-	
+
 	duality.EOQ is a module for finding an Economic order quantity over the defined data with a lot of useful features.
 		print(help(duality.EOQ)) in order to see available features.
-	
+
 	Dijkstra (OBJECT)
 	-----------------
 
@@ -58,11 +58,11 @@ AVAILABLE FEATURES IN THE LIBRARY:
 
 '''
 
-#ignore __pycache__ from forming inside the library directory.
+# ignore __pycache__ from forming inside the library directory.
 import sys
 sys.dont_write_bytecode = True
 
-#meta data imports from the duality library.
+# meta data imports from the duality library.
 from duality.misc._meta import (
     __author__,
     __copyright__,
@@ -74,16 +74,16 @@ from duality.misc._meta import (
     __donate__,
 )
 
-#dualityCLI.exe version.
+# dualityCLI.exe version.
 from duality.cli.cli import __CLIversion__
 
-#object and module imports.
+# object and module imports.
 from duality.hub import toolkit
 from duality.objects.eoq import EOQ
 from duality.objects.montecarlo import MonteCarlo
 from duality.objects.dijkstra import Dijkstra
 
-#hub imports.
+# hub imports.
 from duality.hub.toolkit import (
     random_value,
     random_pool,
@@ -95,10 +95,10 @@ from duality.hub.toolkit import (
     auto_sort,
 )
 
-#cli imports
+# cli imports
 from duality.cli.cli import *
 
-#all relevant contents.
+# all relevant contents.
 __all__ = [
     random_value,
     random_pool,

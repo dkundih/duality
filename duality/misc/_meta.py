@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 '''
 
 This module contains the meta-data of the library.
@@ -16,4 +17,3 @@ __version__ = '3.6.2'
 __documentation__ = 'https://github.com/dkundih/duality | https://pypi.org/project/duality'
 __contact__ = 'dakundih@unin.hr | kundihdavid@gmail.com'
 __donate__ = 'https://patreon.com/dkundih | https://buymeacoffee.com/dkundih'
-

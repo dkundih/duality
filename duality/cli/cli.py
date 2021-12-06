@@ -1,23 +1,24 @@
-#dependency imports.
-import colorama, traceback
+# dependency imports.
+from duality.misc._meta import __version__
+import colorama
 from colorama import Fore
 import os
 
-#initiates coloring.
+# initiates coloring.
 colorama.init()
 
-#duality version.
+# duality version.
 from duality.misc._meta import __version__
 
-#dualityCLI version.
+# dualityCLI version.
 __CLIversion__ = 'v1.23'
 
-#intro to the client.
+# intro to the client.
 def greet():
     print(Fore.GREEN + '\n - duality Command Line Interface © David Kundih -', __CLIversion__)
     print(Fore.GREEN + ' - duality package version - ', __version__, Fore.RESET)
 
-#menu.
+# menu.
 def menu():
     print('-----------------------------')
     print(Fore.CYAN + 'AVAILABLE FEATURES', Fore.RESET)
@@ -27,9 +28,8 @@ def menu():
     print(' 4 | Exit')
     print('-----------------------------')
 
-#main client.
+# main client.
 def CLI():
-
     '''
 
     (FUNCTION INFO)
@@ -38,6 +38,7 @@ def CLI():
     duality.CLI - main client that serves as an access to other module clients.
 
     '''
+
     breaker = False
     while True:
         os.system('cls')
@@ -59,9 +60,8 @@ def CLI():
         else:
             print(Fore.RED + '=== OPTION NOT EXISTENT OR AVAILABLE, PLEASE WRITE THE EXISTING NUMBER FROM THE MENU TO CONTINUE. ===', Fore.RESET)
 
-#MonteCarlo client extension.
+# MonteCarlo client extension.
 def MonteCarloCLI():
-
     '''
 
     (FUNCTION INFO)
@@ -71,7 +71,6 @@ def MonteCarloCLI():
 
     '''
 
-    import matplotlib.pyplot as plt
     from duality.objects import MonteCarlo
     import pandas as pd
     file = input('File path: ').replace("'", '"').strip('"')
@@ -102,7 +101,8 @@ def MonteCarloCLI():
     period = int(input('Enter desired period: ') or 50)
     executed = MC.execute(list_of_values = data, num_sims = simulations, time_seq = period)
     while True:
-        action = input('ACTIONS: graph, change, values, stats, risk, hist, home, help: ')
+        action = input(
+            'ACTIONS: graph, change, values, stats, risk, hist, home, help: ')
         if action == 'graph':
             title = input('Title: ')
             x_axis = input('X axis title:')
@@ -117,7 +117,7 @@ def MonteCarloCLI():
             try:
                 save_to(output, 'change', choice = file_type)
             except:
-                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')     
+                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
         if action == 'values':
             print('1 | csv')
             print('2 | xlsx')
@@ -126,12 +126,14 @@ def MonteCarloCLI():
             try:
                 save_to(executed, 'values', choice = file_type)
             except:
-                raise Exception('=== UNABLE TO SAVE, PLEASE RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
+                raise Exception(
+                    '=== UNABLE TO SAVE, PLEASE RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
         if action == 'stats' or action == 'statistics':
             MC.get_stats()
         if action == 'risk':
-            sample = int(input('Number of iterations to measure risk on: ') or 5000)
-            MC.get_risk(risk_sims = sample)
+            sample = int(
+                input('Number of iterations to measure risk on: ') or 5000)
+            MC.get_risk(risk_sims=sample)
         if action == 'hist' or action == 'histogram':
             x_axis = input('X axis title:')
             y_axis = input('Y axis title:')
@@ -139,9 +141,9 @@ def MonteCarloCLI():
             print('2 | Empirical Rule Histogram')
             method = input('Enter histogram method: ')
             if method == '1':
-                MC.hist(x_title = x_axis, y_title = y_axis)
+                MC.hist(x_title=x_axis, y_title=y_axis)
             elif method == '2':
-                MC.hist(x_title = x_axis, y_title = y_axis, method = 'e')
+                MC.hist(x_title=x_axis, y_title=y_axis, method='e')
             else:
                 print(Fore.RED + '=== INVALID METHOD. ===\n', Fore.RESET)
         if action == 'home':
@@ -152,28 +154,30 @@ def MonteCarloCLI():
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
-#save helper for cleaner code.
+# save helper for cleaner code.
 def save_to(file, func_name, choice):
     import pandas as pd
     import os
     if choice == '1' or choice == 'csv':
         extension = '.csv'
         file.to_csv('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        print(os.path.join(os.getcwd()
+              + '\duality.MonteCarlo - ' + func_name + extension))
     elif choice == '2' or choice == 'xlsx':
         extension = '.xlsx'
         file.to_excel('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        print(os.path.join(os.getcwd()
+              + '\duality.MonteCarlo - ' + func_name + extension))
     elif choice == '3' or choice == 'json':
         extension = '.json'
         file.to_json('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        print(os.path.join(os.getcwd()
+              + '\duality.MonteCarlo - ' + func_name + extension))
     else:
         print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
-        
-#Dijkstra client extension.
-def DijkstraCLI():
 
+# Dijkstra client extension.
+def DijkstraCLI():
     '''
 
     (FUNCTION INFO)
@@ -194,9 +198,8 @@ def DijkstraCLI():
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
-#EOQ client extension.
+# EOQ client extension.
 def EOQCLI():
-
     '''
 
     (FUNCTION INFO)
@@ -217,6 +220,7 @@ def EOQCLI():
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
-#runs client.
+
+# runs client.
 if __name__ == '__main__':
     CLI()

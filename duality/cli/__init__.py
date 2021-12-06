@@ -1,4 +1,4 @@
-#import all relevant contents from the associated module.
+# import all relevant contents from the associated module.
 from duality.cli.cli import (
     __CLIversion__,
     menu,
@@ -10,7 +10,7 @@ from duality.cli.cli import (
     EOQCLI,
 )
 
-#all relevant contents.
+# all relevant contents.
 __all__ = [
     __CLIversion__,
     menu,
