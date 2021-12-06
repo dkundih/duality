@@ -9,6 +9,7 @@ import os
 colorama.init()
 
 # duality version.
+from duality.misc._meta import __version__
 
 # dualityCLI version.
 __CLIversion__ = 'v1.23'
