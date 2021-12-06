@@ -99,7 +99,8 @@ def MonteCarloCLI():
     MC = MonteCarlo()
     simulations = int(input('Enter number of simulations: ') or 100)
     period = int(input('Enter desired period: ') or 50)
-    executed = MC.execute(list_of_values = data, num_sims = simulations, time_seq = period)
+    executed = MC.execute(list_of_values=data,
+                          num_sims=simulations, time_seq=period)
     while True:
         action = input(
             'ACTIONS: graph, change, values, stats, risk, hist, home, help: ')
@@ -107,7 +108,7 @@ def MonteCarloCLI():
             title = input('Title: ')
             x_axis = input('X axis title:')
             y_axis = input('Y axis title:')
-            MC.graph(graph_title = title, x_title = x_axis, y_title = y_axis)
+            MC.graph(graph_title=title, x_title=x_axis, y_title=y_axis)
         if action == 'change':
             print('1 | csv')
             print('2 | xlsx')
@@ -115,7 +116,7 @@ def MonteCarloCLI():
             file_type = input('\nEnter the number or name of file type:')
             output = MC.get_change()
             try:
-                save_to(output, 'change', choice = file_type)
+                save_to(output, 'change', choice=file_type)
             except:
                 raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
         if action == 'values':
@@ -124,7 +125,7 @@ def MonteCarloCLI():
             print('3 | json')
             file_type = input('\nEnter the number or name of file type:')
             try:
-                save_to(executed, 'values', choice = file_type)
+                save_to(executed, 'values', choice=file_type)
             except:
                 raise Exception(
                     '=== UNABLE TO SAVE, PLEASE RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
