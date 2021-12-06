@@ -66,7 +66,6 @@ def MonteCarloCLI():
     duality.MonteCarloCLI - MonteCarlo client extension.
     '''
 
-    import matplotlib.pyplot as plt
     from duality.objects import MonteCarlo
     import pandas as pd
     file = input('File path: ').replace("'", '"').strip('"')
@@ -112,7 +111,7 @@ def MonteCarloCLI():
             try:
                 save_to(output, 'change', choice = file_type)
             except:
-                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')     
+                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
         if action == 'values':
             print('1 | csv')
             print('2 | xlsx')
@@ -165,7 +164,7 @@ def save_to(file, func_name, choice):
         print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
     else:
         print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
-        
+
 # Dijkstra client extension.
 def DijkstraCLI():
 
