@@ -1,4 +1,4 @@
-#object that contains the required data.
+# object that contains the required data.
 class Dijkstra:
 
     '''
@@ -40,11 +40,11 @@ class Dijkstra:
         * takes no additional arguments.
         * Requirements:
             log_summary = True.
-            '#DEVELOPER MODE -' removed in the code.
+            '# DEVELOPER MODE -' removed in the code.
 
     '''
 
-    #metadata of the used library.
+    # metadata of the used library.
     from duality.misc._meta import (
         __author__,
         __copyright__,
@@ -56,11 +56,11 @@ class Dijkstra:
         __donate__,
     )
 
-    #initial value configuration.
+    # initial value configuration.
     def __init__(self):
         pass
 
-    #DEVELOPER MODE - creates an event log that tracks the function execution time and duration.
+    # DEVELOPER MODE - creates an event log that tracks the function execution time and duration.
     def classLog(func_name):
         def log(func):
                 import time
@@ -78,18 +78,18 @@ class Dijkstra:
                 return logsaver
         return log
 
-    #DEVELOPER MODE - @classLog('__str__()')
-    #class information.
+    # DEVELOPER MODE - @classLog('__str__()')
+    # class information.
     def __str__(self):
         return f'Dijkstra defining object that stores the configuration data for finding the path within {self.nodes} from {self.origin} => {self.destination}.'
 
-    #DEVELOPER MODE - @classLog('__repr__()')
-    #class information.
+    # DEVELOPER MODE - @classLog('__repr__()')
+    # class information.
     def __repr__(self):
         return f'Dijkstra defining object that stores the configuration data for finding the path within {self.nodes} from {self.origin} => {self.destination}.'
 
-    #DEVELOPER MODE - @classLog('execute() - built in function.')
-    #executes a Dijkstra algorithm route scan on a defined path.
+    # DEVELOPER MODE - @classLog('execute() - built in function.')
+    # executes a Dijkstra algorithm route scan on a defined path.
     def execute(self, nodes, origin, destination, log_summary = False):
         self.nodes = nodes
         self.origin = origin
@@ -103,7 +103,7 @@ class Dijkstra:
         for node in Nodes:
             optimal_distance[node] = float('inf')
         optimal_distance[self.origin] = 0
-    
+
         while Nodes:
             closestNode = None
             for node in Nodes:
@@ -111,13 +111,13 @@ class Dijkstra:
                     closestNode = node
                 elif optimal_distance[node] < optimal_distance[closestNode]:
                     closestNode = node
-    
+
             for secondaryNode, weight in self.nodes[closestNode].items():
                 if weight + optimal_distance[closestNode] < optimal_distance[secondaryNode]:
                     optimal_distance[secondaryNode] = weight + optimal_distance[closestNode]
                     preNode[secondaryNode] = closestNode
             Nodes.pop(closestNode)
-    
+
         liveNode = self.destination
         while liveNode != self.origin:
             try:
@@ -130,8 +130,8 @@ class Dijkstra:
         if optimal_distance[self.destination] != float('inf'):
             print('Optimal path: ' + str(output_path), '\nMinimal distance: ' + str(optimal_distance[self.destination]))
 
-    #DEVELOPER MODE - @classLog('get_logs()')
-    #returns the saved logs of executed functions.
+    # DEVELOPER MODE - @classLog('get_logs()')
+    # returns the saved logs of executed functions.
     def get_logs(self):
         f = open('duality Logs.txt', 'r')
         print(f.read())

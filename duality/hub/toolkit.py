@@ -23,7 +23,7 @@ duality.toolkit is a set of data manipulation tools that can be directly accesse
 
 '''
 
-#metadata of the used library.
+# metadata of the used library.
 from duality.misc._meta import (
 	__author__,
 	__copyright__,
@@ -35,7 +35,7 @@ from duality.misc._meta import (
 	__donate__
 )
 
-#gives a random value of mean and standard deviation inputed, if rounded = 'y', value will be rounded.
+# gives a random value of mean and standard deviation inputed, if rounded = 'y', value will be rounded.
 def random_value(mean, st_dev, **rounded):
         import random
         if rounded.get('rounded') == 'y':
@@ -44,7 +44,7 @@ def random_value(mean, st_dev, **rounded):
                 random_value = random.gauss(mean, st_dev)
         return random_value
 
-#gives random values of mean and standard deviation inputed for the amount of values defined in the pool size, if rounded = 'y', values will be rounded.
+# gives random values of mean and standard deviation inputed for the amount of values defined in the pool size, if rounded = 'y', values will be rounded.
 def random_pool(mean, st_dev, pool_size, **rounded):
         import random
         if rounded.get('rounded') == 'y':
@@ -53,21 +53,21 @@ def random_pool(mean, st_dev, pool_size, **rounded):
                 random_pool = [random.gauss(mean, st_dev) for y in range(pool_size)]
         return random_pool
 
-#splits the data using a split method character.
+# splits the data using a split method character.
 def split_values(data, split_method):
         split_values = []
         for i in data:
                 split_values += [i.split(split_method)]
         return split_values
 
-#joins the data using a join metod character.
+# joins the data using a join metod character.
 def join_values(data, join_method):
         join_values = []
         for i in data:
                 join_values += [join_method.join(i)]
         return join_values
 
-#replaces a defined value with a desired value.
+# replaces a defined value with a desired value.
 def replace_values(data, replaced_value, replacing_value):
         replaced_values = []
         for i in data:
@@ -77,14 +77,14 @@ def replace_values(data, replaced_value, replacing_value):
                 replace_values += [replacing_value.join(i)]
         return replace_values
 
-#manually sorts data depending on defined array of indexes.
+# manually sorts data depending on defined array of indexes.
 def list_sort(data, array):
         redefined_data = []
         for d in array:
                 redefined_data += [data[d]]
         return redefined_data
 
-#sorts the indicies in a list of values based on the index array defined as [x,x,x].
+# sorts the indicies in a list of values based on the index array defined as [x,x,x].
 def index_sort(data, split_method, index_array):
         result = []
         remixed_data = []
@@ -100,7 +100,7 @@ def index_sort(data, split_method, index_array):
                 array_count += 1
         return remixed_data
 
-#automatically splits all values in a list and sorts them based on the added trigger as lambda x: [x[i], x[i]] and joins them back together.
+# automatically splits all values in a list and sorts them based on the added trigger as lambda x: [x[i], x[i]] and joins them back together.
 def auto_sort(data, split_method, trigger = lambda x: x[0]):
         split_values = []
         merged_final = []

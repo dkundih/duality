@@ -1,4 +1,4 @@
-#import all relevant contents from the associated module.
+# import all relevant contents from the associated module.
 from duality.hub import toolkit
 from duality.hub.toolkit import (
     random_value,
@@ -11,7 +11,7 @@ from duality.hub.toolkit import (
     auto_sort,
 )
 
-#all relevant contents.
+# all relevant contents.
 __all__ = [
     random_value,
     random_pool,

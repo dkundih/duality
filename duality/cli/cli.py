@@ -1,23 +1,23 @@
-#dependency imports.
+# dependency imports.
 import colorama, traceback
 from colorama import Fore
 import os
 
-#initiates coloring.
+# initiates coloring.
 colorama.init()
 
-#duality version.
+# duality version.
 from duality.misc._meta import __version__
 
-#dualityCLI version.
+# dualityCLI version.
 __CLIversion__ = 'v1.23'
 
-#intro to the client.
+# intro to the client.
 def greet():
     print(Fore.GREEN + '\n - duality Command Line Interface © David Kundih -', __CLIversion__)
     print(Fore.GREEN + ' - duality package version - ', __version__, Fore.RESET)
 
-#menu.
+# menu.
 def menu():
     print('-----------------------------')
     print(Fore.CYAN + 'AVAILABLE FEATURES', Fore.RESET)
@@ -27,7 +27,7 @@ def menu():
     print(' 4 | Exit')
     print('-----------------------------')
 
-#main client.
+# main client.
 def CLI():
 
     '''
@@ -60,7 +60,7 @@ def CLI():
         else:
             print(Fore.RED + '=== OPTION NOT EXISTENT OR AVAILABLE, PLEASE WRITE THE EXISTING NUMBER FROM THE MENU TO CONTINUE. ===', Fore.RESET)
 
-#MonteCarlo client extension.
+# MonteCarlo client extension.
 def MonteCarloCLI():
 
     '''
@@ -72,7 +72,6 @@ def MonteCarloCLI():
 
     '''
 
-    import matplotlib.pyplot as plt
     from duality.objects import MonteCarlo
     import pandas as pd
     file = input('File path: ').replace("'", '"').strip('"')
@@ -153,7 +152,7 @@ def MonteCarloCLI():
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
-#save helper for cleaner code.
+# save helper for cleaner code.
 def save_to(file, func_name, choice):
     import pandas as pd
     import os
@@ -172,7 +171,7 @@ def save_to(file, func_name, choice):
     else:
         print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
 
-#Dijkstra client extension.
+# Dijkstra client extension.
 def DijkstraCLI():
 
     '''
@@ -195,7 +194,7 @@ def DijkstraCLI():
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
-#EOQ client extension.
+# EOQ client extension.
 def EOQCLI():
 
     '''
@@ -218,6 +217,6 @@ def EOQCLI():
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
-#runs client.
+# runs client.
 if __name__ == '__main__':
     CLI()
