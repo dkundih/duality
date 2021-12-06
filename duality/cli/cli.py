@@ -36,7 +36,6 @@ def CLI():
     duality.CLI - main client that serves as an access to other module clients.
     '''
 
-    breaker = False
     while True:
         os.system('cls')
         greet()
@@ -139,10 +138,7 @@ def MonteCarloCLI():
             else:
                 print(Fore.RED + '=== INVALID METHOD. ===\n', Fore.RESET)
         if action == 'home':
-            breaker = True
             break
-            if breaker == True:
-                break
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
