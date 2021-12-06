@@ -38,6 +38,7 @@ def CLI():
     duality.CLI - main client that serves as an access to other module clients.
 
     '''
+
     breaker = False
     while True:
         os.system('cls')
@@ -117,7 +118,7 @@ def MonteCarloCLI():
             try:
                 save_to(output, 'change', choice = file_type)
             except:
-                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')     
+                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
         if action == 'values':
             print('1 | csv')
             print('2 | xlsx')
@@ -170,7 +171,7 @@ def save_to(file, func_name, choice):
         print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
     else:
         print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
-        
+
 #Dijkstra client extension.
 def DijkstraCLI():
 
