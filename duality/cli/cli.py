@@ -1,5 +1,7 @@
 # dependency imports.
-import colorama, traceback
+from duality.misc._meta import __version__
+import colorama
+import traceback
 from colorama import Fore
 import os
 
@@ -7,7 +9,6 @@ import os
 colorama.init()
 
 # duality version.
-from duality.misc._meta import __version__
 
 # dualityCLI version.
 __CLIversion__ = 'v1.23'
@@ -29,7 +30,6 @@ def menu():
 
 # main client.
 def CLI():
-
     '''
 
     (FUNCTION INFO)
@@ -62,7 +62,6 @@ def CLI():
 
 # MonteCarlo client extension.
 def MonteCarloCLI():
-
     '''
 
     (FUNCTION INFO)
@@ -100,14 +99,16 @@ def MonteCarloCLI():
     MC = MonteCarlo()
     simulations = int(input('Enter number of simulations: ') or 100)
     period = int(input('Enter desired period: ') or 50)
-    executed = MC.execute(list_of_values = data, num_sims = simulations, time_seq = period)
+    executed = MC.execute(list_of_values=data,
+                          num_sims=simulations, time_seq=period)
     while True:
-        action = input('ACTIONS: graph, change, values, stats, risk, hist, home, help: ')
+        action = input(
+            'ACTIONS: graph, change, values, stats, risk, hist, home, help: ')
         if action == 'graph':
             title = input('Title: ')
             x_axis = input('X axis title:')
             y_axis = input('Y axis title:')
-            MC.graph(graph_title = title, x_title = x_axis, y_title = y_axis)
+            MC.graph(graph_title=title, x_title=x_axis, y_title=y_axis)
         if action == 'change':
             print('1 | csv')
             print('2 | xlsx')
@@ -115,23 +116,26 @@ def MonteCarloCLI():
             file_type = input('\nEnter the number or name of file type:')
             output = MC.get_change()
             try:
-                save_to(output, 'change', choice = file_type)
+                save_to(output, 'change', choice=file_type)
             except:
-                raise Exception('=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
+                raise Exception(
+                    '=== UNABLE TO SAVE, PLEASE SELECT ONE OF THE OPTIONS AND/OR RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
         if action == 'values':
             print('1 | csv')
             print('2 | xlsx')
             print('3 | json')
             file_type = input('\nEnter the number or name of file type:')
             try:
-                save_to(executed, 'values', choice = file_type)
+                save_to(executed, 'values', choice=file_type)
             except:
-                raise Exception('=== UNABLE TO SAVE, PLEASE RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
+                raise Exception(
+                    '=== UNABLE TO SAVE, PLEASE RUN THE TERMINAL AS AN ADMINISTRATOR. ===\n')
         if action == 'stats' or action == 'statistics':
             MC.get_stats()
         if action == 'risk':
-            sample = int(input('Number of iterations to measure risk on: ') or 5000)
-            MC.get_risk(risk_sims = sample)
+            sample = int(
+                input('Number of iterations to measure risk on: ') or 5000)
+            MC.get_risk(risk_sims=sample)
         if action == 'hist' or action == 'histogram':
             x_axis = input('X axis title:')
             y_axis = input('Y axis title:')
@@ -139,9 +143,9 @@ def MonteCarloCLI():
             print('2 | Empirical Rule Histogram')
             method = input('Enter histogram method: ')
             if method == '1':
-                MC.hist(x_title = x_axis, y_title = y_axis)
+                MC.hist(x_title=x_axis, y_title=y_axis)
             elif method == '2':
-                MC.hist(x_title = x_axis, y_title = y_axis, method = 'e')
+                MC.hist(x_title=x_axis, y_title=y_axis, method='e')
             else:
                 print(Fore.RED + '=== INVALID METHOD. ===\n', Fore.RESET)
         if action == 'home':
@@ -159,21 +163,23 @@ def save_to(file, func_name, choice):
     if choice == '1' or choice == 'csv':
         extension = '.csv'
         file.to_csv('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        print(os.path.join(os.getcwd()
+              + '\duality.MonteCarlo - ' + func_name + extension))
     elif choice == '2' or choice == 'xlsx':
         extension = '.xlsx'
         file.to_excel('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        print(os.path.join(os.getcwd()
+              + '\duality.MonteCarlo - ' + func_name + extension))
     elif choice == '3' or choice == 'json':
         extension = '.json'
         file.to_json('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        print(os.path.join(os.getcwd()
+              + '\duality.MonteCarlo - ' + func_name + extension))
     else:
         print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
 
 # Dijkstra client extension.
 def DijkstraCLI():
-
     '''
 
     (FUNCTION INFO)
@@ -196,7 +202,6 @@ def DijkstraCLI():
 
 # EOQ client extension.
 def EOQCLI():
-
     '''
 
     (FUNCTION INFO)
@@ -216,6 +221,7 @@ def EOQCLI():
                 break
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
+
 
 # runs client.
 if __name__ == '__main__':
