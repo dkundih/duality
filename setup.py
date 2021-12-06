@@ -29,7 +29,7 @@ classifiers = [
     'Topic :: Office/Business :: Financial :: Spreadsheet',
 ]
  
-#import current duality version.
+# import current duality version.
 from duality.misc._meta import __version__
 
 setup(
