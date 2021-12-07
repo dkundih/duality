@@ -174,10 +174,7 @@ def DijkstraCLI():
     while True:
         action = input('ACTIONS: home, help: ')
         if action == 'home':
-            breaker = True
             break
-            if breaker == True:
-                break
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
@@ -194,10 +191,7 @@ def EOQCLI():
     while True:
         action = input('ACTIONS: home, help: ')
         if action == 'home':
-            breaker = True
             break
-            if breaker == True:
-                break
         if action == 'help':
             print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
 
