@@ -82,7 +82,7 @@ The module itself, it's maintenance, updates and stability, logo, videos, promot
 <img src='https://raw.githubusercontent.com/dkundih/dkundih/main/.logistics/BLUERED_GHiLI.jpg'/>
 
 <p align='center'>
-My name is <b>David Kundih</b> and I am a Master's student of <b>Sustainable Mobility and Logistics Management</b> at the <b>University North</b>, currently specializing in <b>Digital Transformation of Logistics using Python.</b>
+My name is <b>David Kundih</b> and I am a Master's student of <b>Logistics systems management</b> at the <b>University North</b>, currently specializing in <b>Digital Transformation of Logistics using Python.</b>
 </p>
  
 <h4 align='center'>My latest projects:</h4>
