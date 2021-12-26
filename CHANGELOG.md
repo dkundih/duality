@@ -319,3 +319,6 @@ CHANGELOG
 - skips ghost 3.6.3 version.
 - CLI v1.23 version added.
 - quick bugfix of executing greet() after cls in CLI.
+
+x-x-x (x-x-x)
+- performBlock added into graph() so it fits any IDE requirements in an agile way.

@@ -26,11 +26,12 @@ class MonteCarlo:
         * automatically executes the .execute() function.
 
         .graph() - plots the Monte Carlo simulation on a graph.
-            * takes 4 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10)).
+            * takes 5 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), perform_block = True).
                 graph_title - title of the graph.
                 x_title - title of the X axis.
                 y_title - title on the Y axis.
                 plot_size - desired size of the graph. eg. - (x_lenght_num, y_lenght_num). - NOTE: values must be inside the parentheses and divided by a comma.
+                perform_block (default: perform_block = True) - False/True may be used depending on the IDE requirements.
 
         .get_risk() - calculates the risk of value decrease over time.
             * takes 1 optional argument (default: risk_sims = 5000).
@@ -42,12 +43,13 @@ class MonteCarlo:
             * takes no additional arguments.
 
         .hist() - plots the histogram of Monte Carlo simulation.
-            * takes 5 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), method = 'b').
+            * takes 6 optional customization arguments. (default: graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), perform_block = True, method = 'b').
             If method = 'e' is chosen, no customization arguments apply.
                 graph_title - title of the graph.
                 x_title - title of the X axis.
                 y_title - title on the Y axis.
                 plot_size - desired size of the graph. eg. - (x_lenght_num, y_lenght_num). - NOTE: values must be inside the parentheses and divided by a comma.
+                perform_block (default: perform_block = True) - False/True may be used depending on the IDE requirements.
                 method - default method is Basic histogram and it's performed by automation. In order to plot Empirical rule histogram add method = 'e' as the last argument. - NOTE: method of a histogram must be placed within quotation marks.
             * automatically executes the .get_stats(filtered = True) function in order to get standard deviation for the Empirical rule plotting.
 
@@ -195,7 +197,7 @@ class MonteCarlo:
 
     # DEVELOPER MODE - @classLog('graph()')
     # plots the Monte Carlo simulation on a graph.
-    def graph(self, graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10)):
+    def graph(self, graph_title = 'Monte Carlo simulation', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), perform_block = True):
         print('\nMonteCarlo() plotting initialized.')
         import matplotlib.pyplot as plt
         plt.figure(figsize = plot_size)
@@ -205,7 +207,7 @@ class MonteCarlo:
         plt.axhline(y = self.results[0][0], color = 'k', linestyle = 'solid')
         plt.xlabel(x_title, fontsize = 18, weight = 'semibold')
         plt.ylabel(y_title, fontsize = 18, weight = 'semibold')
-        plt.show(block = False)
+        plt.show(block = perform_block)
         print('MonteCarlo() plotting finished.')
 
     # DEVELOPER MODE - @classLog('get_stats()')
@@ -232,7 +234,7 @@ class MonteCarlo:
 
     # DEVELOPER MODE - @classLog('hist()')
     # plots the histogram of Monte Carlo simulation.
-    def hist(self, graph_title = 'Histogram of value frequencies', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), **method):
+    def hist(self, graph_title = 'Histogram of value frequencies', x_title = 'X axis', y_title = 'Y axis', plot_size = (25,10), perform_block = True, **method):
         self.get_stats(filtered = True)
         std_plus = self.mean_value + self.standard_deviation
         std_minus = self.mean_value - self.standard_deviation
@@ -267,7 +269,7 @@ class MonteCarlo:
         plt.hist(self.results, bins = self.time_seq , ec = 'm')
         plt.xlabel(x_title, weight = 'semibold')
         plt.ylabel(y_title, weight= 'semibold')
-        plt.show(block = False)
+        plt.show(block = perform_block)
         print('Histogram plotting finished.')
 
     # DEVELOPER MODE - @classLog('get_logs()')
