@@ -1,6 +1,6 @@
 # import all relevant contents from the associated module.
-from duality.hub import toolkit
-from duality.hub.toolkit import (
+from . import toolkit
+from .toolkit import (
     random_value,
     random_pool,
     split_values,

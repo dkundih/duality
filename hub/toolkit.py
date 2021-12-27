@@ -3,7 +3,7 @@
 (MODULE FUNCTIONS)
 ------------------
 
-duality.toolkit is a set of data manipulation tools that can be directly accessed from the main module as duality.any_function_listed_below()
+vandal.toolkit is a set of data manipulation tools that can be directly accessed from the main module as vandal.any_function_listed_below()
 
         random_value(mean, st_dev, **rounded) - gives a random value of mean and standard deviation inputed, if rounded = 'y', value will be rounded.
 
@@ -24,7 +24,7 @@ duality.toolkit is a set of data manipulation tools that can be directly accesse
 '''
 
 # metadata of the used library.
-from duality.misc._meta import (
+from misc._meta import (
 	__author__,
 	__copyright__,
 	__credits__,

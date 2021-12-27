@@ -6,12 +6,12 @@ class Dijkstra:
     (OBJECT INFO)
     -------------
 
-    duality.Dijkstra - main class that contains the data of defined nodes, origin and the desired destination.
+    vandal.Dijkstra - main class that contains the data of defined nodes, origin and the desired destination.
 
     (OBJECT FUNCTIONS)
     ------------------
 
-    eg. duality.Dijkstra.function()
+    eg. vandal.Dijkstra.function()
 
         .execute() - executes a Dijkstra algorithm route scan on a defined path.
         * takes 4 additional arguments.
@@ -45,7 +45,7 @@ class Dijkstra:
     '''
 
     # metadata of the used library.
-    from duality.misc._meta import (
+    from misc._meta import (
         __author__,
         __copyright__,
         __credits__,
@@ -69,7 +69,7 @@ class Dijkstra:
                     if self.log_summary == True:
                         start = time.time()
                         results = func(self, *args, **kwargs)
-                        with open('duality Logs.txt', 'a') as f:
+                        with open('vandal Logs.txt', 'a') as f:
                             f.write('Performed a function ' + func_name + ' at: ' + str(datetime.datetime.now()) + '.' + ' Time spent performing the action: ' + str(time.time() - start) + ' seconds.' + '\n')
                             return results
                     else:
@@ -133,5 +133,5 @@ class Dijkstra:
     # DEVELOPER MODE - @classLog('get_logs()')
     # returns the saved logs of executed functions.
     def get_logs(self):
-        f = open('duality Logs.txt', 'r')
+        f = open('vandal Logs.txt', 'r')
         print(f.read())

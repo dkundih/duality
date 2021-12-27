@@ -1,5 +1,5 @@
 # import all relevant contents from the associated module.
-from duality.cli.cli import (
+from .cli import (
     __CLIversion__,
     menu,
     greet,

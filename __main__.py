@@ -1,5 +1,5 @@
 # imports all CLI clients.
-from duality.cli.cli import *
+from .cli.cli import *
 
 # runs the main CLI client.
 if __name__ == '__main__':

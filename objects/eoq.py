@@ -6,12 +6,12 @@ class EOQ:
     (OBJECT INFO)
     -------------
 
-    duality.EOQ - main class that defines the data needed for the calculation.
+    vandal.EOQ - main class that defines the data needed for the calculation.
 
     (OBJECT FUNCTIONS)
     ------------------
 
-    eg. duality.EOQ.function()
+    eg. vandal.EOQ.function()
 
         .execute() - executes the calculation of EOQ over the defined parameters.
         * takes 4 additional arguments.
@@ -35,7 +35,7 @@ class EOQ:
     '''
 
     # metadata of the used library.
-    from duality.misc._meta import (
+    from misc._meta import (
 	__author__,
 	__copyright__,
 	__credits__,
@@ -59,7 +59,7 @@ class EOQ:
                     if self.log_summary == True:
                         start = time.time()
                         results = func(self, *args, **kwargs)
-                        with open('duality Logs.txt', 'a') as f:
+                        with open('vandal Logs.txt', 'a') as f:
                             f.write('Performed a function ' + func_name + ' at: ' + str(datetime.datetime.now()) + '.' + ' Time spent performing the action: ' + str(time.time() - start) + ' seconds.' + '\n')
                             return results
                     else:
@@ -94,5 +94,5 @@ class EOQ:
     # DEVELOPER MODE - @classLog('get_logs()')
     # returns the saved logs of executed functions.
     def get_logs(self):
-        f = open('duality Logs.txt', 'r')
+        f = open('vandal Logs.txt', 'r')
         print(f.read())

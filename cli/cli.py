@@ -6,16 +6,16 @@ import os
 # initiates coloring.
 colorama.init()
 
-# duality version.
-from duality.misc._meta import __version__
+# vandal version.
+from misc._meta import __version__
 
-# dualityCLI version.
+# vandalCLI version.
 __CLIversion__ = 'v1.23'
 
 # intro to the client.
 def greet():
-    print(Fore.GREEN + '\n - duality Command Line Interface © David Kundih -', __CLIversion__)
-    print(Fore.GREEN + ' - duality package version - ', __version__, Fore.RESET)
+    print(Fore.GREEN + '\n - vandal Command Line Interface © David Kundih -', __CLIversion__)
+    print(Fore.GREEN + ' - vandal package version - ', __version__, Fore.RESET)
 
 # menu.
 def menu():
@@ -33,7 +33,7 @@ def CLI():
     '''
     (FUNCTION INFO)
     ---------------
-    duality.CLI - main client that serves as an access to other module clients.
+    vandal.CLI - main client that serves as an access to other module clients.
     '''
 
     while True:
@@ -62,10 +62,10 @@ def MonteCarloCLI():
     '''
     (FUNCTION INFO)
     ---------------
-    duality.MonteCarloCLI - MonteCarlo client extension.
+    vandal.MonteCarloCLI - MonteCarlo client extension.
     '''
 
-    from duality.objects import MonteCarlo
+    from vandal.objects import MonteCarlo
     import pandas as pd
     file = input('File path: ').replace("'", '"').strip('"')
     if str(file).endswith('.csv'):
@@ -140,7 +140,7 @@ def MonteCarloCLI():
         if action == 'home':
             break
         if action == 'help':
-            print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
+            print(Fore.YELLOW + 'https://github.com/dkundih/vandal\n', Fore.RESET)
 
 # save helper for cleaner code.
 def save_to(file, func_name, choice):
@@ -148,16 +148,16 @@ def save_to(file, func_name, choice):
     import os
     if choice == '1' or choice == 'csv':
         extension = '.csv'
-        file.to_csv('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        file.to_csv('vandal.MonteCarlo - ' + func_name + extension)
+        print(os.path.join(os.getcwd() + '\vandal.MonteCarlo - ' + func_name + extension))
     elif choice == '2' or choice == 'xlsx':
         extension = '.xlsx'
-        file.to_excel('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        file.to_excel('vandal.MonteCarlo - ' + func_name + extension)
+        print(os.path.join(os.getcwd() + '\vandal.MonteCarlo - ' + func_name + extension))
     elif choice == '3' or choice == 'json':
         extension = '.json'
-        file.to_json('duality.MonteCarlo - ' + func_name + extension)
-        print(os.path.join(os.getcwd() + '\duality.MonteCarlo - ' + func_name + extension))
+        file.to_json('vandal.MonteCarlo - ' + func_name + extension)
+        print(os.path.join(os.getcwd() + '\vandal.MonteCarlo - ' + func_name + extension))
     else:
         print(Fore.RED + '=== NO OPTION CHOSEN, EXITING THE MENU... =\n', Fore.RESET)
 
@@ -167,16 +167,16 @@ def DijkstraCLI():
     '''
     (FUNCTION INFO)
     ---------------
-    duality.DijkstraCLI - Dijkstra client extension.
+    vandal.DijkstraCLI - Dijkstra client extension.
     '''
 
-    from duality.objects import Dijkstra
+    from vandal.objects import Dijkstra
     while True:
         action = input('ACTIONS: home, help: ')
         if action == 'home':
             break
         if action == 'help':
-            print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
+            print(Fore.YELLOW + 'https://github.com/dkundih/vandal\n', Fore.RESET)
 
 # EOQ client extension.
 def EOQCLI():
@@ -184,16 +184,16 @@ def EOQCLI():
     '''
     (FUNCTION INFO)
     ---------------
-    duality.EOQCLI - EOQ client extension.
+    vandal.EOQCLI - EOQ client extension.
     '''
 
-    from duality.objects import EOQ
+    from vandal.objects import EOQ
     while True:
         action = input('ACTIONS: home, help: ')
         if action == 'home':
             break
         if action == 'help':
-            print(Fore.YELLOW + 'https://github.com/dkundih/duality\n', Fore.RESET)
+            print(Fore.YELLOW + 'https://github.com/dkundih/vandal\n', Fore.RESET)
 
 # runs client.
 if __name__ == '__main__':

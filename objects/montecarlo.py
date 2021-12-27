@@ -6,12 +6,12 @@ class MonteCarlo:
     (OBJECT INFO)
     -------------
 
-    duality.MonteCarlo - main class that defines the data, desired time sequence and number of simulations.
+    vandal.MonteCarlo - main class that defines the data, desired time sequence and number of simulations.
 
     (OBJECT FUNCTIONS)
     ------------------
 
-    eg. duality.MonteCarlo.function()
+    eg. vandal.MonteCarlo.function()
 
         .execute() - executes a Monte Carlo simulation on a defined data set.
             * takes 5 additional arguments.
@@ -67,7 +67,7 @@ class MonteCarlo:
     '''
 
     # metadata of the used library.
-    from duality.misc._meta import (
+    from misc._meta import (
         __author__,
         __copyright__,
         __credits__,
@@ -91,7 +91,7 @@ class MonteCarlo:
                     if self.log_summary == True:
                         start = time.time()
                         results = func(self, *args, **kwargs)
-                        with open('duality Logs.txt', 'a') as f:
+                        with open('vandal Logs.txt', 'a') as f:
                             f.write('Performed a function ' + func_name + ' at: ' + str(datetime.datetime.now()) + '.' + ' Time spent performing the action: ' + str(time.time() - start) + ' seconds.' + '\n')
                             return results
                     else:
@@ -119,7 +119,7 @@ class MonteCarlo:
         self.ref_value_index = ref_value_index
         self.log_summary = log_summary
         print(f'Monte Carlo has been set up for {self.num_sims} simulations in a period of {self.time_seq} time measurement units.')
-        from duality.hub.toolkit import random_value
+        from hub.toolkit import random_value
         print('Monte Carlo simulation has been executed.')
         print('NOTE: Use data with reasonable standard deviation in order to prevent exponential growth of the function that cannot be plotted properly, recognize such abnormal values by a + sign anywhere in the data executed below.\nThe model that will be able to handle big standard deviations is currently being worked on, thank you for your patience.\n')
         import pandas as pd
@@ -201,7 +201,7 @@ class MonteCarlo:
         print('\nMonteCarlo() plotting initialized.')
         import matplotlib.pyplot as plt
         plt.figure(figsize = plot_size)
-        plt.title('duality (c) David Kundih, 2021.', fontsize = 14, weight = 'regular', loc = 'right')
+        plt.title('vandal (c) David Kundih, 2021.', fontsize = 14, weight = 'regular', loc = 'right')
         plt.suptitle(graph_title, fontsize = 25, weight = 'bold')
         plt.plot(self.results)
         plt.axhline(y = self.results[0][0], color = 'k', linestyle = 'solid')
@@ -249,7 +249,7 @@ class MonteCarlo:
         print('Histogram plotting initiated...')
         import matplotlib.pyplot as plt
         plt.figure(figsize = plot_size)
-        plt.title('duality (c) David Kundih, 2021.', fontsize = 14, weight = 'regular', loc = 'right')
+        plt.title('vandal (c) David Kundih, 2021.', fontsize = 14, weight = 'regular', loc = 'right')
 
         if method.get("method") != "e":
             print('CHOSEN METHOD: Basic histogram model.')
@@ -275,5 +275,5 @@ class MonteCarlo:
     # DEVELOPER MODE - @classLog('get_logs()')
     # returns the saved logs of executed functions.
     def get_logs(self):
-        f = open('duality Logs.txt', 'r')
+        f = open('vandal Logs.txt', 'r')
         print(f.read())
