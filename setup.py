@@ -29,13 +29,13 @@ classifiers = [
     'Topic :: Office/Business :: Financial :: Spreadsheet'
 ]
  
-#import current duality version. 
+# imports current duality version. 
 from duality.misc._meta import __version__
 
 setup(
   name = 'duality',
   version = __version__,
-  description = 'Decorator functions for vandal library.',
+  description = 'Decorator functions for the vandal library.',
   long_description_content_type = 'text/markdown',
   long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(), 
   author = 'David Kundih',

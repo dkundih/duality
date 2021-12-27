@@ -1,4 +1,4 @@
-#import all relevant contents from the associated module.
+#imports relevant contents.
 from duality.misc._meta import (
     __author__,
     __copyright__,

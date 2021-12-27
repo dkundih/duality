@@ -320,6 +320,16 @@ CHANGELOG
 - CLI v1.23 version added.
 - quick bugfix of executing greet() after cls in CLI.
 
+**as duality**
+
 4.0.0 (27/12/2021)
 - previous versions of duality library transfered into the vandal package.
 - duality is now a decorator package for vandal package.
+
+4.1.0 (28/12/2021)
+- added dictionary, basic and descriptive display menus.
+- display now also executes the function that it is decorating.
+- added various options to functions (style, method, return_option).
+
+4.1.1 (28/12/2021)
+- ignores pycache from forming in directories.
