@@ -4,6 +4,7 @@ class record:
     descriptive_menu = []
     dictionary_menu = {}
 
+    # initializes the object and function it is decorating.
     def __init__(self, func):
         self.func = func
 
@@ -139,27 +140,3 @@ class track:
                         return func(*args, **kwargs)
                     return decorator
                 return wrapper
-
-'''
-
-#----> Test polygon area <---#
-
-@track.entry('Ime')
-@record.entry('my_name()')
-def my_name(name):
-    return f'I am {name}'
-
-@record.display()
-@record.entry('sve()')
-@track.display()
-@track.entry('Sve')
-def sve(x,y):
-    print(x+y)
-
-my_name('Noko')
-
-sve(4,3)
-
-#----> End of polygon area <---#
-
-'''

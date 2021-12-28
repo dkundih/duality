@@ -333,3 +333,6 @@ CHANGELOG
 
 4.1.1 (28/12/2021)
 - ignores pycache from forming in directories.
+
+4.1.2 (28/12/2021)
+- confirmed functionality of the package.
