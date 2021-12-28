@@ -10,7 +10,7 @@
 duality
 =====
 
-Data science, Data manipulation and Machine learning library.
+Decorator functions for the vandal library.
 Use permitted according to the terms of use and conditions set by the attached license.
 
 **Example of use**
