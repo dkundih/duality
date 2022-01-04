@@ -53,7 +53,7 @@ setup(
   keywords = 'data science, machine learning, data manipulation, artificial intelligence, AI, unin, duality, duality-py, duality.py, vandal, vandal.py, vandal-py',
   packages = find_packages(),
   install_requires = [
-    'vandal >= 3.1.0',
+    'vandal >= 3.2.1',
     'openpyxl',
 ]
   )

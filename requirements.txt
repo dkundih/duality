@@ -1,2 +1,2 @@
-vandal >= 3.1.0
+vandal >= 3.2.1
 openpyxl

@@ -336,3 +336,6 @@ CHANGELOG
 
 4.1.2 (28/12/2021)
 - confirmed functionality of the package.
+
+4.1.3 (28/12/2021)
+- matches newest vandal framework changes.
