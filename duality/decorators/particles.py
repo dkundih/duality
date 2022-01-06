@@ -10,16 +10,18 @@ class record:
 
     # creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
     def entry(option_name, option_description = ''):
-        def wrapper(func):
-            def decorator( *args, **kwargs):
-                record.basic_menu += [option_name]
-                descriptive_function = str(option_name) + ' - ' + str(option_description) 
-                record.descriptive_menu += [descriptive_function]
-                func_name = func.__name__
-                record.dictionary_menu[option_name]= func_name
+
+        def record_function(func):
+            record.dictionary_menu[option_name] = func
+            record.basic_menu += [option_name]
+            descriptive_function = str(option_name) + ' - ' + str(option_description)
+            record.descriptive_menu += [descriptive_function]
+
+            def _wrap(*args, **kwargs):
                 return func(*args, **kwargs)
-            return decorator
-        return wrapper
+
+            return _wrap
+        return record_function
 
     # style ('decorator' - appends to a function.)
     # style ('function' - executes as a standalone function.)
@@ -28,7 +30,7 @@ class record:
     # method ('dictionary' - creates a dictionary of record.entry names and the function they are appended on.)
     # return_option ('logs' - executes the function, but returns logs.)
     # return_option ('function' - shows logs, but returns the function.)
-    def display(style = 'decorator', method = 'descriptive', return_option = 'logs'):
+    def display(style = 'decorator', method = 'dictionary', return_option = 'logs'):
         if style == 'decorator':
             if return_option == 'logs':
                 if method == 'basic':
@@ -96,16 +98,13 @@ class track:
                     start = datetime.datetime.now()
                     results = func(*args, **kwargs)
                     end = datetime.datetime.now()
-                    data = {
-                        'entry' : [
-                                {
-                                    'FUNCTION NAME: ' : func_name,
-                                    'EXECUTION TIME: ' : str(end - start),
-                                    'EXECUTED AT: ' : str(datetime.datetime.now()),
-                                    'MEMORY SIZE: ' : str(sys.getsizeof(func)) + ' bytes',
-                                }
-                            ]
-                        }
+                    data =  {
+                            'FUNCTION NAME: ' : func_name,
+                            'EXECUTION TIME: ' : str(end - start),
+                            'EXECUTED AT: ' : str(datetime.datetime.now()),
+                            'MEMORY SIZE: ' : str(sys.getsizeof(func)) + ' bytes',
+                            },
+
                     with open('Logs.json', 'a') as f:
                         f.write(json.dumps(data, indent = 4))
                         return results

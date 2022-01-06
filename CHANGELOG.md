@@ -339,3 +339,7 @@ CHANGELOG
 
 4.1.3 (28/12/2021)
 - matches newest vandal framework changes.
+
+4.1.4 (07/01/2021)
+- redefined dictionary option to serve as an executeable menu.
+- redefined the appearance of functions in JSON format.
