@@ -10,7 +10,7 @@ AVAILABLE FEATURES IN THE PACKAGE:
 	record (OBJECT/DECORATOR)
 	-------------------
 
-	duality.record is an object decorator class that stores menu options over functions and class methods for listing.
+	duality.record is an object decorator class that stores menu options over functions and class methods for listing and executing in a CLI.
 		print(help(duality.record)) in order to see available features.
 
 	track (OBJECT/DECORATOR)

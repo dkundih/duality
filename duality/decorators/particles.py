@@ -10,6 +10,7 @@ class record:
 
     # option_name - stores the name for the config and display functions.
     # option_description - stores the description of the function for the config and display functions.
+    # -
     # creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
     # DEFAULT: record.entry(option_name, option_description = '').
     def entry(option_name, option_description = ''):
