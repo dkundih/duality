@@ -4,7 +4,6 @@ class record:
     descriptive_menu = []
     dictionary_menu = {}
 
-
     # initializes the object and function it is decorating.
     def __init__(self, func):
         self.func = func
@@ -27,7 +26,6 @@ class record:
             return _wrap
 
         return record_function
-
 
     # style ('decorator' - appends to a function.)
     # style ('function' - executes as a standalone function.)
@@ -94,7 +92,6 @@ class record:
                 return record.descriptive_menu
             elif method == 'dictionary':
                 return record.dictionary_menu
-
 
     # display_message - displays input value message.
     # output_message - confirmation of the chosen value.
