@@ -98,6 +98,7 @@ class track:
                     start = datetime.datetime.now()
                     results = func(*args, **kwargs)
                     end = datetime.datetime.now()
+                    
                     data =  {
                             'FUNCTION NAME: ' : func_name,
                             'EXECUTION TIME: ' : str(end - start),
@@ -107,6 +108,7 @@ class track:
 
                     with open('Logs.json', 'a') as f:
                         f.write(json.dumps(data, indent = 4))
+                        f.close()
                         return results
                 return logsaver
         return log
