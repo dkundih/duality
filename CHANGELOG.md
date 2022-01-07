@@ -343,3 +343,7 @@ CHANGELOG
 4.1.4 (07/01/2021)
 - redefined dictionary option to serve as an executeable menu.
 - redefined the appearance of functions in JSON format.
+
+4.1.5 (07/01/2021)
+- record.config function added as a CLI creation particle.
+- redefined docstrings for easier use.
