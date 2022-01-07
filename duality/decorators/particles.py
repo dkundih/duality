@@ -102,7 +102,7 @@ class record:
     # -
     # creates an executeable menu from defined entries on top of functions.
     # DEFAULT: record.config(display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline').
-    def static_config(display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
+    def config(display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
         dictionary_menu = record.display(style = 'function', method = 'dictionary')
         if alignment == 'basic':
             if method == 'basic':
@@ -135,13 +135,6 @@ class record:
         option = input('\n' + display_message)
         print(output_message, option + '\n')
         dictionary_menu[option]()
-
-    def dynamic_config():
-        while True:
-            try:
-                record.static_config()
-            except:
-                print('Invalid entry.')
 
             
 # tracks function behaviuor and stores it into a JSON file.

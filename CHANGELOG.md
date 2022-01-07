@@ -351,3 +351,6 @@ CHANGELOG
 4.1.6 (07/01/2021)
 - record.config is now record.static_config.
 - added record.dynamic_config that loops the record.static_config.
+
+4.1.7 (07/01/2021)
+- reverted 4.1.6 changes.
