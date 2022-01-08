@@ -187,7 +187,7 @@ class track(metaclass = Meta):
     # -
     # outputs the saved JSON file entries.
     # DEFAULT: track.display(style = 'decorator', return_option = 'logs').
-    def display(self, style = 'decorator', return_option = 'logs'):
+    def display(style = 'decorator', return_option = 'logs'):
         if style == 'function':
             f = open('Logs.json', 'r')
             print(f.read())
