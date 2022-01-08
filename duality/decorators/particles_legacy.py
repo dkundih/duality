@@ -1,35 +1,25 @@
-# makes multiple instances of the object available.
-class Meta(type):
-
-    def __call__(cls, *args, **kwargs):
-        instance = super(Meta, cls).__call__(*args, **kwargs)
-        return instance
-    def __init__(cls, name, base, attr):
-        super(Meta, cls).__init__(name, base, attr)
-
 # stores menu options over functions and class methods for listing.
-class record(metaclass = Meta):
+class record:
+    basic_menu = []
+    descriptive_menu = []
+    dictionary_menu = {}
 
     # initializes the object and function it is decorating.
-    def __init__(self,):
-        self.basic_menu = []
-        self.descriptive_menu = []
-        self.dictionary_menu = {}
+    def __init__(self, func):
+        self.func = func
 
     # option_name - stores the name for the config and display functions.
     # option_description - stores the description of the function for the config and display functions.
     # -
     # creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
     # DEFAULT: record.entry(option_name, option_description = '').
-    def entry(self, option_name = '', option_description = ''):
-        self.option_name = option_name
-        self.option_description = option_description
+    def entry(option_name, option_description = ''):
 
         def record_function(func):
-            self.dictionary_menu[self.option_name] = func
-            self.basic_menu += [self.option_name]
-            self.descriptive_function = str(self.option_name) + ' - ' + str(self.option_description)
-            self.descriptive_menu += [self.descriptive_function]
+            record.dictionary_menu[option_name] = func
+            record.basic_menu += [option_name]
+            descriptive_function = str(option_name) + ' - ' + str(option_description)
+            record.descriptive_menu += [descriptive_function]
 
             def _wrap(*args, **kwargs):
                 return func(*args, **kwargs)
@@ -48,61 +38,61 @@ class record(metaclass = Meta):
     # -
     # outputs saved menu as a function or decorator.
     # DEFAULT: record.display(style = 'decorator', method = 'dictionary', return_option = 'logs').
-    def display(self, style = 'decorator', method = 'dictionary', return_option = 'logs'):
+    def display(style = 'decorator', method = 'dictionary', return_option = 'logs'):
         if style == 'decorator':
             if return_option == 'logs':
                 if method == 'basic':
                     def wrapper(func):
-                        def decorator(self,*args, **kwargs):
+                        def decorator(*args, **kwargs):
                             func(*args,**kwargs)
-                            return self.basic_menu
+                            return record.basic_menu
                         return decorator
                     return wrapper
                 elif method == 'descriptive':
                     def wrapper(func):
-                        def decorator(self,*args, **kwargs):
+                        def decorator(*args, **kwargs):
                             func(*args,**kwargs)
-                            return self.descriptive_menu
+                            return record.descriptive_menu
                         return decorator
                     return wrapper
                 elif method == 'dictionary':
                     def wrapper(func):
-                        def decorator(self, *args, **kwargs):
+                        def decorator(*args, **kwargs):
                             func(*args,**kwargs)
-                            return self.dictionary_menu
+                            return record.dictionary_menu
                         return decorator
                     return wrapper
 
             elif return_option == 'function':
                 if method == 'basic':
                     def wrapper(func):
-                        def decorator(self, *args, **kwargs):
-                            print(self.basic_menu)
+                        def decorator(*args, **kwargs):
+                            print(record.basic_menu)
                             return func(*args,**kwargs)
                         return decorator
                     return wrapper
                 elif method == 'descriptive':
                     def wrapper(func):
-                        def decorator(self, *args, **kwargs):
-                            print(self.descriptive_menu)
+                        def decorator(*args, **kwargs):
+                            print(record.descriptive_menu)
                             return func(*args,**kwargs)
                         return decorator
                     return wrapper
                 elif method == 'dictionary':
                     def wrapper(func):
-                        def decorator(self, *args, **kwargs):
-                            print(self.dictionary_menu)
+                        def decorator(*args, **kwargs):
+                            print(record.dictionary_menu)
                             return func(*args,**kwargs)
                         return decorator
                     return wrapper
                 
         elif style == 'function':
             if method == 'basic':
-                return self.basic_menu
+                return record.basic_menu
             elif method == 'descriptive':
-                return self.descriptive_menu
+                return record.descriptive_menu
             elif method == 'dictionary':
-                return self.dictionary_menu
+                return record.dictionary_menu
 
     # display_message - displays input value message.
     # output_message - confirmation of the chosen value.
@@ -113,17 +103,16 @@ class record(metaclass = Meta):
     # -
     # creates an executeable menu from defined entries on top of functions.
     # DEFAULT: record.config(display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline').
-    def config(self, display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
-        self.display_message = display_message
-        self.output_message = output_message
+    def config(display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
+        dictionary_menu = record.display(style = 'function', method = 'dictionary')
         if alignment == 'basic':
             if method == 'basic':
-                show_menu = self.display(style = 'function', method = 'basic')
+                show_menu = record.display(style = 'function', method = 'basic')
                 print('AVAILABLE OPTIONS')
                 print('-----------------')
                 print(show_menu)
             elif method == 'descriptive':
-                show_menu = self.display(style = 'function', method = 'descriptive')
+                show_menu = record.display(style = 'function', method = 'descriptive')
                 print('AVAILABLE OPTIONS')
                 print('-----------------')
                 print(show_menu)
@@ -131,26 +120,26 @@ class record(metaclass = Meta):
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
         elif alignment == 'newline':
             if method == 'basic':
-                show_menu = self.display(style = 'function', method = 'basic')
+                show_menu = record.display(style = 'function', method = 'basic')
                 print('AVAILABLE OPTIONS')
                 print('-----------------')
                 for line in show_menu:
                     print(line)
             elif method == 'descriptive':
-                show_menu = self.display(style = 'function', method = 'descriptive')
+                show_menu = record.display(style = 'function', method = 'descriptive')
                 print('AVAILABLE OPTIONS')
                 print('-----------------')
                 for line in show_menu:
                     print(line)
             else:
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
-        self.option = input('\n' + self.display_message)
-        print(self.output_message, self.option + '\n')
-        self.dictionary_menu[self.option]()
+        option = input('\n' + display_message)
+        print(output_message, option + '\n')
+        dictionary_menu[option]()
 
-        
+            
 # tracks function behaviuor and stores it into a JSON file.
-class track(metaclass = Meta):
+class track:
 
     # func_name - stores a function name it assigns to a JSON related object afterwards.
     # -
@@ -187,7 +176,7 @@ class track(metaclass = Meta):
     # -
     # outputs the saved JSON file entries.
     # DEFAULT: track.display(style = 'decorator', return_option = 'logs').
-    def display(self, style = 'decorator', return_option = 'logs'):
+    def display(style = 'decorator', return_option = 'logs'):
         if style == 'function':
             f = open('Logs.json', 'r')
             print(f.read())
@@ -211,32 +200,3 @@ class track(metaclass = Meta):
                         return func(*args, **kwargs)
                     return decorator
                 return wrapper
-
-'''
-y = record()
-
-d = record()
-
-@y.entry(option_name='da', option_description='brani.')
-def hello():
-    print('Hello')
-
-@d.entry(option_name='0', option_description='Izlaz.')
-def izlaz():
-    quit()
-
-@y.entry(option_name='1', option_description='Zbrajanje brojeva.')
-def plus():
-    x = int(input('Unesi x: '))
-    y = int(input('Unesi y: '))
-    print('Zbroj je: ', x + y, '\n')
-
-
-@d.entry(option_name='2', option_description='Oduzimanje brojeva.')
-def minus():
-    x = int(input('Unesi x: '))
-    y = int(input('Unesi y: '))
-    print('Razlika je: ', x - y, '\n')
-
-d.config()
-'''
