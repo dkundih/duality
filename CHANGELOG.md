@@ -340,17 +340,23 @@ CHANGELOG
 4.1.3 (28/12/2021)
 - matches newest vandal framework changes.
 
-4.1.4 (07/01/2021)
+4.1.4 (07/01/2022)
 - redefined dictionary option to serve as an executeable menu.
 - redefined the appearance of functions in JSON format.
 
-4.1.5 (07/01/2021)
+4.1.5 (07/01/2022)
 - record.config function added as a CLI creation particle.
 - redefined docstrings for easier use.
 
-4.1.6 (07/01/2021)
+4.1.6 (07/01/2022)
 - record.config is now record.static_config.
 - added record.dynamic_config that loops the record.static_config.
 
-4.1.7 (07/01/2021)
+4.1.7 (07/01/2022)
 - reverted 4.1.6 changes.
+
+4.1.8 (08/01/2022)
+- Meta class added to make class object instances available.
+
+4.1.9 (08/01/2022)
+- Meta included in init.
