@@ -10,7 +10,7 @@
 duality
 =====
 
-Decorator package for the vandal library framework.
+Decorator particles for creating an executeable menu from a python file and function execution tracking.
 Use permitted according to the terms of use and conditions set by the attached license.
 
 **Example of use**

@@ -26,11 +26,9 @@ import sys
 sys.dont_write_bytecode = True
 
 # imports relevant contents.
-from duality.decorators.particles import (
-	Meta,
-    record,
-    track,
-)
+from duality.decorators.metaclass import Meta
+from duality.decorators.record import record
+from duality.decorators.track import track
 
 # all relevant contents.
 __all__ = [

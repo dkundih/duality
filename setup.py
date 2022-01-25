@@ -35,7 +35,7 @@ from duality.misc._meta import __version__
 setup(
   name = 'duality',
   version = __version__,
-  description = 'Decorator package for the vandal library framework.',
+  description = 'Decorator particles for creating an executeable menu from a python file and function execution tracking.',
   long_description_content_type = 'text/markdown',
   long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(), 
   author = 'David Kundih',

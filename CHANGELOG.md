@@ -363,3 +363,9 @@ CHANGELOG
 
 4.1.10 (08/01/2022)
 - code cleanup.
+
+4.1.11 (25/01/2022)
+- code redefinition.
+- record and track are now stored in different modules.
+- classparticles module removed.
+- track is now marked as DEPRECATED due to structural difficulties.
