@@ -369,3 +369,6 @@ CHANGELOG
 - record and track are now stored in different modules.
 - classparticles module removed.
 - track is now marked as DEPRECATED due to structural difficulties.
+
+4.1.12 (25/01/2022)
+- no longer requires vandal.
