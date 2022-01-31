@@ -372,3 +372,6 @@ CHANGELOG
 
 4.1.12 (25/01/2022)
 - no longer requires vandal.
+
+4.1.13 (31/01/2022)
+- now also supports execution within class methods with self parameter.

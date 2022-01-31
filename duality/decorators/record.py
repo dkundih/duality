@@ -140,4 +140,7 @@ class record(metaclass = Meta):
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
         self.option = input('\n' + self.display_message)
         print(self.output_message, self.option + '\n')
-        self.dictionary_menu[self.option]()
+        try:
+            self.dictionary_menu[self.option]()
+        except:
+            self.dictionary_menu[self.option](self)
