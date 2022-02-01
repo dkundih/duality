@@ -98,6 +98,7 @@ class record(metaclass = Meta):
             elif method == 'dictionary':
                 return self.dictionary_menu
 
+    # display_headline - displays the desired headline.
     # display_message - displays input value message.
     # output_message - confirmation of the chosen value.
     # method ('descriptive' - shows stored option_name and it's description.)
@@ -107,18 +108,19 @@ class record(metaclass = Meta):
     # -
     # creates an executeable menu from defined entries on top of functions.
     # DEFAULT: record.config(display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline').
-    def config(self, display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
+    def config(self, display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
+        self.display_headline = display_headline
         self.display_message = display_message
         self.output_message = output_message
         if alignment == 'basic':
             if method == 'basic':
                 show_menu = self.display(style = 'function', method = 'basic')
-                print('AVAILABLE OPTIONS')
+                print(self.display_headline)
                 print('-----------------')
                 print(show_menu)
             elif method == 'descriptive':
                 show_menu = self.display(style = 'function', method = 'descriptive')
-                print('AVAILABLE OPTIONS')
+                print(self.display_headline)
                 print('-----------------')
                 print(show_menu)
             else:
@@ -126,13 +128,13 @@ class record(metaclass = Meta):
         elif alignment == 'newline':
             if method == 'basic':
                 show_menu = self.display(style = 'function', method = 'basic')
-                print('AVAILABLE OPTIONS')
+                print(self.display_headline)
                 print('-----------------')
                 for line in show_menu:
                     print(line)
             elif method == 'descriptive':
                 show_menu = self.display(style = 'function', method = 'descriptive')
-                print('AVAILABLE OPTIONS')
+                print(self.display_headline)
                 print('-----------------')
                 for line in show_menu:
                     print(line)

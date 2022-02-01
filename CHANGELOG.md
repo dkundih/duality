@@ -375,3 +375,6 @@ CHANGELOG
 
 4.1.13 (31/01/2022)
 - now also supports execution within class methods with self parameter.
+
+4.1.14 (01/02/2022)
+- now also includes a customizable headline option for the menu.
