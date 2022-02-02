@@ -98,6 +98,8 @@ class record(metaclass = Meta):
             elif method == 'dictionary':
                 return self.dictionary_menu
 
+    # type ('static' - adapts to the execution of static non-self methods and functions.)
+    # type ('dynamic' - adapts to the execution of dynamic class self methods and functions.)
     # display_headline - displays the desired headline.
     # display_message - displays input value message.
     # output_message - confirmation of the chosen value.
@@ -107,11 +109,19 @@ class record(metaclass = Meta):
     # alignment ('newline' -shows all stored option_name and option_description values in a new line.)
     # -
     # creates an executeable menu from defined entries on top of functions.
-    # DEFAULT: record.config(display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline').
-    def config(self, display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
+    # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline').
+    def config(self, type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline'):
         self.display_headline = display_headline
         self.display_message = display_message
         self.output_message = output_message
+
+        # assert type.
+        if type != 'static' and type != 'dynamic':
+            type = 'static'
+            print('WARNING: Automactically forced type to static due to invalid type choice.')
+            print('Write type = \'static\' or type = \'dynamic\' in the config option to change how this impacts the behaviour of executed functions in the menu.')
+            print('')
+
         if alignment == 'basic':
             if method == 'basic':
                 show_menu = self.display(style = 'function', method = 'basic')
@@ -142,7 +152,13 @@ class record(metaclass = Meta):
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
         self.option = input('\n' + self.display_message)
         print(self.output_message, self.option + '\n')
-        try:
-            return self.dictionary_menu[self.option](self)
-        except:
-            return self.dictionary_menu[self.option]()
+        if type == 'static':
+            try:
+                return self.dictionary_menu[self.option](self)
+            except:
+                return self.dictionary_menu[self.option]()
+        elif type == 'dynamic':
+            try:
+                return self.dictionary_menu[self.option]()
+            except:
+                return self.dictionary_menu[self.option](self)

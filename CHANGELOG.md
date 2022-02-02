@@ -381,3 +381,6 @@ CHANGELOG
 
 4.1.15 (02/02/2022)
 - now properly enables quit function by forcing self function execution first.
+
+4.2.0 (02/02/2022)
+- added type option to config in order to execute properly on both static and dynamic functions and methods.
