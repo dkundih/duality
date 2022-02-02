@@ -143,6 +143,6 @@ class record(metaclass = Meta):
         self.option = input('\n' + self.display_message)
         print(self.output_message, self.option + '\n')
         try:
-            self.dictionary_menu[self.option]()
+            return self.dictionary_menu[self.option](self)
         except:
-            self.dictionary_menu[self.option](self)
+            return self.dictionary_menu[self.option]()

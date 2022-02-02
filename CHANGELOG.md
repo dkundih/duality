@@ -378,3 +378,6 @@ CHANGELOG
 
 4.1.14 (01/02/2022)
 - now also includes a customizable headline option for the menu.
+
+4.1.15 (02/02/2022)
+- now properly enables quit function by forcing self function execution first.
