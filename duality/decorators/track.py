@@ -18,16 +18,15 @@ class track(metaclass = Meta):
                     start = datetime.datetime.now()
                     results = func(*args, **kwargs)
                     end = datetime.datetime.now()
-                    
-                    data =  {
-                            'FUNCTION NAME: ' : func_name,
+                    func_name =  {
                             'EXECUTION TIME: ' : str(end - start),
                             'EXECUTED AT: ' : str(datetime.datetime.now()),
                             'MEMORY SIZE: ' : str(sys.getsizeof(func)) + ' bytes',
                             },
 
                     with open('Logs.json', 'a') as f:
-                        f.write(json.dumps(data, indent = 4))
+                        f.write(json.dumps(func_name, indent = 4)),
+                        f.write(',\n')
                         f.close()
                         return results
                 return logsaver
