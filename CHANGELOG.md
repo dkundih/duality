@@ -384,3 +384,6 @@ CHANGELOG
 
 4.2.0 (02/02/2022)
 - added type option to config in order to execute properly on both static and dynamic functions and methods.
+
+4.2.1 (06/03/2022)
+- regular maintenance.

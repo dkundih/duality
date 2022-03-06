@@ -1,6 +1,6 @@
 '''
 
-duality - Decorator functions for the vandal library.
+duality - Decorator particles for creating an executable menu from a python file and function execution tracking.
 =====================================================================
 
 This is a connection to the __init__ file of the duality package.
@@ -33,6 +33,6 @@ from duality.decorators.track import track
 # all relevant contents.
 __all__ = [
 	Meta,
-    record,
-    track,
+	record,
+	track,
 ]
