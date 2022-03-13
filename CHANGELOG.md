@@ -387,3 +387,6 @@ CHANGELOG
 
 4.2.1 (06/03/2022)
 - regular maintenance.
+
+4.3.0 (13/03/2022)
+- improved code readability.

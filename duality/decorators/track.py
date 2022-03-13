@@ -9,11 +9,14 @@ class track(metaclass = Meta):
     # -
     # appends to a function and tracks it's execution details.
     # DEFAULT: track.entry(func_name).
-    def entry(func_name):
+    def entry(
+        func_name : str = 'placeholder_name',
+        ) -> object:
         def log(func):
                 import sys
                 import json
                 import datetime
+
                 def logsaver(*args, **kwargs):
                     start = datetime.datetime.now()
                     results = func(*args, **kwargs)
@@ -30,6 +33,7 @@ class track(metaclass = Meta):
                         f.close()
                         return results
                 return logsaver
+
         return log
 
     # style ('decorator' - appends to a function.)
@@ -39,7 +43,10 @@ class track(metaclass = Meta):
     # -
     # outputs the saved JSON file entries.
     # DEFAULT: track.display(style = 'decorator', return_option = 'logs').
-    def display(style = 'decorator', return_option = 'logs'):
+    def display(
+        style : str = 'decorator', 
+        return_option : str = 'logs',
+        ) -> object:
         if style == 'function':
             f = open('Logs.json', 'r')
             print(f.read())
@@ -53,6 +60,7 @@ class track(metaclass = Meta):
                         logs = print(f.read())
                         return logs
                     return decorator
+
                 return wrapper
 
             elif return_option == 'function':
@@ -62,4 +70,5 @@ class track(metaclass = Meta):
                         print(f.read())
                         return func(*args, **kwargs)
                     return decorator
+
                 return wrapper
