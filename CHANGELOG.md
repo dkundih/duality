@@ -390,3 +390,6 @@ CHANGELOG
 
 4.3.0 (13/03/2022)
 - improved code readability.
+
+4.3.1 (14/03/2022)
+- dict defined as dict[str, str].
