@@ -55,7 +55,7 @@ class record(metaclass = Meta):
         style : str = 'decorator', 
         method : str = 'dictionary', 
         return_option : str = 'logs',
-        ) -> dict[str, str]:
+        ) -> dict:
 
         if style == 'decorator':
             if return_option == 'logs':

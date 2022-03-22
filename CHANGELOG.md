@@ -393,3 +393,6 @@ CHANGELOG
 
 4.3.1 (14/03/2022)
 - dict defined as dict[str, str].
+
+4.3.2 (22/03/2022)
+- dict output redefined.
