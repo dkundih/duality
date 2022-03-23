@@ -25,14 +25,32 @@ AVAILABLE FEATURES IN THE PACKAGE:
 import sys
 sys.dont_write_bytecode = True
 
+# imports meta data.
+from duality.misc._meta import (
+    __author__,
+    __copyright__,
+    __credits__,
+    __license__,
+    __version__,
+    __documentation__,
+    __contact__,
+    __donate__,
+)
+
 # imports relevant contents.
-from duality.decorators.metaclass import Meta
+from duality.plugins.metaclass import Meta
+from duality.plugins.types import (
+    Vector,
+    Dictionary,
+)
 from duality.decorators.record import record
 from duality.decorators.track import track
 
 # all relevant contents.
 __all__ = [
 	Meta,
+	Vector,
+	Dictionary,
 	record,
 	track,
 ]

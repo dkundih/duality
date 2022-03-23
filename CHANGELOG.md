@@ -394,5 +394,10 @@ CHANGELOG
 4.3.1 (14/03/2022)
 - dict defined as dict[str, str].
 
-4.3.2 (22/03/2022)
-- dict output redefined.
+4.3.2+ (22/03/2022) - UNSTABLE
+- tests.
+
+4.4.0 (23/03/2022)
+- confirmed fucntionality of deployed changes.
+- cleaner and more organized code.
+- now also imports meta data.

@@ -1,5 +1,7 @@
 # makes multiple instances of the object available.
-from duality.decorators.metaclass import Meta
+from duality.plugins.metaclass import Meta
+# imports custom types.
+from duality.plugins.types import Dictionary
 
 # stores menu options over functions and class methods for listing.
 class record(metaclass = Meta):
@@ -55,7 +57,7 @@ class record(metaclass = Meta):
         style : str = 'decorator', 
         method : str = 'dictionary', 
         return_option : str = 'logs',
-        ) -> dict:
+        ) -> Dictionary:
 
         if style == 'decorator':
             if return_option == 'logs':

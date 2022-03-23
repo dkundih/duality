@@ -1,4 +1,4 @@
-#imports relevant contents.
+# imports relevant contents.
 from duality.misc._meta import (
     __author__,
     __copyright__,

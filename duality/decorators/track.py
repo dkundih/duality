@@ -1,5 +1,5 @@
 # makes multiple instances of the object available.
-from duality.decorators.metaclass import Meta
+from duality.plugins.metaclass import Meta
 
 # tracks function behaviuor and stores it into a JSON file.
 # --- DEPRECATED ---
