@@ -1,6 +1,29 @@
 # makes multiple instances of the object available.
 from duality.plugins.metaclass import Meta
 
+from duality.plugins.types import (
+    VandalType,
+    IntegerType,
+    FloatType,
+    NumberType,
+    ReturnType,
+    PrintType,
+    GraphType,
+    StringType,
+    ListType,
+    TupleType,
+    DictionaryType,
+    BooleanType,
+    NumberVector,
+    StringVector,
+    StringDictionary,
+    DictionaryVector,
+    NumberVectorAlike,
+    NumberArrayAlike,
+    AnyArrayAlike,
+    AnyVectorAlike,
+)
+
 # tracks function behaviuor and stores it into a JSON file.
 # --- DEPRECATED ---
 class track(metaclass = Meta):
@@ -10,8 +33,8 @@ class track(metaclass = Meta):
     # appends to a function and tracks it's execution details.
     # DEFAULT: track.entry(func_name).
     def entry(
-        func_name : str = 'placeholder_name',
-        ) -> object:
+        func_name : StringType = 'placeholder_name',
+        ) -> StringDictionary:
         def log(func):
                 import sys
                 import json
@@ -44,9 +67,9 @@ class track(metaclass = Meta):
     # outputs the saved JSON file entries.
     # DEFAULT: track.display(style = 'decorator', return_option = 'logs').
     def display(
-        style : str = 'decorator', 
-        return_option : str = 'logs',
-        ) -> object:
+        style : StringType = 'decorator', 
+        return_option : StringType = 'logs',
+        ) -> ReturnType:
         if style == 'function':
             f = open('Logs.json', 'r')
             print(f.read())

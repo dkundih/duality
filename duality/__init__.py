@@ -37,20 +37,62 @@ from duality.misc._meta import (
     __donate__,
 )
 
+# import types.
+from duality.plugins.types import (
+    VandalType,
+    IntegerType,
+    FloatType,
+    NumberType,
+    ReturnType,
+    PrintType,
+    GraphType,
+    StringType,
+    ListType,
+    TupleType,
+    DictionaryType,
+    BooleanType,
+    NumberVector,
+    StringVector,
+    StringDictionary,
+    DictionaryVector,
+    NumberVectorAlike,
+    NumberArrayAlike,
+    AnyArrayAlike,
+    AnyVectorAlike,
+)
+
+# all types.
+__types__ = [
+	VandalType,
+    IntegerType,
+    FloatType,
+    NumberType,
+    ReturnType,
+    PrintType,
+    GraphType,
+    StringType,
+    ListType,
+    TupleType,
+    DictionaryType,
+    BooleanType,
+    NumberVector,
+    StringVector,
+    StringDictionary,
+    DictionaryVector,
+    NumberVectorAlike,
+    NumberArrayAlike,
+    AnyArrayAlike,
+    AnyVectorAlike,
+]
+
 # imports relevant contents.
 from duality.plugins.metaclass import Meta
-from duality.plugins.types import (
-    Vector,
-    Dictionary,
-)
 from duality.decorators.record import record
 from duality.decorators.track import track
 
 # all relevant contents.
 __all__ = [
 	Meta,
-	Vector,
-	Dictionary,
 	record,
 	track,
 ]

@@ -1,3 +1,27 @@
+# type hints and annotations.
+from duality.plugins.types import (
+    VandalType,
+    IntegerType,
+    FloatType,
+    NumberType,
+    ReturnType,
+    PrintType,
+    GraphType,
+    StringType,
+    ListType,
+    TupleType,
+    DictionaryType,
+    BooleanType,
+    NumberVector,
+    StringVector,
+    StringDictionary,
+    DictionaryVector,
+    NumberVectorAlike,
+    NumberArrayAlike,
+    AnyArrayAlike,
+    AnyVectorAlike,
+)
+
 # makes multiple instances of the object available.
 class Meta(type):
 

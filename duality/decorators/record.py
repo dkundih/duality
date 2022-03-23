@@ -1,7 +1,29 @@
 # makes multiple instances of the object available.
 from duality.plugins.metaclass import Meta
+
 # imports custom types.
-from duality.plugins.types import Dictionary
+from duality.plugins.types import (
+    VandalType,
+    IntegerType,
+    FloatType,
+    NumberType,
+    ReturnType,
+    PrintType,
+    GraphType,
+    StringType,
+    ListType,
+    TupleType,
+    DictionaryType,
+    BooleanType,
+    NumberVector,
+    StringVector,
+    StringDictionary,
+    DictionaryVector,
+    NumberVectorAlike,
+    NumberArrayAlike,
+    AnyArrayAlike,
+    AnyVectorAlike,
+)
 
 # stores menu options over functions and class methods for listing.
 class record(metaclass = Meta):
@@ -9,11 +31,11 @@ class record(metaclass = Meta):
     # initializes the object and function it is decorating.
     def __init__(
         self,
-        ) -> object:
+        ) -> ReturnType:
 
-        self.basic_menu : list = []
-        self.descriptive_menu : list = []
-        self.dictionary_menu : dict = {}
+        self.basic_menu : ListType = []
+        self.descriptive_menu : ListType = []
+        self.dictionary_menu : DictionaryType = {}
 
     # option_name - stores the name for the config and display functions.
     # option_description - stores the description of the function for the config and display functions.
@@ -22,9 +44,9 @@ class record(metaclass = Meta):
     # DEFAULT: record.entry(option_name, option_description = '').
     def entry(
         self, 
-        option_name : str = '', 
-        option_description : str = '',
-        ) -> object:
+        option_name : StringType = '', 
+        option_description : StringType = '',
+        ) -> StringDictionary:
 
         self.option_name = option_name
         self.option_description = option_description
@@ -54,10 +76,10 @@ class record(metaclass = Meta):
     # DEFAULT: record.display(style = 'decorator', method = 'dictionary', return_option = 'logs').
     def display(
         self,
-        style : str = 'decorator', 
-        method : str = 'dictionary', 
-        return_option : str = 'logs',
-        ) -> Dictionary:
+        style : StringType = 'decorator', 
+        method : StringType = 'dictionary', 
+        return_option : StringType = 'logs',
+        ) -> StringDictionary:
 
         if style == 'decorator':
             if return_option == 'logs':
@@ -140,13 +162,13 @@ class record(metaclass = Meta):
     # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline').
     def config(
         self, 
-        type : str = 'static', 
-        display_headline : str ='AVAILABLE OPTIONS', 
-        display_message : str = 'ENTER THE OPTION: ', 
-        output_message : str = 'YOU HAVE CHOSEN: ', 
-        method : str = 'descriptive', 
-        alignment : str = 'newline',
-        ) -> object:
+        type : StringType = 'static', 
+        display_headline : StringType ='AVAILABLE OPTIONS', 
+        display_message : StringType = 'ENTER THE OPTION: ', 
+        output_message : StringType = 'YOU HAVE CHOSEN: ', 
+        method : StringType = 'descriptive', 
+        alignment : StringType = 'newline',
+        ) -> DictionaryType:
 
         self.display_headline = display_headline
         self.display_message = display_message

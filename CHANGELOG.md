@@ -397,7 +397,8 @@ CHANGELOG
 4.3.2+ (22/03/2022) - UNSTABLE
 - tests.
 
-4.4.0 (23/03/2022)
+4.4.2 (23/03/2022)
 - confirmed fucntionality of deployed changes.
 - cleaner and more organized code.
 - now also imports meta data.
+- uses the scheme of vandalTypes for datatypes.
