@@ -230,7 +230,6 @@ class Record(metaclass = Meta):
                 try:
                     return self.dictionary_menu[self.option](self)
                 except:
-
                     return self.dictionary_menu[self.option]()
 
             elif type == 'dynamic':
@@ -291,4 +290,4 @@ class Record(metaclass = Meta):
 
                 self.iterate = False
         
-        return print('STACKED FUNCTION CODES: ', self.tmp_list)
+        return print('STACKED FUNCTION CODES GETTING EXECUTED: ', self.tmp_list)

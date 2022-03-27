@@ -413,3 +413,8 @@ CHANGELOG
 - now fetches the vandalTypes from vandal.
 - __all__ functions redefined to string.
 - vandal >= 3.7.0 dependency added.
+
+4.4.6 (28/03/2022)
+- confirmed functionality.
+- vandal upgrade.
+- .testassets files updated.

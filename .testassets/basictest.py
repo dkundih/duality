@@ -1,3 +1,6 @@
+
+# EXAMPLE OF USE IN SIMPLE APP CREATION.
+
 from duality import Record
 
 t = Record()
