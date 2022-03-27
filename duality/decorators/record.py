@@ -244,11 +244,23 @@ class Record(metaclass = Meta):
 
             self.queue_handler()
 
-            for tmp_func in self.tmp_list:
-                try:
-                    tmp_func()
-                except:
-                    tmp_func(self)
+            if type == 'static':
+
+                for tmp_func in self.tmp_list:
+
+                    try:
+                        tmp_func(self)
+                    except:
+                        tmp_func()
+
+            elif type == 'dynamic':
+
+                for tmp_func in self.tmp_list:
+
+                    try:
+                        tmp_func()
+                    except:
+                        tmp_func(self)
 
         return
 
@@ -262,6 +274,7 @@ class Record(metaclass = Meta):
 
         self.tmp_list = []
         self.iterate = iterate
+        
         while self.iterate == True:
 
             self.option = input('\n' + self.display_message)
@@ -274,8 +287,8 @@ class Record(metaclass = Meta):
 
             choice = choice.upper()
 
-            if choice == 'N':
+            if choice != 'Y':
 
                 self.iterate = False
         
-        return 
+        return print('STACKED FUNCTION CODES: ', self.tmp_list)

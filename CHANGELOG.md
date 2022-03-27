@@ -405,3 +405,6 @@ CHANGELOG
 
 4.4.3 (27/03/2022)
 - queue options set to test.
+
+4.4.4 (27/03/2022)
+- prerequisites for app put to test in real time environment.
