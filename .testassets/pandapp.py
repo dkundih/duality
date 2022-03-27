@@ -27,4 +27,4 @@ class App:
         file = self.file.to_excel('Export.xlsx')
         return file
 
-r.config(type = 'dynamic', queue=True)
+r.config(type = 'dynamic', queue = True)
