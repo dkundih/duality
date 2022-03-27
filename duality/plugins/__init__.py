@@ -1,6 +1,9 @@
+
+# INFORMATIVE MODULE.
+
 # imports relevant contents.
-from duality.plugins.metaclass import Meta
-from duality.plugins.types import (
+from vandal.plugins.metaclass import Meta
+from vandal.plugins.types import (
     VandalType,
     IntegerType,
     FloatType,
@@ -25,26 +28,26 @@ from duality.plugins.types import (
 
 # all relevant contents.
 __all__ = [
-    VandalType,
-    IntegerType,
-    FloatType,
-    NumberType,
-    ReturnType,
-    PrintType,
-    GraphType,
-    StringType,
-    ListType,
-    TupleType,
-    DictionaryType,
-    BooleanType,
-    NumberVector,
-    StringVector,
-    StringDictionary,
-    DictionaryVector,
-    NumberVectorAlike,
-    NumberArrayAlike,
-    AnyArrayAlike,
-    AnyVectorAlike,
+    'VandalType',
+    'IntegerType',
+    'FloatType',
+    'NumberType',
+    'ReturnType',
+    'PrintType',
+    'GraphType',
+    'StringType',
+    'ListType',
+    'TupleType',
+    'DictionaryType',
+    'BooleanType',
+    'NumberVector',
+    'StringVector',
+    'StringDictionary',
+    'DictionaryVector',
+    'NumberVectorAlike',
+    'NumberArrayAlike',
+    'AnyArrayAlike',
+    'AnyVectorAlike',
 ]
 
 # all available types.

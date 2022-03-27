@@ -1,8 +1,8 @@
 # makes multiple instances of the object available.
-from duality.plugins.metaclass import Meta
+from vandal.plugins.metaclass import Meta
 
 # imports custom types.
-from duality.plugins.types import (
+from vandal.plugins.types import (
     VandalType,
     IntegerType,
     FloatType,

@@ -408,3 +408,8 @@ CHANGELOG
 
 4.4.4 (27/03/2022)
 - prerequisites for app put to test in real time environment.
+
+4.4.5 (27/03/2022)
+- now fetches the vandalTypes from vandal.
+- __all__ functions redefined to string.
+- vandal >= 3.7.0 dependency added.

@@ -10,14 +10,14 @@ AVAILABLE FEATURES IN THE PACKAGE:
 	record (OBJECT/DECORATOR)
 	-------------------
 
-	duality.record is an object decorator class that stores menu options over functions and class methods for listing and executing in a CLI.
-		print(help(duality.record)) in order to see available features.
+	duality.Record is an object decorator class that stores menu options over functions and class methods for listing and executing in a CLI.
+		print(help(duality.Record)) in order to see available features.
 
 	track (OBJECT/DECORATOR)
 	------------
 
-	duality.track is an object decorator class that tracks function behaviuor and stores it into a JSON file.
-		print(help(duality.track)) in order to see available features.
+	duality.Track is an object decorator class that tracks function behaviuor and stores it into a JSON file.
+		print(help(duality.Track)) in order to see available features.
 
 '''
 
@@ -38,7 +38,7 @@ from duality.misc._meta import (
 )
 
 # import types.
-from duality.plugins.types import (
+from vandal.plugins.types import (
     VandalType,
     IntegerType,
     FloatType,
@@ -92,7 +92,7 @@ from duality.decorators.track import Track
 
 # all relevant contents.
 __all__ = [
-	Meta,
-	Record,
-	Track,
+	'Meta',
+	'Record',
+	'Track',
 ]

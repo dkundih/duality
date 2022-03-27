@@ -1,5 +1,8 @@
+
+# INFORMATIVE MODULE.
+
 # type hints and annotations.
-from duality.plugins.types import (
+from vandal.plugins.types import (
     VandalType,
     IntegerType,
     FloatType,

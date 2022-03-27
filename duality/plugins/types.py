@@ -1,3 +1,6 @@
+
+# INFORMATIVE MODULE.
+
 from typing import Dict, List, Union
 
 VandalType = 'Specific Input / Output vandal type of supported data.'
@@ -27,6 +30,3 @@ NumberArrayAlike: VandalType = Union[List[NumberVector], List[DictionaryVector]]
 AnyArrayAlike: VandalType = Union[List[NumberVector], List[StringVector], List[StringDictionary], List[DictionaryVector]] # any =>2 dimensional type.
 AnyVectorAlike: VandalType = Union[NumberVector, StringVector, StringDictionary, DictionaryVector] # any one-dimensional type.
 
-'''
-Duality package is a part of the vandal library, thus duality Types are VandalTypes.
-'''
