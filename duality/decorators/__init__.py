@@ -1,11 +1,11 @@
 # imports relevant contents.
 from duality.plugins.metaclass import Meta
-from duality.decorators.record import record
-from duality.decorators.track import track
+from duality.decorators.record import Record
+from duality.decorators.track import Track
 
 # all relevant contents.
 __all__ = [
     Meta,
-    record,
-    track,
+    Record,
+    Track,
 ]

@@ -26,7 +26,7 @@ from duality.plugins.types import (
 
 # tracks function behaviuor and stores it into a JSON file.
 # --- DEPRECATED ---
-class track(metaclass = Meta):
+class Track(metaclass = Meta):
 
     # func_name - stores a function name it assigns to a JSON related object afterwards.
     # -

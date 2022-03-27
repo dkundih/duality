@@ -26,7 +26,7 @@ from duality.plugins.types import (
 )
 
 # stores menu options over functions and class methods for listing.
-class record(metaclass = Meta):
+class Record(metaclass = Meta):
 
     # initializes the object and function it is decorating.
     def __init__(
@@ -157,9 +157,10 @@ class record(metaclass = Meta):
     # method ('basic' - shows only the stored option_name.)
     # alignment ('basic' - shows all stored option_name and option_description values in a row.)
     # alignment ('newline' -shows all stored option_name and option_description values in a new line.)
+    # queue (True/False) - enables stacking of functions and executing them in a chain.
     # -
     # creates an executeable menu from defined entries on top of functions.
-    # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline').
+    # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline', queue = False).
     def config(
         self, 
         type : StringType = 'static', 
@@ -168,11 +169,13 @@ class record(metaclass = Meta):
         output_message : StringType = 'YOU HAVE CHOSEN: ', 
         method : StringType = 'descriptive', 
         alignment : StringType = 'newline',
+        queue: BooleanType = False,
         ) -> DictionaryType:
 
         self.display_headline = display_headline
         self.display_message = display_message
         self.output_message = output_message
+        self.queue = queue
 
         # assert type.
         if type != 'static' and type != 'dynamic':
@@ -182,6 +185,7 @@ class record(metaclass = Meta):
             print('')
 
         if alignment == 'basic':
+
             if method == 'basic':
                 show_menu = self.display(style = 'function', method = 'basic')
                 print(self.display_headline)
@@ -198,6 +202,7 @@ class record(metaclass = Meta):
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
 
         elif alignment == 'newline':
+
             if method == 'basic':
                 show_menu = self.display(style = 'function', method = 'basic')
                 print(self.display_headline)
@@ -214,19 +219,63 @@ class record(metaclass = Meta):
             else:
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
 
-        self.option = input('\n' + self.display_message)
+        if queue == False:
 
-        print(self.output_message, self.option + '\n')
+            self.option = input('\n' + self.display_message)
 
-        if type == 'static':
-            try:
-                return self.dictionary_menu[self.option](self)
-            except:
+            print(self.output_message, self.option + '\n')
 
-                return self.dictionary_menu[self.option]()
+            if type == 'static':
 
-        elif type == 'dynamic':
-            try:
-                return self.dictionary_menu[self.option]()
-            except:
-                return self.dictionary_menu[self.option](self)
+                try:
+                    return self.dictionary_menu[self.option](self)
+                except:
+
+                    return self.dictionary_menu[self.option]()
+
+            elif type == 'dynamic':
+
+                try:
+                    return self.dictionary_menu[self.option]()
+                except:
+                    return self.dictionary_menu[self.option](self)
+
+        if queue == True:
+
+            self.queue_handler()
+
+            for tmp_func in self.tmp_list:
+                try:
+                    tmp_func()
+                except:
+                    tmp_func(self)
+
+        return
+
+    # iterate (True/False) - enables the functionality of queue, do not change!
+    # -
+    # enables a loop for the queue.
+    def queue_handler(
+        self,
+        iterate: BooleanType = True,
+        ) -> ReturnType:
+
+        self.tmp_list = []
+        self.iterate = iterate
+        while self.iterate == True:
+
+            self.option = input('\n' + self.display_message)
+
+            print(self.output_message, self.option + '\n')
+
+            self.tmp_list += [self.dictionary_menu[self.option]]
+
+            choice = input('Continue? (Y/N): ')
+
+            choice = choice.upper()
+
+            if choice == 'N':
+
+                self.iterate = False
+        
+        return 
