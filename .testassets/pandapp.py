@@ -7,7 +7,7 @@ r = Record()
 
 class App:
 
-    @r.entry('init')
+    @r.entry('init', autoinit = True)
     def __init__(
         self,
         file = None,
@@ -19,7 +19,7 @@ class App:
 
     @r.entry('remove')
     def remove_vals(self):
-        file = self.file.drop(columns=['set1'], inplace=True)
+        file = self.file.drop(columns=['set1'], inplace = True)
         return file
 
     @r.entry('save')
@@ -27,4 +27,4 @@ class App:
         file = self.file.to_excel('Export.xlsx')
         return file
 
-r.config(type = 'dynamic', queue = True)
+r.config(type = 'dynamic', queue = True, contains_autoinit = True)

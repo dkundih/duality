@@ -25,6 +25,7 @@ from vandal.plugins.types import (
     AnyVectorAlike,
 )
 
+
 # stores menu options over functions and class methods for listing.
 class Record(metaclass = Meta):
 
@@ -37,25 +38,40 @@ class Record(metaclass = Meta):
         self.descriptive_menu : ListType = []
         self.dictionary_menu : DictionaryType = {}
 
+        self.hidden_basic_menu : ListType = []
+        self.hidden_descriptive_menu : ListType = []
+        self.hidden_dictionary_menu : DictionaryType = {}
+
+
     # option_name - stores the name for the config and display functions.
     # option_description - stores the description of the function for the config and display functions.
+    # autoinit (True/False) - automatically initializes the function without storing into the dictionary menu.
     # -
     # creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
-    # DEFAULT: record.entry(option_name, option_description = '').
+    # DEFAULT: record.entry(option_name, option_description = '', autoinit = False).
     def entry(
         self, 
         option_name : StringType = '', 
         option_description : StringType = '',
+        autoinit: BooleanType = False,
         ) -> StringDictionary:
 
         self.option_name = option_name
         self.option_description = option_description
 
         def record_function(func):
-            self.dictionary_menu[self.option_name] = func
-            self.basic_menu += [self.option_name]
-            self.descriptive_function = str(self.option_name) + ' - ' + str(self.option_description)
-            self.descriptive_menu += [self.descriptive_function]
+
+            if autoinit == False:
+                self.dictionary_menu[self.option_name] = func
+                self.basic_menu += [self.option_name]
+                self.descriptive_function = str(self.option_name) + ' - ' + str(self.option_description)
+                self.descriptive_menu += [self.descriptive_function]
+            
+            elif autoinit == True:
+                self.hidden_dictionary_menu[self.option_name] = func
+                self.hidden_basic_menu += [self.option_name]
+                self.descriptive_function = str(self.option_name) + ' - ' + str(self.option_description)
+                self.hidden_descriptive_menu += [self.descriptive_function]
 
             def _wrap(*args, **kwargs):
                 return func(*args, **kwargs)
@@ -63,6 +79,7 @@ class Record(metaclass = Meta):
             return _wrap
 
         return record_function
+
 
     # style ('decorator' - appends to a function.)
     # style ('function' - executes as a standalone function.)
@@ -148,6 +165,7 @@ class Record(metaclass = Meta):
             elif method == 'dictionary':
                 return self.dictionary_menu
 
+
     # type ('static' - adapts to the execution of static non-self methods and functions.)
     # type ('dynamic' - adapts to the execution of dynamic class self methods and functions.)
     # display_headline - displays the desired headline.
@@ -158,6 +176,7 @@ class Record(metaclass = Meta):
     # alignment ('basic' - shows all stored option_name and option_description values in a row.)
     # alignment ('newline' -shows all stored option_name and option_description values in a new line.)
     # queue (True/False) - enables stacking of functions and executing them in a chain.
+    # contains_autoinit (True/False) - enables the autoinit function to be executed.
     # -
     # creates an executeable menu from defined entries on top of functions.
     # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline', queue = False).
@@ -170,6 +189,7 @@ class Record(metaclass = Meta):
         method : StringType = 'descriptive', 
         alignment : StringType = 'newline',
         queue: BooleanType = False,
+        contains_autoinit: BooleanType = False,
         ) -> DictionaryType:
 
         self.display_headline = display_headline
@@ -225,10 +245,23 @@ class Record(metaclass = Meta):
 
             print(self.output_message, self.option + '\n')
 
+            # executes autoinit function.
+            if contains_autoinit == True:
+
+                try:
+
+                    for i in self.hidden_dictionary_menu:
+                        self.hidden_dictionary_menu[i](self)
+                except:
+                    
+                    for i in self.hidden_dictionary_menu:
+                        self.hidden_dictionary_menu[i]()
+
             if type == 'static':
 
                 try:
                     return self.dictionary_menu[self.option](self)
+
                 except:
                     return self.dictionary_menu[self.option]()
 
@@ -241,6 +274,19 @@ class Record(metaclass = Meta):
 
         if queue == True:
 
+            # executes autoinit functions.
+            if contains_autoinit == True:
+
+                try:
+
+                    for i in self.hidden_dictionary_menu:
+                        self.hidden_dictionary_menu[i](self)
+                except:
+                    
+                    for i in self.hidden_dictionary_menu:
+                        self.hidden_dictionary_menu[i]()
+
+            # enables a loop to execute functions in a chain.
             self.queue_handler()
 
             if type == 'static':
@@ -262,6 +308,7 @@ class Record(metaclass = Meta):
                         tmp_func(self)
 
         return
+
 
     # iterate (True/False) - enables the functionality of queue, do not change!
     # -
