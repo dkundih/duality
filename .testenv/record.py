@@ -55,6 +55,8 @@ class Record(metaclass = Meta):
         option_name : StringType = '', 
         option_description : StringType = '',
         autoinit: BooleanType = False,
+        feed_inputs: BooleanType = False,
+        input_pool = [],
         ) -> StringDictionary:
 
         self.option_name = option_name
@@ -75,7 +77,9 @@ class Record(metaclass = Meta):
                 self.hidden_descriptive_menu += [self.descriptive_function]
                 self.contains_autoinit = True
 
+
             def _wrap(*args, **kwargs):
+                self.feed_inputs(inputs = input_pool)
                 return func(*args, **kwargs)
 
             return _wrap
@@ -338,3 +342,55 @@ class Record(metaclass = Meta):
                 self.iterate = False
         
         return print('STACKED FUNCTION CODES GETTING EXECUTED: ', self.tmp_list)
+
+    def feed_inputs(self, inputs = []):
+        self.inputs = inputs
+        self.input_dict = {}
+        for i in inputs:
+            key = i
+            i = input(f'Enter the {i}: ')
+            self.input_dict[key] = i
+        return self.input_dict
+
+
+t = Record()
+
+class App:
+
+    @t.entry(option_name='init', autoinit=True)
+    def __init__(self, dictionary = {}):
+        self.dictionary = dictionary
+        return
+
+    @t.entry(option_name='zbrajanje', feed_inputs=True, input_pool=['x', 'y'])
+    def zbrajanje(self):
+        rez = print('Zbroj je: ')
+        return rez
+
+    @t.entry(option_name='oduzimanje')
+    def oduzimanje(self):
+        x = int(input('Unesi prvi broj: '))
+        y = int(input('Unesi drugi broj: '))
+        rez = print('Razlika je: ', x - y)
+        return rez
+
+    @t.entry(option_name='množenje')
+    def množenje(self):
+        x = int(input('Unesi prvi broj: '))
+        y = int(input('Unesi drugi broj: '))
+        rez = print('Umnožak je: ', x * y)
+        return rez
+
+    @t.entry(option_name='dijeljenje')
+    def dijeljenje(self):
+        x = int(input('Unesi prvi broj: '))
+        y = int(input('Unesi drugi broj: '))
+        rez = print('Produkt je: ', x // y)
+        return rez
+
+    def initconfig(self):
+        t.config(type = 'dynamic',queue=True)
+
+a = App()
+
+a.initconfig()

@@ -27,4 +27,9 @@ class App:
         file = self.file.to_excel('Export.xlsx')
         return file
 
-r.config(type = 'dynamic', queue = True, contains_autoinit = True)
+    def initconfig(self):
+        return r.config(type = 'dynamic', queue = True)
+
+a = App()
+
+a.initconfig()

@@ -422,3 +422,6 @@ CHANGELOG
 4.5.0 (30/03/2022)
 - autoinit option implemented to entry.
 - contains_autoinit added to config.
+
+4.5.1 (30/03/2022) -                                                            !!! NOT YET PUBLISHED !!!
+- now automatically recognizes if any of the functions contains autoinit.
