@@ -423,5 +423,8 @@ CHANGELOG
 - autoinit option implemented to entry.
 - contains_autoinit added to config.
 
-4.5.1 (30/03/2022) -                                                            !!! NOT YET PUBLISHED PYPI&GITHUB VERSION !!!
+4.5.1 (30/03/2022)
 - now automatically recognizes if any of the functions contains autoinit.
+- Record.define(input_val, dtype) introduced to pass arguments as inputs.
+- UX improved.
+- vandal >= 3.7.2 dependency to fetch AnyType.

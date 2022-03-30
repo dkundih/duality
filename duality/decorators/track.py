@@ -22,6 +22,7 @@ from vandal.plugins.types import (
     NumberArrayAlike,
     AnyArrayAlike,
     AnyVectorAlike,
+    AnyType,
 )
 
 # tracks function behaviuor and stores it into a JSON file.

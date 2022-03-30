@@ -23,6 +23,8 @@ AVAILABLE FEATURES IN THE PACKAGE:
 
 # ignore __pycache__ from forming inside the library directory.
 import sys
+
+from duality.plugins.types import AnyType
 sys.dont_write_bytecode = True
 
 # imports meta data.
@@ -59,6 +61,7 @@ from vandal.plugins.types import (
     NumberArrayAlike,
     AnyArrayAlike,
     AnyVectorAlike,
+    AnyType,
 )
 
 # all types.
@@ -83,6 +86,7 @@ __types__ = [
     NumberArrayAlike,
     AnyArrayAlike,
     AnyVectorAlike,
+    AnyType
 ]
 
 # imports relevant contents.

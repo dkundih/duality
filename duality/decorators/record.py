@@ -23,6 +23,7 @@ from vandal.plugins.types import (
     NumberArrayAlike,
     AnyArrayAlike,
     AnyVectorAlike,
+    AnyType,
 )
 
 
@@ -76,6 +77,7 @@ class Record(metaclass = Meta):
                 self.contains_autoinit = True
 
             def _wrap(*args, **kwargs):
+
                 return func(*args, **kwargs)
 
             return _wrap
@@ -196,6 +198,7 @@ class Record(metaclass = Meta):
         self.display_message = display_message
         self.output_message = output_message
         self.queue = queue
+        self.yield_name = 0 # list item counter that enables iterating through the list.
 
         # assert type.
         if type != 'static' and type != 'dynamic':
@@ -273,7 +276,6 @@ class Record(metaclass = Meta):
                     return self.dictionary_menu[self.option](self)
 
         if queue == True:
-
             # executes autoinit functions.
             if self.contains_autoinit == True:
 
@@ -291,24 +293,35 @@ class Record(metaclass = Meta):
 
             if type == 'static':
 
+                print(self.tmp_name_list[self.yield_name])
+
                 for tmp_func in self.tmp_list:
 
                     try:
                         tmp_func(self)
+                        print('')
+                        self.yield_name += 1
                     except:
                         tmp_func()
+                        print('')
+                        self.yield_name += 1
 
             elif type == 'dynamic':
 
                 for tmp_func in self.tmp_list:
 
+                    print(self.tmp_name_list[self.yield_name])
+
                     try:
                         tmp_func()
+                        print('')
+                        self.yield_name += 1
                     except:
                         tmp_func(self)
+                        print('')
+                        self.yield_name += 1
 
         return
-
 
     # iterate (True/False) - enables the functionality of queue, do not change!
     # -
@@ -320,10 +333,13 @@ class Record(metaclass = Meta):
 
         self.tmp_list = []
         self.iterate = iterate
+        self.tmp_name_list = []
         
         while self.iterate == True:
 
             self.option = input('\n' + self.display_message)
+
+            self.tmp_name_list += [self.option]
 
             print(self.output_message, self.option + '\n')
 
@@ -336,5 +352,37 @@ class Record(metaclass = Meta):
             if choice != 'Y':
 
                 self.iterate = False
+                print('')
         
-        return print('STACKED FUNCTION CODES GETTING EXECUTED: ', self.tmp_list)
+        return self.tmp_list
+
+
+    # input_val - input value to be used in the function.
+    # dtype - data type of the input value.
+    # -
+    # enables the user to input a value and store it in a variable within a decorated function.
+    def define(
+        self,
+        input_val: StringType = '',
+        dtype: AnyType = 'str',
+      ) -> DictionaryType:
+
+        self.inputs = input_val
+        self.input_dict = {}
+        key = input_val
+        value = input(f'Enter the {input_val}: ')
+        # available data types
+        dtypes = {
+            'int': int(value),
+            'float': float(value),
+            'str': str(value),
+            'bool': bool(value),
+            'list': list(value),
+            'tuple': tuple(value),
+            'dict': {'value' : value},
+            'vector': [value],
+          }
+
+        value = dtypes[dtype]
+        self.input_dict[key] = value
+        return self.input_dict[key]
