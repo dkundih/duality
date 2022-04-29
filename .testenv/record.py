@@ -39,8 +39,6 @@ class Record(metaclass = Meta):
         self.descriptive_menu : ListType = []
         self.dictionary_menu : DictionaryType = {}
         self.individual_dict = {}
-        self.ndict = {}
-        self.cdict = {}
         self.poolsize = 0
         self.stored_keys = []
 
@@ -60,11 +58,14 @@ class Record(metaclass = Meta):
         self, 
         option_name : StringType = '', 
         option_description : StringType = '',
+        dict_name : StringType = '',
         autoinit: BooleanType = False,
         ) -> StringDictionary:
 
         self.option_name = option_name
         self.option_description = option_description
+        self.dict_name = dict_name
+        self.dict_name = {}
 
         def record_function(func):
 
@@ -322,11 +323,26 @@ class Record(metaclass = Meta):
                         print('')
                         self.yield_name += 1
                     except:
-                        tmp_func(self, **self.ndict)
+                        self.redefine()
+                        tmp_func(self, **self.dict_name)
                         print('')
                         self.yield_name += 1
 
         return
+
+    def store(self, variable, type):
+        self.type = type
+        self.variable = variable
+        self.dict_name[self.variable] = type
+        return self.dict_name
+
+    def redefine(self):
+        print(self.dict_name)
+        for i in self.dict_name:
+            i = input(f'Enter {i} value: ')
+            self.dict_name[self.variable] = i
+        return self.dict_name
+
 
     # iterate (True/False) - enables the functionality of queue, do not change!
     # -
@@ -361,24 +377,6 @@ class Record(metaclass = Meta):
         
         return self.tmp_list
 
-    # tu treba dodati hint umjesto key, a key pretvoriti u enumerejtani unos u dictionary kao key.
-    def set_dict(self, hint, dtype):
-        self.poolsize += 1
-        key = 'entry' + str(self.poolsize)
-        self.stored_keys += [key]
-        self.key = key
-        dtypes = {
-            'int': int(input(hint)),
-            'float': float(input(hint)),
-            'str': str(input(hint)),
-            'bool': bool(input(hint)),
-            'list': list(input(hint)),
-            'tuple': tuple(input(hint)),
-            'dict': {'value' : input(hint)},
-            'vector': [input(hint)],
-          }
-        self.ndict = dtypes[dtype]
-        return self.ndict
 
 t = Record()
 
@@ -389,24 +387,14 @@ class App:
         self.dictionary = dictionary
         return
 
-    @t.entry(option_name='zbrajanje')
-    def zbrajanje(self, x = t.set_dict(hint = 'x', dtype = 'int'), y = t.set_dict(hint= 'y', dtype = 'int')):
-        rez = print('Zbroj je: ', y + x)
+    @t.entry(option_name='zbrajanje', dict_name = '1')
+    def zbrajanje(self, x = t.store('x', 'mar',), y = t.store('y', 'mar')):
+        rez = print('Zbroj je: ', x , y)
         return rez
 
-    @t.entry(option_name='oduzimanje')
-    def oduzimanje(self, x = t.set_dict(hint = 'x', dtype = 'int'), y = t.set_dict(hint = 'y', dtype = 'int')):
+    @t.entry(option_name='oduzimanje', dict_name = '2')
+    def oduzimanje(self, x = t.store('x', 'int') , y = t.store('y', 'int')):
         rez = print('Razlika je: ', x - y)
-        return rez
-
-    @t.entry(option_name='množenje')
-    def množenje(self, x = t.set_dict(hint = 'x', dtype = 'float'), y = t.set_dict(hint = 'y', dtype = 'float')):
-        rez = print('Umnožak je: ', x * y)
-        return rez
-
-    @t.entry(option_name='dijeljenje')
-    def dijeljenje(self, x = t.set_dict(hint = 'u', dtype = 'float'), y = t.set_dict(hint = 'y', dtype = 'float')):
-        rez = print('Produkt je: ', x // y)
         return rez
 
     def initconfig(self):
@@ -416,3 +404,4 @@ a = App()
 
 if __name__ == '__main__':
     a.initconfig()
+

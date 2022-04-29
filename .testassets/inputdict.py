@@ -1,10 +1,10 @@
-def zbroj(x,y):
-    xy = {
-    'int' : int(input('Unesite broj: ')),
-    'float' : float(input('Unesite broj: ')),
+xy = {
+    'x' : int(input('Unesite broj: ')),
+    'y' : float(input('Unesite broj: ')),
 }
-    x = xy[x]
-    y = xy[y]
+
+
+def zbroj(x,y):
     return print(x+y)
 
-zbroj('int','int')
+zbroj(**xy)
