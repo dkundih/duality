@@ -13,28 +13,28 @@ class App:
         return
 
     @t.entry(option_name='zbrajanje')
-    def zbrajanje(self):
+    def zbrajanje(self, x, y):
         x = t.define(input_val = 'x', dtype = 'int')
         y = t.define(input_val = 'y', dtype = 'int')
         rez = print('Zbroj je: ', x + y)
         return rez
 
     @t.entry(option_name='oduzimanje')
-    def oduzimanje(self):
+    def oduzimanje(self, x, y):
         x = t.define(input_val = 'x', dtype = 'int')
         y = t.define(input_val = 'y', dtype = 'int')
         rez = print('Razlika je: ', x - y)
         return rez
 
     @t.entry(option_name='množenje')
-    def množenje(self):
+    def množenje(self, x, y):
         x = t.define(input_val = 'x', dtype = 'int')
         y = t.define(input_val = 'y', dtype = 'int')
         rez = print('Umnožak je: ', x * y)
         return rez
 
     @t.entry(option_name='dijeljenje')
-    def dijeljenje(self):
+    def dijeljenje(self, x, y):
         x = t.define(input_val = 'x', dtype = 'int')
         y = t.define(input_val = 'y', dtype = 'int')
         rez = print('Produkt je: ', x // y)
@@ -45,4 +45,5 @@ class App:
 
 a = App()
 
-a.initconfig()
+if __name__ == '__main__':
+    a.initconfig()
