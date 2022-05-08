@@ -65,7 +65,7 @@ class Record(metaclass = Meta):
         self.option_name = option_name
         self.option_description = option_description
         self.dict_name = dict_name
-        self.dict_name = {}
+        self.individual_dict[self.dict_name] = {}
 
         def record_function(func):
 
@@ -324,7 +324,7 @@ class Record(metaclass = Meta):
                         self.yield_name += 1
                     except:
                         self.redefine()
-                        tmp_func(self, **self.dict_name)
+                        tmp_func(self, **self.individual_dict[self.dict_name])
                         print('')
                         self.yield_name += 1
 
@@ -333,15 +333,15 @@ class Record(metaclass = Meta):
     def store(self, variable, type):
         self.type = type
         self.variable = variable
-        self.dict_name[self.variable] = type
+        self.individual_dict[self.dict_name][self.variable] = type
         return self.dict_name
 
     def redefine(self):
-        print(self.dict_name)
-        for i in self.dict_name:
+        print(self.individual_dict)
+        for i in self.individual_dict[self.dict_name]:
             i = input(f'Enter {i} value: ')
-            self.dict_name[self.variable] = i
-        return self.dict_name
+            self.individual_dict[self.dict_name][self.variable] = i
+        return self.individual_dict[self.dict_name]
 
 
     # iterate (True/False) - enables the functionality of queue, do not change!
