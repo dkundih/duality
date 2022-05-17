@@ -1,5 +1,5 @@
 
-### --- DEPRECATED --- ###
+### --- DEPRECATED --- ### - version before v4.6.0 wihout input options.
 
 # makes multiple instances of the object available.
 from vandal.plugins.metaclass import Meta
