@@ -1,9 +1,11 @@
 
 # EXAMPLE OF USE IN SIMPLE APP CREATION.
 
-from duality import Record
+import duality
 
-t = Record()
+print(duality.__version__,'\n')
+
+t = duality.Record()
 
 class App:
 
@@ -13,31 +15,13 @@ class App:
         return
 
     @t.entry(option_name='zbrajanje')
-    def zbrajanje(self, x, y):
-        x = t.define(input_val = 'x', dtype = 'int')
-        y = t.define(input_val = 'y', dtype = 'int')
+    def zbrajanje(self, x = t.store('x', 'float',), y = t.store('y', 'float')):
         rez = print('Zbroj je: ', x + y)
         return rez
 
     @t.entry(option_name='oduzimanje')
-    def oduzimanje(self, x, y):
-        x = t.define(input_val = 'x', dtype = 'int')
-        y = t.define(input_val = 'y', dtype = 'int')
+    def oduzimanje(self, x = t.store('x', 'int') , y = t.store('y', 'int')):
         rez = print('Razlika je: ', x - y)
-        return rez
-
-    @t.entry(option_name='množenje')
-    def množenje(self, x, y):
-        x = t.define(input_val = 'x', dtype = 'int')
-        y = t.define(input_val = 'y', dtype = 'int')
-        rez = print('Umnožak je: ', x * y)
-        return rez
-
-    @t.entry(option_name='dijeljenje')
-    def dijeljenje(self, x, y):
-        x = t.define(input_val = 'x', dtype = 'int')
-        y = t.define(input_val = 'y', dtype = 'int')
-        rez = print('Produkt je: ', x // y)
         return rez
 
     def initconfig(self):

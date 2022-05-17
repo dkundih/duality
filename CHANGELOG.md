@@ -428,3 +428,7 @@ CHANGELOG
 - Record.define(input_val, dtype) introduced to pass arguments as inputs.
 - UX improved.
 - vandal >= 3.7.2 dependency to fetch AnyType.
+
+4.6.0 (18/05/2022)
+- implemented store function that stores function arguments as inputs of a certain data type.
+- show_dtypes added to config.

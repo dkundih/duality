@@ -1,3 +1,6 @@
+
+### --- DEPRECATED --- ###
+
 # makes multiple instances of the object available.
 from vandal.plugins.metaclass import Meta
 
@@ -38,9 +41,6 @@ class Record(metaclass = Meta):
         self.basic_menu : ListType = []
         self.descriptive_menu : ListType = []
         self.dictionary_menu : DictionaryType = {}
-        self.individual_dict = {}
-        self.poolsize = 0
-        self.stored_keys = []
 
         self.hidden_basic_menu : ListType = []
         self.hidden_descriptive_menu : ListType = []
@@ -63,8 +63,6 @@ class Record(metaclass = Meta):
 
         self.option_name = option_name
         self.option_description = option_description
-        self.dict_name = self.option_name
-        self.individual_dict[self.dict_name] = {}
 
         def record_function(func):
 
@@ -302,69 +300,31 @@ class Record(metaclass = Meta):
 
                 for tmp_func in self.tmp_list:
 
-                    self.clone_dict = self.tmp_name_list[self.yield_name]
-
-                    print(self.tmp_name_list[self.yield_name])
-
-                    self.redefine()
-
                     try:
-                        tmp_func(self, **self.individual_dict[self.clone_dict])
+                        tmp_func(self)
                         print('')
                         self.yield_name += 1
                     except:
-                        tmp_func(**self.individual_dict[self.clone_dict])
+                        tmp_func()
                         print('')
                         self.yield_name += 1
 
-
             elif type == 'dynamic':
-                
 
                 for tmp_func in self.tmp_list:
 
-                    self.clone_dict = self.tmp_name_list[self.yield_name]
-
                     print(self.tmp_name_list[self.yield_name])
 
-                    self.redefine()
-
                     try:
-                        tmp_func(**self.individual_dict[self.clone_dict])
+                        tmp_func()
                         print('')
                         self.yield_name += 1
                     except:
-                        tmp_func(self, **self.individual_dict[self.clone_dict])
+                        tmp_func(self)
                         print('')
                         self.yield_name += 1
 
         return
-
-    def store(self, variable, type):
-        self.type = type
-        self.variable = variable
-        self.individual_dict[self.dict_name][self.variable] = type
-        return self.dict_name
-
-    def redefine(self):
-            print(self.individual_dict)
-            for i in self.individual_dict[self.clone_dict]:
-                self.format = self.individual_dict[self.dict_name][i]
-                new_i = input(f'Enter {i} value: ')
-                self.dtypes = {
-                'int': int(new_i),
-                'float': float(new_i),
-                'str': str(new_i),
-                'bool': bool(new_i),
-                'list': list(new_i),
-                'tuple': tuple(new_i),
-                'dict': {'value' : new_i},
-                'vector': [new_i],
-            }
-                new_i = self.dtypes[self.format]
-                self.individual_dict[self.clone_dict][i] = new_i
-            return self.individual_dict[self.clone_dict]
-
 
     # iterate (True/False) - enables the functionality of queue, do not change!
     # -
@@ -400,30 +360,32 @@ class Record(metaclass = Meta):
         return self.tmp_list
 
 
-t = Record()
+    # input_val - input value to be used in the function.
+    # dtype - data type of the input value.
+    # -
+    # enables the user to input a value and store it in a variable within a decorated function.
+    def define(
+        self,
+        input_val: StringType = '',
+        dtype: AnyType = 'str',
+      ) -> DictionaryType:
 
-class App:
+        self.inputs = input_val
+        self.input_dict = {}
+        key = input_val
+        value = input(f'Enter the {input_val}: ')
+        # available data types
+        dtypes = {
+            'int': int(value),
+            'float': float(value),
+            'str': str(value),
+            'bool': bool(value),
+            'list': list(value),
+            'tuple': tuple(value),
+            'dict': {'value' : value},
+            'vector': [value],
+          }
 
-    @t.entry(option_name='init', autoinit=True)
-    def __init__(self, dictionary = {}):
-        self.dictionary = dictionary
-        return
-
-    @t.entry(option_name='zbrajanje')
-    def zbrajanje(self, x = t.store('x', 'float',), y = t.store('y', 'float')):
-        rez = print('Zbroj je: ', x + y)
-        return rez
-
-    @t.entry(option_name='oduzimanje')
-    def oduzimanje(self, x = t.store('x', 'int') , y = t.store('y', 'int')):
-        rez = print('Razlika je: ', x - y)
-        return rez
-
-    def initconfig(self):
-        t.config(type = 'dynamic', queue=True)
-
-a = App()
-
-if __name__ == '__main__':
-    a.initconfig()
-
+        value = dtypes[dtype]
+        self.input_dict[key] = value
+        return self.input_dict[key]

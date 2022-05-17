@@ -38,6 +38,10 @@ class Record(metaclass = Meta):
         self.basic_menu : ListType = []
         self.descriptive_menu : ListType = []
         self.dictionary_menu : DictionaryType = {}
+        self.individual_dict = {}
+        self.reset_dict = {}
+        self.poolsize = 0
+        self.stored_keys = []
 
         self.hidden_basic_menu : ListType = []
         self.hidden_descriptive_menu : ListType = []
@@ -60,6 +64,9 @@ class Record(metaclass = Meta):
 
         self.option_name = option_name
         self.option_description = option_description
+        self.dict_name = self.option_name
+        self.individual_dict[self.dict_name] = {}
+        self.reset_dict[self.dict_name] = {}
 
         def record_function(func):
 
@@ -107,7 +114,7 @@ class Record(metaclass = Meta):
                 if method == 'basic':
                     def wrapper(func):
                         def decorator(self,*args, **kwargs):
-                            func(*args,**kwargs)
+                            func(*args, **kwargs)
                             return self.basic_menu
                         return decorator
                         
@@ -116,7 +123,7 @@ class Record(metaclass = Meta):
                 elif method == 'descriptive':
                     def wrapper(func):
                         def decorator(self,*args, **kwargs):
-                            func(*args,**kwargs)
+                            func(*args, **kwargs)
                             return self.descriptive_menu
                         return decorator
 
@@ -125,7 +132,7 @@ class Record(metaclass = Meta):
                 elif method == 'dictionary':
                     def wrapper(func):
                         def decorator(self, *args, **kwargs):
-                            func(*args,**kwargs)
+                            func(*args, **kwargs)
                             return self.dictionary_menu
                         return decorator
 
@@ -136,7 +143,7 @@ class Record(metaclass = Meta):
                     def wrapper(func):
                         def decorator(self, *args, **kwargs):
                             print(self.basic_menu)
-                            return func(*args,**kwargs)
+                            return func(*args, **kwargs)
                         return decorator
 
                     return wrapper
@@ -145,7 +152,7 @@ class Record(metaclass = Meta):
                     def wrapper(func):
                         def decorator(self, *args, **kwargs):
                             print(self.descriptive_menu)
-                            return func(*args,**kwargs)
+                            return func(*args, **kwargs)
                         return decorator
 
                     return wrapper
@@ -154,7 +161,7 @@ class Record(metaclass = Meta):
                     def wrapper(func):
                         def decorator(self, *args, **kwargs):
                             print(self.dictionary_menu)
-                            return func(*args,**kwargs)
+                            return func(*args, **kwargs)
                         return decorator
 
                     return wrapper
@@ -180,9 +187,10 @@ class Record(metaclass = Meta):
     # alignment ('basic' - shows all stored option_name and option_description values in a row.)
     # alignment ('newline' -shows all stored option_name and option_description values in a new line.)
     # queue (True/False) - enables stacking of functions and executing them in a chain.
+    # show_dtypes (True/False) - shows the dtype of the input value.
     # -
     # creates an executeable menu from defined entries on top of functions.
-    # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline', queue = False).
+    # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline', queue = False, show_dtypes = True).
     def config(
         self, 
         type : StringType = 'static', 
@@ -192,12 +200,14 @@ class Record(metaclass = Meta):
         method : StringType = 'descriptive', 
         alignment : StringType = 'newline',
         queue: BooleanType = False,
+        show_dtypes: BooleanType = True,
         ) -> DictionaryType:
 
         self.display_headline = display_headline
         self.display_message = display_message
         self.output_message = output_message
         self.queue = queue
+        self.show_dtypes = show_dtypes
         self.yield_name = 0 # list item counter that enables iterating through the list.
 
         # assert type.
@@ -297,31 +307,74 @@ class Record(metaclass = Meta):
 
                 for tmp_func in self.tmp_list:
 
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
+
+                    print(self.tmp_name_list[self.yield_name])
+
+                    self.redefine()
+
                     try:
-                        tmp_func(self)
+                        tmp_func(self, **self.individual_dict[self.clone_dict])
                         print('')
                         self.yield_name += 1
                     except:
-                        tmp_func()
+                        tmp_func(**self.individual_dict[self.clone_dict])
                         print('')
                         self.yield_name += 1
 
             elif type == 'dynamic':
-
+                
                 for tmp_func in self.tmp_list:
+
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
 
                     print(self.tmp_name_list[self.yield_name])
 
+                    self.redefine()
+
                     try:
-                        tmp_func()
+                        tmp_func(**self.individual_dict[self.clone_dict])
                         print('')
                         self.yield_name += 1
                     except:
-                        tmp_func(self)
+                        tmp_func(self, **self.individual_dict[self.clone_dict])
                         print('')
                         self.yield_name += 1
 
         return
+
+    # variable - name of the function argument input is being passed as.
+    # type - type of the data being passed ('int', 'float', 'str', 'bool', 'list', 'tuple', 'dict' and 'vector' supported).
+    # -
+    # function that stores the input value in a dictionary.
+    def store(self, variable, type):
+        self.type = type
+        self.variable = variable
+        self.individual_dict[self.dict_name][self.variable] = self.type
+        self.reset_dict[self.dict_name][self.variable] = self.type
+        return self.dict_name
+
+    # funtion that casts an input of a certain data type and formats it before sending as a function argument.
+    def redefine(self):
+        if self.show_dtypes == True:
+                print(self.reset_dict)
+        for i in self.individual_dict[self.clone_dict]:
+            self.format = self.reset_dict[self.clone_dict][i] 
+            new_i = input(f'Enter {i} value: ')
+            self.dtypes = {
+            'int': int(new_i),
+            'float': float(new_i),
+            'str': str(new_i),
+            'bool': bool(new_i),
+            'list': list(new_i),
+            'tuple': tuple(new_i),
+            'dict': {'value' : new_i},
+            'vector': [new_i],
+        }
+            new_i = self.dtypes[self.format]
+            self.individual_dict[self.clone_dict][i] = new_i
+        return self.individual_dict[self.clone_dict]
+
 
     # iterate (True/False) - enables the functionality of queue, do not change!
     # -
@@ -355,34 +408,3 @@ class Record(metaclass = Meta):
                 print('')
         
         return self.tmp_list
-
-
-    # input_val - input value to be used in the function.
-    # dtype - data type of the input value.
-    # -
-    # enables the user to input a value and store it in a variable within a decorated function.
-    def define(
-        self,
-        input_val: StringType = '',
-        dtype: AnyType = 'str',
-      ) -> DictionaryType:
-
-        self.inputs = input_val
-        self.input_dict = {}
-        key = input_val
-        value = input(f'Enter the {input_val}: ')
-        # available data types
-        dtypes = {
-            'int': int(value),
-            'float': float(value),
-            'str': str(value),
-            'bool': bool(value),
-            'list': list(value),
-            'tuple': tuple(value),
-            'dict': {'value' : value},
-            'vector': [value],
-          }
-
-        value = dtypes[dtype]
-        self.input_dict[key] = value
-        return self.input_dict[key]
