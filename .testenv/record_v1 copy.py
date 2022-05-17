@@ -58,13 +58,12 @@ class Record(metaclass = Meta):
         self, 
         option_name : StringType = '', 
         option_description : StringType = '',
-        dict_name : StringType = '',
         autoinit: BooleanType = False,
         ) -> StringDictionary:
 
         self.option_name = option_name
         self.option_description = option_description
-        self.dict_name = dict_name
+        self.dict_name = self.option_name
         self.individual_dict[self.dict_name] = {}
 
         def record_function(func):
@@ -303,28 +302,39 @@ class Record(metaclass = Meta):
 
                 for tmp_func in self.tmp_list:
 
-                    try:
-                        tmp_func(self)
-                        print('')
-                        self.yield_name += 1
-                    except:
-                        tmp_func()
-                        print('')
-                        self.yield_name += 1
-
-            elif type == 'dynamic':
-
-                for tmp_func in self.tmp_list:
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
 
                     print(self.tmp_name_list[self.yield_name])
 
+                    self.redefine()
+
                     try:
-                        tmp_func()
+                        tmp_func(self, **self.individual_dict[self.clone_dict])
                         print('')
                         self.yield_name += 1
                     except:
-                        self.redefine()
-                        tmp_func(self, **self.individual_dict[self.dict_name])
+                        tmp_func(**self.individual_dict[self.clone_dict])
+                        print('')
+                        self.yield_name += 1
+
+
+            elif type == 'dynamic':
+                
+
+                for tmp_func in self.tmp_list:
+
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
+
+                    print(self.tmp_name_list[self.yield_name])
+
+                    self.redefine()
+
+                    try:
+                        tmp_func(**self.individual_dict[self.clone_dict])
+                        print('')
+                        self.yield_name += 1
+                    except:
+                        tmp_func(self, **self.individual_dict[self.clone_dict])
                         print('')
                         self.yield_name += 1
 
@@ -337,11 +347,23 @@ class Record(metaclass = Meta):
         return self.dict_name
 
     def redefine(self):
-        print(self.individual_dict)
-        for i in self.individual_dict[self.dict_name]:
-            i = input(f'Enter {i} value: ')
-            self.individual_dict[self.dict_name][self.variable] = i
-        return self.individual_dict[self.dict_name]
+            print(self.individual_dict)
+            for i in self.individual_dict[self.clone_dict]:
+                self.format = self.individual_dict[self.dict_name][i]
+                new_i = input(f'Enter {i} value: ')
+                self.dtypes = {
+                'int': int(new_i),
+                'float': float(new_i),
+                'str': str(new_i),
+                'bool': bool(new_i),
+                'list': list(new_i),
+                'tuple': tuple(new_i),
+                'dict': {'value' : new_i},
+                'vector': [new_i],
+            }
+                new_i = self.dtypes[self.format]
+                self.individual_dict[self.clone_dict][i] = new_i
+            return self.individual_dict[self.clone_dict]
 
 
     # iterate (True/False) - enables the functionality of queue, do not change!
@@ -387,12 +409,12 @@ class App:
         self.dictionary = dictionary
         return
 
-    @t.entry(option_name='zbrajanje', dict_name = '1')
-    def zbrajanje(self, x = t.store('x', 'mar',), y = t.store('y', 'mar')):
-        rez = print('Zbroj je: ', x , y)
+    @t.entry(option_name='zbrajanje')
+    def zbrajanje(self, x = t.store('x', 'float',), y = t.store('y', 'float')):
+        rez = print('Zbroj je: ', x + y)
         return rez
 
-    @t.entry(option_name='oduzimanje', dict_name = '2')
+    @t.entry(option_name='oduzimanje')
     def oduzimanje(self, x = t.store('x', 'int') , y = t.store('y', 'int')):
         rez = print('Razlika je: ', x - y)
         return rez
