@@ -424,7 +424,7 @@ class Record(metaclass = Meta):
         return
 
     # variable - name of the function argument input is being passed as.
-    # type - type of the data being passed ('int', 'float', 'str', 'bool', 'list', 'tuple', 'dict' and 'vector' supported).
+    # type - type of the data being passed ('int', 'float', 'str' and 'list' supported).
     # -
     # function that stores the input value in a dictionary.
     def store(self, variable, type):
