@@ -432,3 +432,8 @@ CHANGELOG
 4.6.0 (18/05/2022)
 - implemented store function that stores function arguments as inputs of a certain data type.
 - show_dtypes added to config.
+
+4.7.0 (07/06/2022)
+- fixed multiple bugs regarding input type handling in Record.
+- improved stability and usability.
+- print_val added to entry to print the return functions.

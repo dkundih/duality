@@ -38,10 +38,11 @@ class Record(metaclass = Meta):
         self.basic_menu : ListType = []
         self.descriptive_menu : ListType = []
         self.dictionary_menu : DictionaryType = {}
-        self.individual_dict = {}
-        self.reset_dict = {}
-        self.poolsize = 0
-        self.stored_keys = []
+        self.individual_dict : DictionaryType = {}
+        self.reset_dict : DictionaryType = {}
+        self.poolsize : IntegerType = 0
+        self.stored_keys : ListType = []
+        self.print_val_dict : ListType = {}
 
         self.hidden_basic_menu : ListType = []
         self.hidden_descriptive_menu : ListType = []
@@ -52,21 +53,25 @@ class Record(metaclass = Meta):
     # option_name - stores the name for the config and display functions.
     # option_description - stores the description of the function for the config and display functions.
     # autoinit (True/False) - automatically initializes the function without storing into the dictionary menu.
+    # print_val (True/False) - enables the print of function output.
     # -
     # creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
-    # DEFAULT: record.entry(option_name, option_description = '', autoinit = False).
+    # DEFAULT: record.entry(option_name, option_description = '', autoinit = False, print_val = False).
     def entry(
         self, 
         option_name : StringType = '', 
         option_description : StringType = '',
         autoinit: BooleanType = False,
+        print_val: BooleanType = False,
         ) -> StringDictionary:
 
         self.option_name = option_name
         self.option_description = option_description
         self.dict_name = self.option_name
+        self.print_val = print_val
         self.individual_dict[self.dict_name] = {}
         self.reset_dict[self.dict_name] = {}
+        self.print_val_dict[self.option_name] = self.print_val
 
         def record_function(func):
 
@@ -256,45 +261,96 @@ class Record(metaclass = Meta):
 
             self.option = input('\n' + self.display_message)
 
+            self.print_option = self.print_val_dict[self.option]
+
             print(self.output_message, self.option + '\n')
 
             # executes autoinit function.
             if self.contains_autoinit == True:
 
                 try:
-
                     for i in self.hidden_dictionary_menu:
                         self.hidden_dictionary_menu[i](self)
                 except:
-                    
                     for i in self.hidden_dictionary_menu:
                         self.hidden_dictionary_menu[i]()
 
+
+            # diasbles a loop of functions.
+            self.queue_break()
+
             if type == 'static':
 
-                try:
-                    return self.dictionary_menu[self.option](self)
+                print(self.tmp_name_list[self.yield_name])
 
-                except:
-                    return self.dictionary_menu[self.option]()
+                for tmp_func in self.tmp_list:
+
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
+
+                    self.print_option = self.tmp_print_list[self.yield_name]
+
+                    print(self.tmp_name_list[self.yield_name])
+
+                    self.redefine()
+
+                    try:
+                        if self.print_option == False:
+                            tmp_func(**self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(**self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
+                    except:
+                        if self.print_option == False:
+                            tmp_func(self, **self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(self, **self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
 
             elif type == 'dynamic':
+                
+                for tmp_func in self.tmp_list:
 
-                try:
-                    return self.dictionary_menu[self.option]()
-                except:
-                    return self.dictionary_menu[self.option](self)
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
+
+                    self.print_option = self.tmp_print_list[self.yield_name]
+
+                    print(self.tmp_name_list[self.yield_name])
+
+                    self.redefine()
+
+                    try:
+                        if self.print_option == False:
+                            tmp_func(self, **self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(self, **self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
+                    except:
+                        if self.print_option == False:
+                            tmp_func(**self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(**self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
 
         if queue == True:
             # executes autoinit functions.
             if self.contains_autoinit == True:
 
                 try:
-
                     for i in self.hidden_dictionary_menu:
                         self.hidden_dictionary_menu[i](self)
                 except:
-                    
                     for i in self.hidden_dictionary_menu:
                         self.hidden_dictionary_menu[i]()
 
@@ -309,18 +365,30 @@ class Record(metaclass = Meta):
 
                     self.clone_dict = self.tmp_name_list[self.yield_name]
 
+                    self.print_option = self.tmp_print_list[self.yield_name]
+
                     print(self.tmp_name_list[self.yield_name])
 
                     self.redefine()
 
                     try:
-                        tmp_func(self, **self.individual_dict[self.clone_dict])
-                        print('')
-                        self.yield_name += 1
+                        if self.print_option == False:
+                            tmp_func(self, **self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(self, **self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
                     except:
-                        tmp_func(**self.individual_dict[self.clone_dict])
-                        print('')
-                        self.yield_name += 1
+                        if self.print_option == False:
+                            tmp_func(**self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(**self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
 
             elif type == 'dynamic':
                 
@@ -328,18 +396,30 @@ class Record(metaclass = Meta):
 
                     self.clone_dict = self.tmp_name_list[self.yield_name]
 
+                    self.print_option = self.tmp_print_list[self.yield_name]
+
                     print(self.tmp_name_list[self.yield_name])
 
                     self.redefine()
 
                     try:
-                        tmp_func(**self.individual_dict[self.clone_dict])
-                        print('')
-                        self.yield_name += 1
+                        if self.print_option == False:
+                            tmp_func(**self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(**self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
                     except:
-                        tmp_func(self, **self.individual_dict[self.clone_dict])
-                        print('')
-                        self.yield_name += 1
+                        if self.print_option == False:
+                            tmp_func(self, **self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            print(tmp_func(self, **self.individual_dict[self.clone_dict]))
+                            print('')
+                            self.yield_name += 1
 
         return
 
@@ -354,26 +434,47 @@ class Record(metaclass = Meta):
         self.reset_dict[self.dict_name][self.variable] = self.type
         return self.dict_name
 
-    # funtion that casts an input of a certain data type and formats it before sending as a function argument.
+    # function that casts an input of a certain data type and formats it before sending as a function argument.
     def redefine(self):
         if self.show_dtypes == True:
                 print(self.reset_dict)
         for i in self.individual_dict[self.clone_dict]:
-            self.format = self.reset_dict[self.clone_dict][i] 
-            new_i = input(f'Enter {i} value: ')
+            self.format = self.reset_dict[self.clone_dict][i]
+            if self.format != 'list':
+                self.new_i = input(f'Enter the {i}: ')
             self.dtypes = {
-            'int': int(new_i),
-            'float': float(new_i),
-            'str': str(new_i),
-            'bool': bool(new_i),
-            'list': list(new_i),
-            'tuple': tuple(new_i),
-            'dict': {'value' : new_i},
-            'vector': [new_i],
+            'int': self.set_int,
+            'float': self.set_float,
+            'str': self.set_str,
+            'list' : self.set_list,
         }
-            new_i = self.dtypes[self.format]
-            self.individual_dict[self.clone_dict][i] = new_i
+            self.new_i = self.dtypes[self.format]()
+            self.individual_dict[self.clone_dict][i] = self.new_i
         return self.individual_dict[self.clone_dict]
+
+    # converts input to int.
+    def set_int(self):
+        self.new_i = int(self.new_i)
+        return self.new_i
+
+    # converts input to float.
+    def set_float(self):
+        self.new_i = float(self.new_i)
+        return self.new_i
+
+    # converts input to string.
+    def set_str(self):
+        self.new_i = str(self.new_i)
+        return self.new_i
+
+    # converts input to string.
+    def set_list(self):
+        self.range = int(input('Number of list values: '))
+        self.new_i = []
+        for i in range(0, self.range):
+            tmp_list_element = int(input(f'Enter the value: '))
+            self.new_i.append(tmp_list_element)
+        return self.new_i
 
 
     # iterate (True/False) - enables the functionality of queue, do not change!
@@ -384,19 +485,24 @@ class Record(metaclass = Meta):
         iterate: BooleanType = True,
         ) -> ReturnType:
 
+        self.print_val_list = []
         self.tmp_list = []
         self.iterate = iterate
         self.tmp_name_list = []
-        
+        self.tmp_print_list = []
         while self.iterate == True:
 
             self.option = input('\n' + self.display_message)
 
             self.tmp_name_list += [self.option]
 
+            self.print_val_list += self.option
+
             print(self.output_message, self.option + '\n')
 
             self.tmp_list += [self.dictionary_menu[self.option]]
+
+            self.tmp_print_list += [self.print_val_dict[self.option]]
 
             choice = input('Continue? (Y/N): ')
 
@@ -407,4 +513,27 @@ class Record(metaclass = Meta):
                 self.iterate = False
                 print('')
         
+        return self.tmp_list
+
+
+    # breaks the loop for the queue.
+    def queue_break(
+        self,
+        ) -> ReturnType:
+
+        self.print_val_list = []
+        self.tmp_list = []
+        self.tmp_name_list = []
+        self.tmp_print_list = []
+
+        self.tmp_name_list += [self.option]
+
+        self.print_val_list += self.option
+
+        print(self.output_message, self.option + '\n')
+
+        self.tmp_list += [self.dictionary_menu[self.option]]
+
+        self.tmp_print_list += [self.print_val_dict[self.option]]
+
         return self.tmp_list
