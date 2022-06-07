@@ -437,3 +437,6 @@ CHANGELOG
 - fixed multiple bugs regarding input type handling in Record.
 - improved stability and usability.
 - print_val added to entry to print the return functions.
+
+4.7.2 (07/06/2022)
+- now imports data types from logistics rather than vandal.

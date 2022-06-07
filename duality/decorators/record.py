@@ -1,8 +1,8 @@
 # makes multiple instances of the object available.
-from vandal.plugins.metaclass import Meta
+from logistics.plugins.metaclass import Meta
 
 # imports custom types.
-from vandal.plugins.types import (
+from logistics.plugins.types import (
     VandalType,
     IntegerType,
     FloatType,

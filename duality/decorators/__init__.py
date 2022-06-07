@@ -1,5 +1,5 @@
 # imports relevant contents.
-from vandal.plugins.metaclass import Meta
+from logistics.plugins.metaclass import Meta
 from duality.decorators.record import Record
 from duality.decorators.track import Track
 

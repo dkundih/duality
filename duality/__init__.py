@@ -23,8 +23,6 @@ AVAILABLE FEATURES IN THE PACKAGE:
 
 # ignore __pycache__ from forming inside the library directory.
 import sys
-
-from duality.plugins.types import AnyType
 sys.dont_write_bytecode = True
 
 # imports meta data.
@@ -40,7 +38,7 @@ from duality.misc._meta import (
 )
 
 # import types.
-from vandal.plugins.types import (
+from logistics.plugins.types import (
     VandalType,
     IntegerType,
     FloatType,
@@ -89,10 +87,17 @@ __types__ = [
     AnyType
 ]
 
+# imports relevant dependencies.
+from logistics.plugins.metaclass import Meta
+
 # imports relevant contents.
-from duality.plugins.metaclass import Meta
 from duality.decorators.record import Record
 from duality.decorators.track import Track
+
+# metaclass.
+__metaclass__ = [
+    'Meta',
+]
 
 # all relevant contents.
 __all__ = [

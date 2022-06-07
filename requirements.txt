@@ -1,2 +1,1 @@
-vandal >= 3.7.2
-openpyxl
+logistics >= 0.0.3
