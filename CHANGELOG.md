@@ -440,3 +440,6 @@ CHANGELOG
 
 4.7.2 (07/06/2022)
 - now imports data types from logistics rather than vandal.
+
+4.7.3 (07/06/2022)
+- logistics 0.0.3 > 0.0.4
