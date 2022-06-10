@@ -446,3 +446,6 @@ CHANGELOG
 
 4.7.4 (10/06/2022)
 - now prints only the associated dictionary with existing input types and variables upon entry in CLI.
+
+4.7.5 (10/06/2022)
+- overwrite of bugged 4.7.4
