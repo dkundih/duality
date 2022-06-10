@@ -443,3 +443,6 @@ CHANGELOG
 
 4.7.3 (07/06/2022)
 - logistics 0.0.3 > 0.0.4
+
+4.7.4 (10/06/2022)
+- now prints only the associated dictionary with existing input types and variables upon entry in CLI.

@@ -437,7 +437,8 @@ class Record(metaclass = Meta):
     # function that casts an input of a certain data type and formats it before sending as a function argument.
     def redefine(self):
         if self.show_dtypes == True:
-                print(self.reset_dict)
+            if self.reset_dict[self.clone_dict]:
+                print(self.reset_dict[self.clone_dict])
         for i in self.individual_dict[self.clone_dict]:
             self.format = self.reset_dict[self.clone_dict][i]
             if self.format != 'list':
@@ -537,3 +538,27 @@ class Record(metaclass = Meta):
         self.tmp_print_list += [self.print_val_dict[self.option]]
 
         return self.tmp_list
+
+
+app = Record()
+
+class Car:
+
+    @app.entry('init')
+    def __init__(self, brand = app.store('brand', 'str'), speed = app.store('speed', 'int')):
+        self.brand = brand
+        self.speed = speed
+
+    @app.entry('speed_up')
+    def speed_up(self, amount = app.store('amount', 'int')):
+        self.amount = amount
+        self.speed += self.amount
+        return self.speed
+
+    @app.entry('represent', print_val = True)
+    def represent(self):
+        return f'Car of brand {self.brand}, speed of {self.speed}.'
+
+if __name__ == '__main__':
+    Car = Car()
+    app.config(type = 'dynamic', queue = True)
