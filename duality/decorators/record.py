@@ -70,7 +70,7 @@ class Record(metaclass = Meta):
         - option_description - stores the description of the function for the config and display functions.
         - autoinit (True/False) - automatically initializes the function without storing into the dictionary menu.
         - print_val (True/False) - enables the print of function output.
-        # DEFAULT: record.entry(option_name, option_description = '', autoinit = False, print_val = False).
+        # DEFAULT: Record.entry(option_name : StringType = '', option_description : StringType = '', autoinit : BooleanType = False, print_val : BooleanType = False).
         '''
 
         self.option_name = option_name
@@ -121,7 +121,7 @@ class Record(metaclass = Meta):
         - method ('dictionary' - creates a dictionary of record.entry names and the function they are appended on.)
         - return_option ('logs' - executes the function, but returns logs.)
         - return_option ('function' - shows logs, but returns the function.)
-        # DEFAULT: record.display(style = 'decorator', method = 'dictionary', return_option = 'logs'.)
+        # DEFAULT: Record.display(style : StringType = 'decorator', method : StringType = 'dictionary', return_option : StringType = 'logs'.)
         '''
 
         if style == 'decorator':
@@ -217,7 +217,7 @@ class Record(metaclass = Meta):
         - alignment ('newline' -shows all stored option_name and option_description values in a new line.)
         - queue (True/False) - enables stacking of functions and executing them in a chain.
         - show_dtypes (True/False) - shows the dtype of the input value.
-        # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline', queue = False, show_dtypes = True).
+        # DEFAULT: Record.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True).
         '''
 
         self.display_headline = display_headline
@@ -288,7 +288,7 @@ class Record(metaclass = Meta):
                         self.hidden_dictionary_menu[i]()
 
 
-            # diasbles a loop of functions.
+            # disables a loop of functions.
             self.queue_break()
 
             if type == 'static':
@@ -435,13 +435,18 @@ class Record(metaclass = Meta):
 
         return
 
-    def store(self, variable, type):
+    def store(
+        self,
+        variable : StringType = '',
+        type : StringType = 'str',
+        ) -> DictionaryType:
 
         '''
         * function that stores the input value in a dictionary.
 
         - variable - name of the function argument input is being passed as.
         - type - type of the data being passed ('int', 'float', 'str' and 'list' supported.)
+        # DEFAULT: Record.store(variable : StringType = '', type : StringType = 'str'.)
         '''
 
         self.type = type
@@ -450,7 +455,10 @@ class Record(metaclass = Meta):
         self.reset_dict[self.dict_name][self.variable] = self.type
         return self.dict_name
 
-    def redefine(self):
+    # this is a help function, do not call it when using a package.
+    def redefine(
+        self,
+        ):
 
         '''
         * function that casts an input of a certain data type and formats it before sending as a function argument.
@@ -473,7 +481,10 @@ class Record(metaclass = Meta):
             self.individual_dict[self.clone_dict][i] = self.new_i
         return self.individual_dict[self.clone_dict]
 
-    def set_int(self):
+    # this is a help function, do not call it when using a package.
+    def set_int(
+        self,
+        ):
 
         '''
         * converts input to integer.
@@ -482,7 +493,10 @@ class Record(metaclass = Meta):
         self.new_i = int(self.new_i)
         return self.new_i
 
-    def set_float(self):
+    # this is a help function, do not call it when using a package.
+    def set_float(
+        self,
+        ):
         
         '''
         * converts input to float.
@@ -491,7 +505,10 @@ class Record(metaclass = Meta):
         self.new_i = float(self.new_i)
         return self.new_i
 
-    def set_str(self):
+    # this is a help function, do not call it when using a package.
+    def set_str(
+        self,
+        ):
 
         '''
         * converts input to string.
@@ -500,7 +517,10 @@ class Record(metaclass = Meta):
         self.new_i = str(self.new_i)
         return self.new_i
 
-    def set_list(self):
+    # this is a help function, do not call it when using a package.
+    def set_list(
+        self,
+        ):
         
         '''
         * converts input to list.
@@ -513,8 +533,7 @@ class Record(metaclass = Meta):
             self.new_i.append(tmp_list_element)
         return self.new_i
 
-
-
+    # this is a help function, do not call it when using a package.
     def queue_handler(
         self,
         iterate: BooleanType = True,
@@ -556,7 +575,7 @@ class Record(metaclass = Meta):
         
         return self.tmp_list
 
-
+    # this is a help function, do not call it when using a package.
     def queue_break(
         self,
         ) -> ReturnType:
