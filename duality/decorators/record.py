@@ -27,13 +27,19 @@ from logistics.plugins.types import (
 )
 
 
-# stores menu options over functions and class methods for listing.
 class Record(metaclass = Meta):
 
-    # initializes the object and function it is decorating.
+    '''
+    * stores menu options over functions and class methods for listing.
+    '''
+
     def __init__(
         self,
         ) -> ReturnType:
+
+        '''
+        * initializes the object and function it is decorating.
+        '''
 
         self.basic_menu : ListType = []
         self.descriptive_menu : ListType = []
@@ -49,14 +55,6 @@ class Record(metaclass = Meta):
         self.hidden_dictionary_menu : DictionaryType = {}
         self.contains_autoinit : BooleanType = False
 
-
-    # option_name - stores the name for the config and display functions.
-    # option_description - stores the description of the function for the config and display functions.
-    # autoinit (True/False) - automatically initializes the function without storing into the dictionary menu.
-    # print_val (True/False) - enables the print of function output.
-    # -
-    # creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
-    # DEFAULT: record.entry(option_name, option_description = '', autoinit = False, print_val = False).
     def entry(
         self, 
         option_name : StringType = '', 
@@ -64,6 +62,16 @@ class Record(metaclass = Meta):
         autoinit: BooleanType = False,
         print_val: BooleanType = False,
         ) -> StringDictionary:
+
+        '''
+        * creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
+
+        - option_name - stores the name for the config and display functions.
+        - option_description - stores the description of the function for the config and display functions.
+        - autoinit (True/False) - automatically initializes the function without storing into the dictionary menu.
+        - print_val (True/False) - enables the print of function output.
+        # DEFAULT: record.entry(option_name, option_description = '', autoinit = False, print_val = False).
+        '''
 
         self.option_name = option_name
         self.option_description = option_description
@@ -96,23 +104,25 @@ class Record(metaclass = Meta):
 
         return record_function
 
-
-    # style ('decorator' - appends to a function.)
-    # style ('function' - executes as a standalone function.)
-    # method ('basic' - shows just record.entry stored names.)
-    # method ('descriptive' - shows record.entry stored names and record.entry.option_description as a help menu.)
-    # method ('dictionary' - creates a dictionary of record.entry names and the function they are appended on.)
-    # return_option ('logs' - executes the function, but returns logs.)
-    # return_option ('function' - shows logs, but returns the function.)
-    # -
-    # outputs saved menu as a function or decorator.
-    # DEFAULT: record.display(style = 'decorator', method = 'dictionary', return_option = 'logs').
     def display(
         self,
         style : StringType = 'decorator', 
         method : StringType = 'dictionary', 
         return_option : StringType = 'logs',
         ) -> StringDictionary:
+
+        '''
+        * outputs saved menu as a function or decorator.
+
+        - style ('decorator' - appends to a function.)
+        - style ('function' - executes as a standalone function.)
+        - method ('basic' - shows just record.entry stored names.)
+        - method ('descriptive' - shows record.entry stored names and record.entry.option_description as a help menu.)
+        - method ('dictionary' - creates a dictionary of record.entry names and the function they are appended on.)
+        - return_option ('logs' - executes the function, but returns logs.)
+        - return_option ('function' - shows logs, but returns the function.)
+        # DEFAULT: record.display(style = 'decorator', method = 'dictionary', return_option = 'logs'.)
+        '''
 
         if style == 'decorator':
             if return_option == 'logs':
@@ -181,21 +191,6 @@ class Record(metaclass = Meta):
             elif method == 'dictionary':
                 return self.dictionary_menu
 
-
-    # type ('static' - adapts to the execution of static non-self methods and functions.)
-    # type ('dynamic' - adapts to the execution of dynamic class self methods and functions.)
-    # display_headline - displays the desired headline.
-    # display_message - displays input value message.
-    # output_message - confirmation of the chosen value.
-    # method ('descriptive' - shows stored option_name and it's description.)
-    # method ('basic' - shows only the stored option_name.)
-    # alignment ('basic' - shows all stored option_name and option_description values in a row.)
-    # alignment ('newline' -shows all stored option_name and option_description values in a new line.)
-    # queue (True/False) - enables stacking of functions and executing them in a chain.
-    # show_dtypes (True/False) - shows the dtype of the input value.
-    # -
-    # creates an executeable menu from defined entries on top of functions.
-    # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline', queue = False, show_dtypes = True).
     def config(
         self, 
         type : StringType = 'static', 
@@ -207,6 +202,23 @@ class Record(metaclass = Meta):
         queue: BooleanType = False,
         show_dtypes: BooleanType = True,
         ) -> DictionaryType:
+
+        '''
+        * creates an executeable menu from defined entries on top of functions.
+
+        - type ('static' - adapts to the execution of static non-self methods and functions.)
+        - type ('dynamic' - adapts to the execution of dynamic class self methods and functions.)
+        - display_headline - displays the desired headline.
+        - display_message - displays input value message.
+        - output_message - confirmation of the chosen value.
+        - method ('descriptive' - shows stored option_name and it's description.)
+        - method ('basic' - shows only the stored option_name.)
+        - alignment ('basic' - shows all stored option_name and option_description values in a row.)
+        - alignment ('newline' -shows all stored option_name and option_description values in a new line.)
+        - queue (True/False) - enables stacking of functions and executing them in a chain.
+        - show_dtypes (True/False) - shows the dtype of the input value.
+        # DEFAULT: record.config(type = 'static', display_headline ='AVAILABLE OPTIONS', display_message = 'ENTER THE OPTION: ', output_message = 'YOU HAVE CHOSEN: ', method = 'descriptive', alignment = 'newline', queue = False, show_dtypes = True).
+        '''
 
         self.display_headline = display_headline
         self.display_message = display_message
@@ -423,19 +435,27 @@ class Record(metaclass = Meta):
 
         return
 
-    # variable - name of the function argument input is being passed as.
-    # type - type of the data being passed ('int', 'float', 'str' and 'list' supported).
-    # -
-    # function that stores the input value in a dictionary.
     def store(self, variable, type):
+
+        '''
+        * function that stores the input value in a dictionary.
+
+        - variable - name of the function argument input is being passed as.
+        - type - type of the data being passed ('int', 'float', 'str' and 'list' supported.)
+        '''
+
         self.type = type
         self.variable = variable
         self.individual_dict[self.dict_name][self.variable] = self.type
         self.reset_dict[self.dict_name][self.variable] = self.type
         return self.dict_name
 
-    # function that casts an input of a certain data type and formats it before sending as a function argument.
     def redefine(self):
+
+        '''
+        * function that casts an input of a certain data type and formats it before sending as a function argument.
+        '''
+
         if self.show_dtypes == True:
             if self.reset_dict[self.clone_dict]:
                 print(self.reset_dict[self.clone_dict])
@@ -453,23 +473,39 @@ class Record(metaclass = Meta):
             self.individual_dict[self.clone_dict][i] = self.new_i
         return self.individual_dict[self.clone_dict]
 
-    # converts input to int.
     def set_int(self):
+
+        '''
+        * converts input to integer.
+        '''
+
         self.new_i = int(self.new_i)
         return self.new_i
 
-    # converts input to float.
     def set_float(self):
+        
+        '''
+        * converts input to float.
+        '''
+
         self.new_i = float(self.new_i)
         return self.new_i
 
-    # converts input to string.
     def set_str(self):
+
+        '''
+        * converts input to string.
+        '''
+
         self.new_i = str(self.new_i)
         return self.new_i
 
-    # converts input to string.
     def set_list(self):
+        
+        '''
+        * converts input to list.
+        '''
+
         self.range = int(input('Number of list values: '))
         self.new_i = []
         for i in range(0, self.range):
@@ -478,13 +514,17 @@ class Record(metaclass = Meta):
         return self.new_i
 
 
-    # iterate (True/False) - enables the functionality of queue, do not change!
-    # -
-    # enables a loop for the queue.
+
     def queue_handler(
         self,
         iterate: BooleanType = True,
         ) -> ReturnType:
+
+        '''
+        * enables a loop for the queue.
+
+        - iterate (True/False) - enables the functionality of queue, do not change!
+        '''
 
         self.print_val_list = []
         self.tmp_list = []
@@ -517,10 +557,13 @@ class Record(metaclass = Meta):
         return self.tmp_list
 
 
-    # breaks the loop for the queue.
     def queue_break(
         self,
         ) -> ReturnType:
+
+        '''
+        * breaks the loop for the queue.
+        '''
 
         self.print_val_list = []
         self.tmp_list = []

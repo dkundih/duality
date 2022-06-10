@@ -25,17 +25,25 @@ from logistics.plugins.types import (
     AnyType,
 )
 
-# tracks function behaviuor and stores it into a JSON file.
-# --- DEPRECATED ---
+
 class Track(metaclass = Meta):
 
-    # func_name - stores a function name it assigns to a JSON related object afterwards.
-    # -
-    # appends to a function and tracks it's execution details.
-    # DEFAULT: track.entry(func_name).
+    '''
+    * tracks function behaviuor and stores it into a JSON file.
+    | DEPRECATED |
+    '''
+
     def entry(
         func_name : StringType = 'placeholder_name',
         ) -> StringDictionary:
+
+        '''
+        * appends to a function and tracks it's execution details.
+
+        - func_name - stores a function name it assigns to a JSON related object afterwards. 
+        # DEFAULT: track.entry(func_name).
+        '''
+
         def log(func):
                 import sys
                 import json
@@ -60,17 +68,21 @@ class Track(metaclass = Meta):
 
         return log
 
-    # style ('decorator' - appends to a function.)
-    # style ('function' - executes as a standalone function.)
-    # return_option ('logs' - executes the function, but returns logs.)
-    # return_option ('function' - shows logs, but returns the function - THIS DOES NOT RETURN THE LAST ENTRY FROM LOGS!!!)
-    # -
-    # outputs the saved JSON file entries.
-    # DEFAULT: track.display(style = 'decorator', return_option = 'logs').
     def display(
         style : StringType = 'decorator', 
         return_option : StringType = 'logs',
         ) -> ReturnType:
+
+        '''
+        * outputs the saved JSON file entries.
+        
+        - style ('decorator' - appends to a function.)
+        - style ('function' - executes as a standalone function.)
+        - return_option ('logs' - executes the function, but returns logs.)
+        - return_option ('function' - shows logs, but returns the function - THIS DOES NOT RETURN THE LAST ENTRY FROM LOGS!!!)
+        # DEFAULT: track.display(style = 'decorator', return_option = 'logs').
+        '''
+
         if style == 'function':
             f = open('Logs.json', 'r')
             print(f.read())
