@@ -179,7 +179,7 @@ class Record(metaclass = Meta):
         alignment : StringType = 'newline',
         queue: BooleanType = False,
         show_dtypes: BooleanType = True,
-        ) -> DictionaryType:
+        ) -> SpecialType:
 
         '''
         * creates an executeable menu from defined entries on top of functions.
@@ -431,12 +431,13 @@ class Record(metaclass = Meta):
         self.variable = variable
         self.individual_dict[self.dict_name][self.variable] = self.type
         self.reset_dict[self.dict_name][self.variable] = self.type
+
         return self.dict_name
 
     # this is a help function, do not call it when using a package.
     def redefine(
         self,
-        ):
+        ) -> DictionaryType:
 
         '''
         * function that casts an input of a certain data type and formats it before sending as a function argument.
@@ -445,6 +446,7 @@ class Record(metaclass = Meta):
         if self.show_dtypes == True:
             if self.reset_dict[self.clone_dict]:
                 print(self.reset_dict[self.clone_dict])
+
         for i in self.individual_dict[self.clone_dict]:
             self.format = self.reset_dict[self.clone_dict][i]
             if self.format != 'list':
@@ -457,12 +459,13 @@ class Record(metaclass = Meta):
         }
             self.new_i = self.dtypes[self.format]()
             self.individual_dict[self.clone_dict][i] = self.new_i
+
         return self.individual_dict[self.clone_dict]
 
     # this is a help function, do not call it when using a package.
     def set_int(
         self,
-        ):
+        ) -> ReturnType:
 
         '''
         * converts input to integer.
@@ -474,7 +477,7 @@ class Record(metaclass = Meta):
     # this is a help function, do not call it when using a package.
     def set_float(
         self,
-        ):
+        ) -> ReturnType:
         
         '''
         * converts input to float.
@@ -486,7 +489,7 @@ class Record(metaclass = Meta):
     # this is a help function, do not call it when using a package.
     def set_str(
         self,
-        ):
+        ) -> ReturnType:
 
         '''
         * converts input to string.
@@ -498,7 +501,7 @@ class Record(metaclass = Meta):
     # this is a help function, do not call it when using a package.
     def set_list(
         self,
-        ):
+        ) -> ReturnType:
         
         '''
         * converts input to list.
@@ -506,6 +509,7 @@ class Record(metaclass = Meta):
 
         self.range = int(input('Number of list values: '))
         self.new_i = []
+
         for i in range(0, self.range):
             tmp_list_element = int(input(f'Enter the value: '))
             self.new_i.append(tmp_list_element)
@@ -515,7 +519,7 @@ class Record(metaclass = Meta):
     def queue_handler(
         self,
         iterate: BooleanType = True,
-        ) -> ReturnType:
+        ) -> ListType:
 
         '''
         * enables a loop for the queue.
@@ -528,6 +532,7 @@ class Record(metaclass = Meta):
         self.iterate = iterate
         self.tmp_name_list = []
         self.tmp_print_list = []
+
         while self.iterate == True:
 
             self.option = input('\n' + self.display_message)
@@ -556,7 +561,7 @@ class Record(metaclass = Meta):
     # this is a help function, do not call it when using a package.
     def queue_break(
         self,
-        ) -> ReturnType:
+        ) -> ListType:
 
         '''
         * breaks the loop for the queue.
