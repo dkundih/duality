@@ -1,30 +1,8 @@
 # makes multiple instances of the object available.
 from logistics.plugins.metaclass import Meta
 
-from logistics.plugins.types import (
-    VandalType,
-    IntegerType,
-    FloatType,
-    NumberType,
-    ReturnType,
-    PrintType,
-    GraphType,
-    StringType,
-    ListType,
-    TupleType,
-    DictionaryType,
-    BooleanType,
-    NumberVector,
-    StringVector,
-    StringDictionary,
-    DictionaryVector,
-    NumberVectorAlike,
-    NumberArrayAlike,
-    AnyArrayAlike,
-    AnyVectorAlike,
-    AnyType,
-)
-
+# imports all data types.
+from logistics.plugins.types import *
 
 class Track(metaclass = Meta):
 

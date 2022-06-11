@@ -449,3 +449,10 @@ CHANGELOG
 
 4.7.5 (10/06/2022)
 - overwrite of bugged 4.7.4
+
+4.7.6 (11/06/2022)
+- docstrings updated.
+- new types added.
+
+4.7.7 (11/06/2022)
+- new types included in init.
