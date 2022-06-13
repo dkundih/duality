@@ -461,3 +461,6 @@ CHANGELOG
 - Manifesto added.
 - special methods redefined.
 - PEP8 alignments.
+
+4.7.9 (13/06/2022)
+- requirements upgrade.
