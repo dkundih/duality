@@ -1,4 +1,4 @@
-![duality-header](https://raw.githubusercontent.com/dkundih/duality/main/.logistics/duality.jpg)
+![duality-header](https://raw.githubusercontent.com/dkundih/duality/main/_logistics/duality.jpg)
 
 [![Downloads](https://img.shields.io/pypi/dm/duality?color=F43&label=Downloads&style=flat-square)](https://pypi.org/project/duality)
 [![License](https://img.shields.io/pypi/l/duality?color=178&label=License&style=flat-square)](https://github.com/dkundih/duality/blob/main/LICENSE)
