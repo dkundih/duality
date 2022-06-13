@@ -41,7 +41,7 @@ from duality.misc._meta import (
 from logistics.plugins.types import *
 
 # all types.
-__types__ = [
+types = [
 	VandalType,
     IntegerType,
     FloatType,
@@ -75,7 +75,7 @@ from duality.decorators.record import Record
 from duality.decorators.track import Track
 
 # metaclass.
-__metaclass__ = [
+metaclass = [
     'Meta',
 ]
 

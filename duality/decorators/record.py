@@ -59,7 +59,7 @@ class Record(metaclass = Meta):
         self.reset_dict[self.dict_name] = {}
         self.print_val_dict[self.option_name] = self.print_val
 
-        def record_function(func):
+        def _record_function(func):
 
             if autoinit == False:
                 self.dictionary_menu[self.option_name] = func
@@ -75,12 +75,11 @@ class Record(metaclass = Meta):
                 self.contains_autoinit = True
 
             def _wrap(*args, **kwargs):
-
                 return func(*args, **kwargs)
 
             return _wrap
 
-        return record_function
+        return _record_function
 
     def display(
         self,
@@ -105,59 +104,59 @@ class Record(metaclass = Meta):
         if style == 'decorator':
             if return_option == 'logs':
                 if method == 'basic':
-                    def wrapper(func):
-                        def decorator(self,*args, **kwargs):
+                    def _wrapper(func):
+                        def _decorator(self,*args, **kwargs):
                             func(*args, **kwargs)
                             return self.basic_menu
-                        return decorator
+                        return _decorator
                         
-                    return wrapper
+                    return _wrapper
 
                 elif method == 'descriptive':
-                    def wrapper(func):
-                        def decorator(self,*args, **kwargs):
+                    def _wrapper(func):
+                        def _decorator(self,*args, **kwargs):
                             func(*args, **kwargs)
                             return self.descriptive_menu
-                        return decorator
+                        return _decorator
 
-                    return wrapper
+                    return _wrapper
 
                 elif method == 'dictionary':
-                    def wrapper(func):
-                        def decorator(self, *args, **kwargs):
+                    def _wrapper(func):
+                        def _decorator(self, *args, **kwargs):
                             func(*args, **kwargs)
                             return self.dictionary_menu
-                        return decorator
+                        return _decorator
 
-                    return wrapper
+                    return _wrapper
 
             elif return_option == 'function':
                 if method == 'basic':
-                    def wrapper(func):
-                        def decorator(self, *args, **kwargs):
+                    def _wrapper(func):
+                        def _decorator(self, *args, **kwargs):
                             print(self.basic_menu)
                             return func(*args, **kwargs)
-                        return decorator
+                        return _decorator
 
-                    return wrapper
+                    return _wrapper
 
                 elif method == 'descriptive':
-                    def wrapper(func):
-                        def decorator(self, *args, **kwargs):
+                    def _wrapper(func):
+                        def _decorator(self, *args, **kwargs):
                             print(self.descriptive_menu)
                             return func(*args, **kwargs)
-                        return decorator
+                        return _decorator
 
-                    return wrapper
+                    return _wrapper
 
                 elif method == 'dictionary':
-                    def wrapper(func):
-                        def decorator(self, *args, **kwargs):
+                    def _wrapper(func):
+                        def _decorator(self, *args, **kwargs):
                             print(self.dictionary_menu)
                             return func(*args, **kwargs)
-                        return decorator
+                        return _decorator
 
-                    return wrapper
+                    return _wrapper
                 
         elif style == 'function':
             if method == 'basic':
@@ -248,11 +247,8 @@ class Record(metaclass = Meta):
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
 
         if queue == False:
-
             self.option = input('\n' + self.display_message)
-
             self.print_option = self.print_val_dict[self.option]
-
             print(self.output_message, self.option + '\n')
 
             # executes autoinit function.
@@ -265,23 +261,18 @@ class Record(metaclass = Meta):
                     for i in self.hidden_dictionary_menu:
                         self.hidden_dictionary_menu[i]()
 
-
             # disables a loop of functions.
-            self.queue_break()
+            self._queue_break()
 
             if type == 'static':
-
                 print(self.tmp_name_list[self.yield_name])
 
                 for tmp_func in self.tmp_list:
-
                     self.clone_dict = self.tmp_name_list[self.yield_name]
-
                     self.print_option = self.tmp_print_list[self.yield_name]
-
                     print(self.tmp_name_list[self.yield_name])
 
-                    self.redefine()
+                    self._redefine()
 
                     try:
                         if self.print_option == False:
@@ -305,14 +296,11 @@ class Record(metaclass = Meta):
             elif type == 'dynamic':
                 
                 for tmp_func in self.tmp_list:
-
                     self.clone_dict = self.tmp_name_list[self.yield_name]
-
                     self.print_option = self.tmp_print_list[self.yield_name]
-
                     print(self.tmp_name_list[self.yield_name])
 
-                    self.redefine()
+                    self._redefine()
 
                     try:
                         if self.print_option == False:
@@ -336,7 +324,6 @@ class Record(metaclass = Meta):
         if queue == True:
             # executes autoinit functions.
             if self.contains_autoinit == True:
-
                 try:
                     for i in self.hidden_dictionary_menu:
                         self.hidden_dictionary_menu[i](self)
@@ -345,21 +332,17 @@ class Record(metaclass = Meta):
                         self.hidden_dictionary_menu[i]()
 
             # enables a loop to execute functions in a chain.
-            self.queue_handler()
+            self._queue_handler()
 
             if type == 'static':
-
                 print(self.tmp_name_list[self.yield_name])
 
                 for tmp_func in self.tmp_list:
-
                     self.clone_dict = self.tmp_name_list[self.yield_name]
-
                     self.print_option = self.tmp_print_list[self.yield_name]
-
                     print(self.tmp_name_list[self.yield_name])
 
-                    self.redefine()
+                    self._redefine()
 
                     try:
                         if self.print_option == False:
@@ -383,14 +366,11 @@ class Record(metaclass = Meta):
             elif type == 'dynamic':
                 
                 for tmp_func in self.tmp_list:
-
                     self.clone_dict = self.tmp_name_list[self.yield_name]
-
                     self.print_option = self.tmp_print_list[self.yield_name]
-
                     print(self.tmp_name_list[self.yield_name])
 
-                    self.redefine()
+                    self._redefine()
 
                     try:
                         if self.print_option == False:
@@ -435,7 +415,7 @@ class Record(metaclass = Meta):
         return self.dict_name
 
     # this is a help function, do not call it when using a package.
-    def redefine(
+    def _redefine(
         self,
         ) -> DictionaryType:
 
@@ -452,10 +432,10 @@ class Record(metaclass = Meta):
             if self.format != 'list':
                 self.new_i = input(f'Enter the {i}: ')
             self.dtypes = {
-            'int': self.set_int,
-            'float': self.set_float,
-            'str': self.set_str,
-            'list' : self.set_list,
+            'int': self._set_int,
+            'float': self._set_float,
+            'str': self._set_str,
+            'list' : self._set_list,
         }
             self.new_i = self.dtypes[self.format]()
             self.individual_dict[self.clone_dict][i] = self.new_i
@@ -463,7 +443,7 @@ class Record(metaclass = Meta):
         return self.individual_dict[self.clone_dict]
 
     # this is a help function, do not call it when using a package.
-    def set_int(
+    def _set_int(
         self,
         ) -> ReturnType:
 
@@ -475,7 +455,7 @@ class Record(metaclass = Meta):
         return self.new_i
 
     # this is a help function, do not call it when using a package.
-    def set_float(
+    def _set_float(
         self,
         ) -> ReturnType:
         
@@ -487,7 +467,7 @@ class Record(metaclass = Meta):
         return self.new_i
 
     # this is a help function, do not call it when using a package.
-    def set_str(
+    def _set_str(
         self,
         ) -> ReturnType:
 
@@ -499,7 +479,7 @@ class Record(metaclass = Meta):
         return self.new_i
 
     # this is a help function, do not call it when using a package.
-    def set_list(
+    def _set_list(
         self,
         ) -> ReturnType:
         
@@ -513,10 +493,11 @@ class Record(metaclass = Meta):
         for i in range(0, self.range):
             tmp_list_element = int(input(f'Enter the value: '))
             self.new_i.append(tmp_list_element)
+            
         return self.new_i
 
     # this is a help function, do not call it when using a package.
-    def queue_handler(
+    def _queue_handler(
         self,
         iterate: BooleanType = True,
         ) -> ListType:
@@ -534,32 +515,23 @@ class Record(metaclass = Meta):
         self.tmp_print_list = []
 
         while self.iterate == True:
-
             self.option = input('\n' + self.display_message)
-
             self.tmp_name_list += [self.option]
-
             self.print_val_list += self.option
-
             print(self.output_message, self.option + '\n')
-
             self.tmp_list += [self.dictionary_menu[self.option]]
-
             self.tmp_print_list += [self.print_val_dict[self.option]]
-
             choice = input('Continue? (Y/N): ')
-
             choice = choice.upper()
 
             if choice != 'Y':
-
                 self.iterate = False
                 print('')
         
         return self.tmp_list
 
     # this is a help function, do not call it when using a package.
-    def queue_break(
+    def _queue_break(
         self,
         ) -> ListType:
 
@@ -573,13 +545,9 @@ class Record(metaclass = Meta):
         self.tmp_print_list = []
 
         self.tmp_name_list += [self.option]
-
         self.print_val_list += self.option
-
         print(self.output_message, self.option + '\n')
-
         self.tmp_list += [self.dictionary_menu[self.option]]
-
         self.tmp_print_list += [self.print_val_dict[self.option]]
 
         return self.tmp_list

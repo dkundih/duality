@@ -456,3 +456,8 @@ CHANGELOG
 
 4.7.7 (11/06/2022)
 - new types included in init.
+
+4.7.8 (13/06/2022)
+- Manifesto added.
+- special methods redefined.
+- PEP8 alignments.

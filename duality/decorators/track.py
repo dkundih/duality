@@ -22,12 +22,12 @@ class Track(metaclass = Meta):
         # DEFAULT: track.entry(func_name).
         '''
 
-        def log(func):
+        def _log(func):
                 import sys
                 import json
                 import datetime
 
-                def logsaver(*args, **kwargs):
+                def _logsaver(*args, **kwargs):
                     start = datetime.datetime.now()
                     results = func(*args, **kwargs)
                     end = datetime.datetime.now()
@@ -42,9 +42,9 @@ class Track(metaclass = Meta):
                         f.write(',\n')
                         f.close()
                         return results
-                return logsaver
+                return _logsaver
 
-        return log
+        return _log
 
     def display(
         style : StringType = 'decorator', 
@@ -67,22 +67,22 @@ class Track(metaclass = Meta):
 
         elif style == 'decorator':
             if return_option == 'logs':
-                def wrapper(func):
-                    def decorator(*args, **kwargs):
+                def _wrapper(func):
+                    def _decorator(*args, **kwargs):
                         f = open('Logs.json', 'r')
                         func(*args, **kwargs)
                         logs = print(f.read())
                         return logs
-                    return decorator
+                    return _decorator
 
-                return wrapper
+                return _wrapper
 
             elif return_option == 'function':
-                def wrapper(func):
-                    def decorator(*args, **kwargs):
+                def _wrapper(func):
+                    def _decorator(*args, **kwargs):
                         f = open('Logs.json', 'r')
                         print(f.read())
                         return func(*args, **kwargs)
-                    return decorator
+                    return _decorator
 
-                return wrapper
+                return _wrapper
