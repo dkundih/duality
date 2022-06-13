@@ -53,6 +53,6 @@ setup(
   keywords = 'data science, machine learning, data manipulation, artificial intelligence, AI, unin, duality, duality-py, duality.py, vandal, vandal.py, vandal-py',
   packages = find_packages(),
   install_requires = [
-    'logistics >= 0.0.6',
+    'logistics >= 0.0.7',
 ]
   )
