@@ -15,10 +15,10 @@ Use permitted according to the terms of use and conditions set by the attached l
 
 **Example of use**
 
-Example code over a Car object.
+Example code over a Car object. (v4.8.0)
 <img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/d1.jpg'/>
 
-Example use in the terminal.
+Example use in the terminal. (v4.8.0)
 <img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/d2.jpg'/>
 
 Visit my Data Library at https://github.com/dkundih/DataLibrary in order to see the demonstration of use in practical examples.
@@ -52,7 +52,9 @@ My name is <b>David Kundih</b> and I am a Master's student of <b>Sustainable mob
 <p align='center'>
 <a href="https://github.com/dkundih/vandal">vandal</p>  
 <p align='center'>
-<a href="https://github.com/dkundih/duality">duality</p>  
+<a href="https://github.com/dkundih/duality">duality</p>
+<p align='center'>
+<a href="https://github.com/dkundih/logistics">logistics</p>    
 <p align='center'>
 <a href="https://github.com/dkundih/unin">unin</a></p>
 </p>
