@@ -16,10 +16,10 @@ Use permitted according to the terms of use and conditions set by the attached l
 **Example of use**
 
 Example code over a Car object. (v4.8.0)
-<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/d1.jpg'/>
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/duality_exmp1.jpg'/>
 
 Example use in the terminal. (v4.8.0)
-<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/d2.jpg'/>
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/duality_exmp2.jpg'/>
 
 Visit my Data Library at https://github.com/dkundih/DataLibrary in order to see the demonstration of use in practical examples.
 
