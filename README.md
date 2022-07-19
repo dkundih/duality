@@ -15,6 +15,12 @@ Use permitted according to the terms of use and conditions set by the attached l
 
 **Example of use**
 
+Example code over a Car object.
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/d1.jpg'/>
+
+Example use in the terminal.
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/d2.jpg'/>
+
 Visit my Data Library at https://github.com/dkundih/DataLibrary in order to see the demonstration of use in practical examples.
 
 **Installation**
