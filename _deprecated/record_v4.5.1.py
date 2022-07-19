@@ -2,10 +2,10 @@
 ### --- DEPRECATED --- ### - version before v4.6.0 wihout input options.
 
 # makes multiple instances of the object available.
-from vandal.plugins.metaclass import Meta
+from logistics.plugins.metaclass import Meta
 
 # imports custom types.
-from vandal.plugins.types import (
+from logistics.plugins.types import (
     VandalType,
     IntegerType,
     FloatType,
@@ -31,7 +31,7 @@ from vandal.plugins.types import (
 
 
 # stores menu options over functions and class methods for listing.
-class Record(metaclass = Meta):
+class DualityApp(metaclass = Meta):
 
     # initializes the object and function it is decorating.
     def __init__(

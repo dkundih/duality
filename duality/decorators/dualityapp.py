@@ -5,7 +5,7 @@ from logistics.plugins.metaclass import Meta
 from logistics.plugins.types import *
 
 # package.
-class Record(metaclass = Meta):
+class DualityApp(metaclass = Meta):
 
     '''
     * stores menu options over functions and class methods for listing.
@@ -173,7 +173,9 @@ class Record(metaclass = Meta):
         type : StringType = 'static', 
         display_headline : StringType ='AVAILABLE OPTIONS', 
         display_message : StringType = 'ENTER THE OPTION: ', 
-        output_message : StringType = 'YOU HAVE CHOSEN: ', 
+        output_message : StringType = 'YOU HAVE CHOSEN: ',
+        choice_message : StringType = 'CONTINUE? (Y/N): ',
+        enter_message : StringType = 'ENTER THE: ',
         method : StringType = 'descriptive', 
         alignment : StringType = 'newline',
         queue: BooleanType = False,
@@ -181,25 +183,29 @@ class Record(metaclass = Meta):
         ) -> SpecialType:
 
         '''
-        * creates an executeable menu from defined entries on top of functions.
+        * creates an executable menu from defined entries on top of functions.
 
         - type ('static' - adapts to the execution of static non-self methods and functions.)
         - type ('dynamic' - adapts to the execution of dynamic class self methods and functions.)
         - display_headline - displays the desired headline.
         - display_message - displays input value message.
         - output_message - confirmation of the chosen value.
+        - choice_message - output choice message.
+        - enter_message - enter choice message.
         - method ('descriptive' - shows stored option_name and it's description.)
         - method ('basic' - shows only the stored option_name.)
         - alignment ('basic' - shows all stored option_name and option_description values in a row.)
         - alignment ('newline' -shows all stored option_name and option_description values in a new line.)
         - queue (True/False) - enables stacking of functions and executing them in a chain.
         - show_dtypes (True/False) - shows the dtype of the input value.
-        # DEFAULT: Record.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True).
+        # DEFAULT: Record.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', choice_message : StringType = 'CONTINUE? (Y/N): ', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True).
         '''
 
         self.display_headline = display_headline
         self.display_message = display_message
         self.output_message = output_message
+        self.choice_message = choice_message
+        self.enter_message = enter_message
         self.queue = queue
         self.show_dtypes = show_dtypes
         self.yield_name = 0 # list item counter that enables iterating through the list.
@@ -430,7 +436,7 @@ class Record(metaclass = Meta):
         for i in self.individual_dict[self.clone_dict]:
             self.format = self.reset_dict[self.clone_dict][i]
             if self.format != 'list':
-                self.new_i = input(f'Enter the {i}: ')
+                self.new_i = input(self.enter_message + f'{i}: ')
             self.dtypes = {
             'int': self._set_int,
             'float': self._set_float,
@@ -521,7 +527,7 @@ class Record(metaclass = Meta):
             print(self.output_message, self.option + '\n')
             self.tmp_list += [self.dictionary_menu[self.option]]
             self.tmp_print_list += [self.print_val_dict[self.option]]
-            choice = input('Continue? (Y/N): ')
+            choice = input(self.choice_message)
             choice = choice.upper()
 
             if choice != 'Y':

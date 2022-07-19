@@ -7,11 +7,11 @@ This is a connection to the __init__ file of the duality package.
 
 AVAILABLE FEATURES IN THE PACKAGE:
 
-	record (OBJECT/DECORATOR)
+	dualityapp (OBJECT/DECORATOR)
 	-------------------
 
-	duality.Record is an object decorator class that stores menu options over functions and class methods for listing and executing in a CLI.
-		print(help(duality.Record)) in order to see available features.
+	duality.DualityApp is an object decorator class that stores menu options over functions and class methods for listing and executing in a CLI.
+		print(help(duality.DualityApp)) in order to see available features.
 
 	track (OBJECT/DECORATOR)
 	------------
@@ -71,7 +71,7 @@ types = [
 from logistics.plugins.metaclass import Meta
 
 # imports relevant contents.
-from duality.decorators.record import Record
+from duality.decorators.dualityapp import DualityApp
 from duality.decorators.track import Track
 
 # metaclass.
@@ -82,6 +82,6 @@ metaclass = [
 # all relevant contents.
 __all__ = [
 	'Meta',
-	'Record',
+	'DualityApp',
 	'Track',
 ]

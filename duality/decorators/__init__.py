@@ -5,12 +5,12 @@ from logistics.plugins.metaclass import Meta
 from logistics.plugins.types import *
 
 # imports all relevant contents.
-from duality.decorators.record import Record
+from duality.decorators.dualityapp import DualityApp
 from duality.decorators.track import Track
 
 # all relevant contents.
 __all__ = [
     'Meta',
-    'Record',
+    'DualityApp',
     'Track',
 ]

@@ -464,3 +464,6 @@ CHANGELOG
 
 4.7.9 (13/06/2022)
 - requirements upgrade.
+
+4.8.0 (11/07/2022)
+- Record is now DualityApp.
