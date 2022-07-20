@@ -467,3 +467,7 @@ CHANGELOG
 
 4.8.0 (11/07/2022)
 - Record is now DualityApp.
+
+4.8.1 (20/07/2022)
+- followup README changes and example use added.
+- Track is now DualityTrack but still deprecated.

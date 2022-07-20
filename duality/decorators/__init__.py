@@ -6,11 +6,11 @@ from logistics.plugins.types import *
 
 # imports all relevant contents.
 from duality.decorators.dualityapp import DualityApp
-from duality.decorators.track import Track
+from duality.decorators.dualitytrack import DualityTrack
 
 # all relevant contents.
 __all__ = [
     'Meta',
     'DualityApp',
-    'Track',
+    'DualityTrack',
 ]

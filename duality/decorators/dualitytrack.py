@@ -4,7 +4,7 @@ from logistics.plugins.metaclass import Meta
 # imports all data types.
 from logistics.plugins.types import *
 
-class Track(metaclass = Meta):
+class DualityTrack(metaclass = Meta):
 
     '''
     * tracks function behaviuor and stores it into a JSON file.

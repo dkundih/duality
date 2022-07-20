@@ -16,8 +16,8 @@ AVAILABLE FEATURES IN THE PACKAGE:
 	track (OBJECT/DECORATOR)
 	------------
 
-	duality.Track is an object decorator class that tracks function behaviuor and stores it into a JSON file.
-		print(help(duality.Track)) in order to see available features.
+	duality.DualityTrack is an object decorator class that tracks function behaviuor and stores it into a JSON file.
+		print(help(duality.DualityTrack)) in order to see available features.
 
 '''
 
@@ -72,7 +72,7 @@ from logistics.plugins.metaclass import Meta
 
 # imports relevant contents.
 from duality.decorators.dualityapp import DualityApp
-from duality.decorators.track import Track
+from duality.decorators.dualitytrack import DualityTrack
 
 # metaclass.
 metaclass = [
@@ -83,5 +83,5 @@ metaclass = [
 __all__ = [
 	'Meta',
 	'DualityApp',
-	'Track',
+	'DualityTrack',
 ]
