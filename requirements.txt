@@ -1,1 +1,1 @@
-logistics >= 0.0.7
+logistics >= 0.0.10

@@ -10,6 +10,7 @@ from duality.decorators.dualitytrack import DualityTrack
 
 # all relevant contents.
 __all__ = [
+    'VandalTypes',
     'Meta',
     'DualityApp',
     'DualityTrack',

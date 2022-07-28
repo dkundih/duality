@@ -4,6 +4,11 @@ from logistics.plugins.metaclass import Meta
 # imports all data types.
 from logistics.plugins.types import *
 
+# dependencies import.
+import sys
+import json
+import datetime
+
 class DualityTrack(metaclass = Meta):
 
     '''
@@ -23,9 +28,6 @@ class DualityTrack(metaclass = Meta):
         '''
 
         def _log(func):
-                import sys
-                import json
-                import datetime
 
                 def _logsaver(*args, **kwargs):
                     start = datetime.datetime.now()

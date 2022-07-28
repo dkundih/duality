@@ -41,30 +41,8 @@ from duality.misc._meta import (
 from logistics.plugins.types import *
 
 # all types.
-types = [
-	VandalType,
-    IntegerType,
-    FloatType,
-    NumberType,
-    ReturnType,
-    PrintType,
-    GraphType,
-    StringType,
-    ListType,
-    TupleType,
-    DictionaryType,
-    BooleanType,
-    FilePathType,
-    SpecialType,
-    NumberVector,
-    StringVector,
-    StringDictionary,
-    DictionaryVector,
-    NumberVectorAlike,
-    NumberArrayAlike,
-    AnyArrayAlike,
-    AnyVectorAlike,
-    AnyType
+VandalTypes = [
+    'VandalTypes',
 ]
 
 # imports relevant dependencies.

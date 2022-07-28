@@ -471,3 +471,6 @@ CHANGELOG
 4.8.1 (20/07/2022)
 - followup README changes and example use added.
 - Track is now DualityTrack but still deprecated.
+
+> 4.8.2 (X/X/2022) - NOT YET PUBLISHED. <
+- aligned to logistics updates.
