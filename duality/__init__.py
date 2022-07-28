@@ -40,11 +40,6 @@ from duality.misc._meta import (
 # imports all data types.
 from logistics.plugins.types import *
 
-# all types.
-VandalTypes = [
-    'VandalTypes',
-]
-
 # imports relevant dependencies.
 from logistics.plugins.metaclass import Meta
 
@@ -59,6 +54,7 @@ metaclass = [
 
 # all relevant contents.
 __all__ = [
+	'VandalTypes',
 	'Meta',
 	'DualityApp',
 	'DualityTrack',
