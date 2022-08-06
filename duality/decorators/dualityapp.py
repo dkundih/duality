@@ -1,5 +1,6 @@
 # makes multiple instances of the object available.
 from logistics.plugins.metaclass import Meta
+import os
 
 # imports all data types.
 from logistics.plugins.types import *
@@ -174,12 +175,13 @@ class DualityApp(metaclass = Meta):
         display_headline : StringType ='AVAILABLE OPTIONS', 
         display_message : StringType = 'ENTER THE OPTION: ', 
         output_message : StringType = 'YOU HAVE CHOSEN: ',
-        choice_message : StringType = 'CONTINUE? (Y/N): ',
-        enter_message : StringType = 'ENTER THE: ',
+        break_key : StringType = '0',
+        enter_message : StringType = 'ENTER THE ',
         method : StringType = 'descriptive', 
         alignment : StringType = 'newline',
         queue: BooleanType = False,
         show_dtypes: BooleanType = True,
+        show_confirmation : BooleanType = False,
         ) -> SpecialType:
 
         '''
@@ -190,7 +192,7 @@ class DualityApp(metaclass = Meta):
         - display_headline - displays the desired headline.
         - display_message - displays input value message.
         - output_message - confirmation of the chosen value.
-        - choice_message - output choice message.
+        - break_key - key that breaks the loop while queue = True.
         - enter_message - enter choice message.
         - method ('descriptive' - shows stored option_name and it's description.)
         - method ('basic' - shows only the stored option_name.)
@@ -198,17 +200,21 @@ class DualityApp(metaclass = Meta):
         - alignment ('newline' -shows all stored option_name and option_description values in a new line.)
         - queue (True/False) - enables stacking of functions and executing them in a chain.
         - show_dtypes (True/False) - shows the dtype of the input value.
-        # DEFAULT: Record.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', choice_message : StringType = 'CONTINUE? (Y/N): ', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True).
+        - show_confirmation : BooleanType = (True/False) - confirmation of the chosen option.
+        # DEFAULT: Record.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True, show_confirmation : BooleanType = False).
         '''
+
+        os.system('cls')
 
         self.display_headline = display_headline
         self.display_message = display_message
         self.output_message = output_message
-        self.choice_message = choice_message
+        self.break_key = break_key
         self.enter_message = enter_message
         self.queue = queue
         self.show_dtypes = show_dtypes
         self.yield_name = 0 # list item counter that enables iterating through the list.
+        self.show_confirmation = show_confirmation # confirmation of chosen option.
 
         # assert type.
         if type != 'static' and type != 'dynamic':
@@ -224,12 +230,14 @@ class DualityApp(metaclass = Meta):
                 print(self.display_headline)
                 print('-----------------')
                 print(show_menu)
+                print('')
 
             elif method == 'descriptive':
                 show_menu = self.display(style = 'function', method = 'descriptive')
                 print(self.display_headline)
                 print('-----------------')
                 print(show_menu)
+                print('')
 
             else:
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
@@ -242,21 +250,27 @@ class DualityApp(metaclass = Meta):
                 print('-----------------')
                 for line in show_menu:
                     print(line)
-
+                print('')
+                
             elif method == 'descriptive':
                 show_menu = self.display(style = 'function', method = 'descriptive')
                 print(self.display_headline)
                 print('-----------------')
                 for line in show_menu:
                     print(line)
+                print('')
             else:
                 print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
 
         if queue == False:
-            self.option = input('\n' + self.display_message)
+            self.option = input(self.display_message)
             self.print_option = self.print_val_dict[self.option]
-            print(self.output_message, self.option + '\n')
+            
+            if self.output_message == True:
+                print(self.output_message, self.option)
 
+            print('')
+            
             # executes autoinit function.
             if self.contains_autoinit == True:
 
@@ -271,7 +285,6 @@ class DualityApp(metaclass = Meta):
             self._queue_break()
 
             if type == 'static':
-                print(self.tmp_name_list[self.yield_name])
 
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
@@ -341,7 +354,6 @@ class DualityApp(metaclass = Meta):
             self._queue_handler()
 
             if type == 'static':
-                print(self.tmp_name_list[self.yield_name])
 
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
@@ -521,19 +533,21 @@ class DualityApp(metaclass = Meta):
         self.tmp_print_list = []
 
         while self.iterate == True:
-            self.option = input('\n' + self.display_message)
+            self.option = input(self.display_message)
+            
+            if self.option == self.break_key:
+                print('')
+                break
+            
             self.tmp_name_list += [self.option]
             self.print_val_list += self.option
-            print(self.output_message, self.option + '\n')
+            
+            if self.show_confirmation == True:
+                print(self.output_message, self.option + '\n')
+                
             self.tmp_list += [self.dictionary_menu[self.option]]
             self.tmp_print_list += [self.print_val_dict[self.option]]
-            choice = input(self.choice_message)
-            choice = choice.upper()
 
-            if choice != 'Y':
-                self.iterate = False
-                print('')
-        
         return self.tmp_list
 
     # this is a help function, do not call it when using a package.
@@ -552,7 +566,10 @@ class DualityApp(metaclass = Meta):
 
         self.tmp_name_list += [self.option]
         self.print_val_list += self.option
-        print(self.output_message, self.option + '\n')
+        
+        if self.show_confirmation == True:
+            print(self.output_message, self.option + '\n')
+            
         self.tmp_list += [self.dictionary_menu[self.option]]
         self.tmp_print_list += [self.print_val_dict[self.option]]
 

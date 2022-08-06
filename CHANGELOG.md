@@ -472,5 +472,8 @@ CHANGELOG
 - followup README changes and example use added.
 - Track is now DualityTrack but still deprecated.
 
-> 4.8.2 (X/X/2022) - NOT YET PUBLISHED. <
+4.8.2 (07/08/2022)
 - aligned to logistics updates.
+- multiple changes to the interface.
+- added optional arguments.
+- now cleans the interface upon casting.

@@ -23,6 +23,7 @@ AVAILABLE FEATURES IN THE PACKAGE:
 
 # ignore __pycache__ from forming inside the library directory.
 import sys
+import os
 sys.dont_write_bytecode = True
 
 # imports meta data.
