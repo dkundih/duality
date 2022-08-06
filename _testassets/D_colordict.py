@@ -1,6 +1,10 @@
-from colorama import (Fore,
-                      init,
-                      )
+
+# MISC PARTICLES AND A TEST FIELD.
+
+from colorama import (
+    Fore,
+    init,
+)
 
 init()
 
