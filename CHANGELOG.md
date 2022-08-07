@@ -477,3 +477,7 @@ CHANGELOG
 - multiple changes to the interface.
 - added optional arguments.
 - now cleans the interface upon casting.
+
+4.9.0 (07/07/2022)
+- introduced coloring! WOHOOO!!!
+- autohandling of KeyErrors implemented.

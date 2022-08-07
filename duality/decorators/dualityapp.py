@@ -1,6 +1,16 @@
 # makes multiple instances of the object available.
 from logistics.plugins.metaclass import Meta
+
+# for CLI functionality and coloring.
 import os
+from colorama import (
+    Fore,
+    Back,
+    Style,
+    init,
+)
+
+init()
 
 # imports all data types.
 from logistics.plugins.types import *
@@ -28,6 +38,7 @@ class DualityApp(metaclass = Meta):
         self.poolsize : IntegerType = 0
         self.stored_keys : ListType = []
         self.print_val_dict : ListType = {}
+        self.option_names : ListType = []
 
         self.hidden_basic_menu : ListType = []
         self.hidden_descriptive_menu : ListType = []
@@ -53,6 +64,7 @@ class DualityApp(metaclass = Meta):
         '''
 
         self.option_name = option_name
+        self.option_names += [self.option_name]
         self.option_description = option_description
         self.dict_name = self.option_name
         self.print_val = print_val
@@ -182,6 +194,8 @@ class DualityApp(metaclass = Meta):
         queue: BooleanType = False,
         show_dtypes: BooleanType = True,
         show_confirmation : BooleanType = False,
+        color_mode : StringType = 'dark',
+        custom_color_mode : DictionaryType = None,
         ) -> SpecialType:
 
         '''
@@ -201,20 +215,53 @@ class DualityApp(metaclass = Meta):
         - queue (True/False) - enables stacking of functions and executing them in a chain.
         - show_dtypes (True/False) - shows the dtype of the input value.
         - show_confirmation : BooleanType = (True/False) - confirmation of the chosen option.
-        # DEFAULT: Record.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True, show_confirmation : BooleanType = False).
+        - color_mode ('dark' - for dark terminal.)
+        - color_mode ('light' - for light terminal.)
+        - custom_color_mode - custom dictionary set of colors.
+        # DEFAULT: DualityApp.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True, show_confirmation : BooleanType = False, color_mode : StringType = 'dark', custom_color_mode : Dictionarytype = None).
         '''
 
         os.system('cls')
 
+        self.color_mode = color_mode # dark or ligth appearance.
+        self.custom_color_mode = custom_color_mode # option to introduce own color dictionary.
+
+        # set up coloring in the CLI.
+        if self.color_mode == 'dark':
+            self.colorset = {
+                'display_headline' : 'Fy',
+                'display_message' : 'Fc',
+                'output_message' : 'Fy',
+                'enter_message' : 'Fc',
+                'tmp_name_list' : 'Fy',
+                'tmp_func' : 'Fc',
+                'warning' : 'Fr',
+            }
+        
+        elif self.color_mode == 'light':
+            self.colorset = {
+                'display_headline' : 'Fg',
+                'display_message' : 'Fb',
+                'output_message' : 'Fg',
+                'enter_message' : 'Fb',
+                'tmp_name_list' : 'Fg',
+                'tmp_func' : 'Fb',
+                'warning' : 'Fr',
+            }
+        
+        else:
+            self.colorset = self.custom_color_mode
+            
+
         self.display_headline = display_headline
-        self.display_message = display_message
-        self.output_message = output_message
+        self.display_message = self._paint_text(display_message, self.colorset['display_message'], print_trigger = False)
+        self.output_message = self._paint_text(output_message, self.colorset['output_message'], print_trigger = False)
         self.break_key = break_key
-        self.enter_message = enter_message
+        self.enter_message = self._paint_text(enter_message, self.colorset['enter_message'], print_trigger = False)
         self.queue = queue
         self.show_dtypes = show_dtypes
         self.yield_name = 0 # list item counter that enables iterating through the list.
-        self.show_confirmation = show_confirmation # confirmation of chosen option.
+        self.show_confirmation = show_confirmation # confirmation of chosen option.    
 
         # assert type.
         if type != 'static' and type != 'dynamic':
@@ -227,14 +274,14 @@ class DualityApp(metaclass = Meta):
 
             if method == 'basic':
                 show_menu = self.display(style = 'function', method = 'basic')
-                print(self.display_headline)
+                self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 print(show_menu)
                 print('')
 
             elif method == 'descriptive':
                 show_menu = self.display(style = 'function', method = 'descriptive')
-                print(self.display_headline)
+                self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 print(show_menu)
                 print('')
@@ -246,7 +293,7 @@ class DualityApp(metaclass = Meta):
 
             if method == 'basic':
                 show_menu = self.display(style = 'function', method = 'basic')
-                print(self.display_headline)
+                self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 for line in show_menu:
                     print(line)
@@ -254,7 +301,7 @@ class DualityApp(metaclass = Meta):
                 
             elif method == 'descriptive':
                 show_menu = self.display(style = 'function', method = 'descriptive')
-                print(self.display_headline)
+                self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 for line in show_menu:
                     print(line)
@@ -358,7 +405,7 @@ class DualityApp(metaclass = Meta):
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
                     self.print_option = self.tmp_print_list[self.yield_name]
-                    print(self.tmp_name_list[self.yield_name])
+                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
 
                     self._redefine()
 
@@ -368,7 +415,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            print(tmp_func(self, **self.individual_dict[self.clone_dict]))
+                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                     except:
@@ -377,7 +424,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            print(tmp_func(**self.individual_dict[self.clone_dict]))
+                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
 
@@ -386,7 +433,7 @@ class DualityApp(metaclass = Meta):
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
                     self.print_option = self.tmp_print_list[self.yield_name]
-                    print(self.tmp_name_list[self.yield_name])
+                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
 
                     self._redefine()
 
@@ -396,7 +443,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            print(tmp_func(**self.individual_dict[self.clone_dict]))
+                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                     except:
@@ -405,7 +452,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            print(tmp_func(self, **self.individual_dict[self.clone_dict]))
+                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
 
@@ -533,11 +580,15 @@ class DualityApp(metaclass = Meta):
         self.tmp_print_list = []
 
         while self.iterate == True:
+            
             self.option = input(self.display_message)
             
             if self.option == self.break_key:
                 print('')
                 break
+            
+            while not self.option in self.option_names:
+                self.option = input(self._paint_text('INVALID OPTION, ENTER THE OPTION: ', self.colorset['warning'], print_trigger = False))
             
             self.tmp_name_list += [self.option]
             self.print_val_list += self.option
@@ -547,7 +598,7 @@ class DualityApp(metaclass = Meta):
                 
             self.tmp_list += [self.dictionary_menu[self.option]]
             self.tmp_print_list += [self.print_val_dict[self.option]]
-
+        
         return self.tmp_list
 
     # this is a help function, do not call it when using a package.
@@ -574,3 +625,44 @@ class DualityApp(metaclass = Meta):
         self.tmp_print_list += [self.print_val_dict[self.option]]
 
         return self.tmp_list
+
+    def _paint_text(
+        self,
+        text : StringType,
+        color : StringType,
+        print_trigger : BooleanType = True
+        ) -> StringType:
+        
+        '''
+        * coloring of CLI.
+        
+        - text - desired text to print.
+        - color - desired color to print in.
+        - print_trigger (True/False) - modify return type.
+        '''
+        
+        colors = {
+            # Fore coloring.
+            'Fr' : Fore.RED,
+            'Fg' : Fore.GREEN,
+            'Fb' : Fore.BLUE,
+            'Fk' : Fore.BLACK,
+            'Fm' : Fore.MAGENTA,
+            'Fy' : Fore.YELLOW,
+            'Fc' : Fore.CYAN,
+            
+            # Back coloring.
+            'Br' : Back.RED,
+            'Bg' : Back.GREEN,
+            'Bb' : Back.BLUE,
+            'Bk' : Back.BLACK,
+            'Bm' : Back.MAGENTA,
+            'By' : Back.YELLOW,
+            'Bc' : Back.CYAN,
+            }
+        
+        if print_trigger == True:
+            return print(colors[color] + str(text) + Style.RESET_ALL)
+        
+        elif print_trigger == False:
+            return colors[color] + str(text) + Style.RESET_ALL

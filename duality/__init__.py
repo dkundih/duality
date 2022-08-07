@@ -26,6 +26,16 @@ import sys
 import os
 sys.dont_write_bytecode = True
 
+# coloring.
+from colorama import (
+    Fore,
+    Back,
+    Style,
+    init,
+)
+
+init()
+
 # imports meta data.
 from duality.misc._meta import (
     __author__,

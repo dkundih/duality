@@ -1,5 +1,5 @@
 Upcoming features regarding file data types handling in inputs as vectors, numpy arrays, pandas DataFrame and file paths.
 
-Coloring will be implemented.
-
 Autohandling of missing files in autoinit will be resolved.
+
+Object type will be introduced alongside dynamic and static.
