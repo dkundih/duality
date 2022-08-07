@@ -1,1 +1,2 @@
 logistics >= 0.0.11
+colorama

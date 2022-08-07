@@ -54,5 +54,6 @@ setup(
   packages = find_packages(),
   install_requires = [
     'logistics >= 0.0.11',
+    'colorama',
 ]
   )
