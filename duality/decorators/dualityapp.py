@@ -24,12 +24,13 @@ class DualityApp(metaclass = Meta):
 
     def __init__(
         self,
+        credit : StringType = 'duality © David Kundih, 2021 -'
         ) -> ReturnType:
 
         '''
         * initializes the object and function it is decorating.
         '''
-
+        self.credit = credit
         self.basic_menu : ListType = []
         self.descriptive_menu : ListType = []
         self.dictionary_menu : DictionaryType = {}
@@ -56,11 +57,11 @@ class DualityApp(metaclass = Meta):
         '''
         * creates and entry that is stored in a basic menu, descriptive menu and a dictionary menu.
 
-        - option_name - stores the name for the config and display functions.
-        - option_description - stores the description of the function for the config and display functions.
+        - option_name - stores the name for the display of functions.
+        - option_description - stores the description of the function for display functions.
         - autoinit (True/False) - automatically initializes the function without storing into the dictionary menu.
         - print_val (True/False) - enables the print of function output.
-        # DEFAULT: Record.entry(option_name : StringType = '', option_description : StringType = '', autoinit : BooleanType = False, print_val : BooleanType = False).
+        # DEFAULT: DualityApp.entry(option_name : StringType = '', option_description : StringType = '', autoinit : BooleanType = False, print_val : BooleanType = False).
         '''
 
         self.option_name = option_name
@@ -77,13 +78,13 @@ class DualityApp(metaclass = Meta):
             if autoinit == False:
                 self.dictionary_menu[self.option_name] = func
                 self.basic_menu += [self.option_name]
-                self.descriptive_function = str(self.option_name) + ' - ' + str(self.option_description)
+                self.descriptive_function = str(self.option_name) + ' -> ' + str(self.option_description)
                 self.descriptive_menu += [self.descriptive_function]
             
             elif autoinit == True:
                 self.hidden_dictionary_menu[self.option_name] = func
                 self.hidden_basic_menu += [self.option_name]
-                self.descriptive_function = str(self.option_name) + ' - ' + str(self.option_description)
+                self.descriptive_function = str(self.option_name) + ' -> ' + str(self.option_description)
                 self.hidden_descriptive_menu += [self.descriptive_function]
                 self.contains_autoinit = True
 
@@ -106,12 +107,12 @@ class DualityApp(metaclass = Meta):
 
         - style ('decorator' - appends to a function.)
         - style ('function' - executes as a standalone function.)
-        - method ('basic' - shows just record.entry stored names.)
-        - method ('descriptive' - shows record.entry stored names and record.entry.option_description as a help menu.)
-        - method ('dictionary' - creates a dictionary of record.entry names and the function they are appended on.)
+        - method ('basic' - shows just DualityApp.entry stored names.)
+        - method ('descriptive' - shows DualityApp.entry stored names and DualityApp.entry.option_description as a help menu.)
+        - method ('dictionary' - creates a dictionary of DualityApp.entry names and the function they are appended on.)
         - return_option ('logs' - executes the function, but returns logs.)
         - return_option ('function' - shows logs, but returns the function.)
-        # DEFAULT: Record.display(style : StringType = 'decorator', method : StringType = 'dictionary', return_option : StringType = 'logs'.)
+        # DEFAULT: DualityApp.display(style : StringType = 'decorator', method : StringType = 'dictionary', return_option : StringType = 'logs'.)
         '''
 
         if style == 'decorator':
@@ -181,13 +182,14 @@ class DualityApp(metaclass = Meta):
             elif method == 'dictionary':
                 return self.dictionary_menu
 
-    def config(
+    def script(
         self, 
-        type : StringType = 'static', 
+        type : StringType = 'dynamic', 
         display_headline : StringType ='AVAILABLE OPTIONS', 
         display_message : StringType = 'ENTER THE OPTION: ', 
         output_message : StringType = 'YOU HAVE CHOSEN: ',
         break_key : StringType = '0',
+        exit_message : StringType = 'Exiting...',
         enter_message : StringType = 'ENTER THE ',
         method : StringType = 'descriptive', 
         alignment : StringType = 'newline',
@@ -203,24 +205,42 @@ class DualityApp(metaclass = Meta):
         * creates an executable menu from defined entries on top of functions.
 
         - type ('static' - adapts to the execution of static non-self methods and functions.)
-        - type ('script' - adapts to the execution of an object class self methods and functions as a script.)
+        - type ('dynamic' - adapts to the execution of an object class self methods and functions as dynamic.)
         - display_headline - displays the desired headline.
         - display_message - displays input value message.
         - output_message - confirmation of the chosen value.
         - break_key - key that breaks the loop while queue = 'y'.
+        - exit_message - message while exiting.
         - enter_message - enter choice message.
         - method ('descriptive' - shows stored option_name and it's description.)
         - method ('basic' - shows only the stored option_name.)
         - alignment ('basic' - shows all stored option_name and option_description values in a row.)
         - alignment ('newline' -shows all stored option_name and option_description values in a new line.)
-        - queue - enables stacking of functions and executing them in a chain.
+        - queue (DO NOT CHANGE!) - enables stacking of functions and executing them in a chain.
         - show_dtypes (True/False) - shows the dtype of the input value.
         - show_confirmation (True/False) - confirmation of the chosen option.
         - color_mode ('dark' - for dark terminal.)
         - color_mode ('light' - for light terminal.)
         - custom_color_mode - custom dictionary set of colors.
         - clear_screen (True/False) - clears the screen before starting the app
-        # DEFAULT: DualityApp.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : StringType = 'y', show_dtypes : BooleanType = True, show_confirmation : BooleanType = False, color_mode : StringType = 'dark', custom_color_mode : Dictionarytype = None, clear_screen : BooleanType = True).
+        
+        # DEFAULT: DualityApp.script(
+        type : StringType = 'dynamic', 
+        display_headline : StringType ='AVAILABLE OPTIONS', 
+        display_message : StringType = 'ENTER THE OPTION: ', 
+        output_message : StringType = 'YOU HAVE CHOSEN: ',
+        break_key : StringType = '0',
+        exit_message : StringType = 'Exiting...',
+        enter_message : StringType = 'ENTER THE ',
+        method : StringType = 'descriptive', 
+        alignment : StringType = 'newline',
+        queue: StringType = 'y',
+        show_dtypes: BooleanType = True,
+        show_confirmation : BooleanType = False,
+        color_mode : StringType = 'dark',
+        custom_color_mode : DictionaryType = None,
+        clear_screen : BooleanType = True
+        ) -> SpecialType:
         '''
 
         self.clear_screen = clear_screen
@@ -234,6 +254,7 @@ class DualityApp(metaclass = Meta):
         # set up coloring in the CLI.
         if self.color_mode == 'dark':
             self.colorset = {
+                'credit' : 'Fy',
                 'display_headline' : 'Fy',
                 'display_message' : 'Fc',
                 'output_message' : 'Fy',
@@ -241,10 +262,12 @@ class DualityApp(metaclass = Meta):
                 'tmp_name_list' : 'Fy',
                 'tmp_func' : 'Fc',
                 'warning' : 'Fr',
+                'exit_message' : 'Fy',
             }
         
         elif self.color_mode == 'light':
             self.colorset = {
+                'credit' : 'Fg',
                 'display_headline' : 'Fg',
                 'display_message' : 'Fb',
                 'output_message' : 'Fg',
@@ -252,6 +275,7 @@ class DualityApp(metaclass = Meta):
                 'tmp_name_list' : 'Fg',
                 'tmp_func' : 'Fb',
                 'warning' : 'Fr',
+                'exit_message' : 'Fg',
             }
         
         else:
@@ -266,28 +290,34 @@ class DualityApp(metaclass = Meta):
         self.show_dtypes = show_dtypes
         self.yield_name = 0 # list item counter that enables iterating through the list.
         self.show_confirmation = show_confirmation # confirmation of chosen option.
-        
-        # assert type.
-        if type != 'static' and type != 'script' and type != 'dynamic':
-            type = 'static'
-            print('WARNING: Automactically forced type to static due to invalid type choice.')
-            print('Write type = \'static\', type = \'script\' or type = \'dynamic\' in the config option to change how this impacts the behaviour of executed functions in the menu.')
+        self.exit_message = exit_message # message while exiting.
+
+        # assert deprecated warning.
+        if self.queue == 'n':
+            print('WARNING: Option is deprecated.')
+            print('Write type = \'script\' or type = \'wheel\' to change how this impacts the behaviour of executed functions in the menu.')
             print('')
 
         if alignment == 'basic':
 
             if method == 'basic':
+                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                print('')
                 show_menu = self.display(style = 'function', method = 'basic')
                 self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 print(show_menu)
+                print(str(self.break_key) + ' -> exit.')
                 print('')
 
             elif method == 'descriptive':
+                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                print('')
                 show_menu = self.display(style = 'function', method = 'descriptive')
                 self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 print(show_menu)
+                print(str(self.break_key) + ' -> exit.')
                 print('')
 
             elif method == 'none':
@@ -297,19 +327,25 @@ class DualityApp(metaclass = Meta):
         elif alignment == 'newline':
 
             if method == 'basic':
+                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                print('')
                 show_menu = self.display(style = 'function', method = 'basic')
                 self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 for line in show_menu:
                     print(line)
+                print(str(self.break_key) + ' -> exit.')
                 print('')
                 
             elif method == 'descriptive':
+                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                print('')
                 show_menu = self.display(style = 'function', method = 'descriptive')
                 self._paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 for line in show_menu:
                     print(line)
+                print(str(self.break_key) + ' -> exit.')
                 print('')
                 
             elif method == 'none':
@@ -395,7 +431,7 @@ class DualityApp(metaclass = Meta):
                                 print('')
                                 self.yield_name += 1
                                 
-
+        # THIS OPTION IS ONLY FOR INTERNAL USE, DO NOT ATTEMPT TO USE IT OUTSIDE OF THE SCRIPT OR WHEEL METHODS.
         if queue == 'y':
             # executes autoinit functions.
             if self.contains_autoinit == True:
@@ -436,8 +472,10 @@ class DualityApp(metaclass = Meta):
                             self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
+                              
+                self._paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
 
-            elif type == 'script':
+            elif type == 'dynamic':
                 
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
@@ -464,6 +502,8 @@ class DualityApp(metaclass = Meta):
                             self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
+                            
+                self._paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
         
         if queue == 'wheel' or queue == 'w':
             
@@ -538,7 +578,7 @@ class DualityApp(metaclass = Meta):
         return
     
     # wheel application.
-    def wheelconfig(
+    def wheel(
         self,
         type = 'dynamic',
         display_headline : StringType ='AVAILABLE OPTIONS', 
@@ -548,10 +588,22 @@ class DualityApp(metaclass = Meta):
         custom_color_mode : DictionaryType = None,
         clear_screen = True,
         break_key = '0',
+        exit_message = 'Exiting...'
         ) -> SpecialType:
         
         '''
-        Limited changing capabilities, for more information about method variables examine config method.
+        Limited changing capabilities, for more information about method variables examine script method.
+        # DEFAULT: DualityApp.wheel(
+        type = 'dynamic',
+        display_headline : StringType ='AVAILABLE OPTIONS', 
+        display_message : StringType = 'ENTER THE OPTION: ', 
+        output_message : StringType = 'YOU HAVE CHOSEN: ',
+        color_mode : StringType = 'dark',
+        custom_color_mode : DictionaryType = None,
+        clear_screen = True,
+        break_key = '0',
+        exit_message = 'Exiting...'
+        ) -> SpecialType:
         '''
         
         self.clear_screen = clear_screen
@@ -566,10 +618,12 @@ class DualityApp(metaclass = Meta):
         self.color_mode = color_mode # dark or ligth appearance.
         self.custom_color_mode = custom_color_mode # option to introduce own color dictionary.
         self.break_key = break_key
+        self.exit_message = exit_message
 
         # set up coloring in the CLI.
         if self.color_mode == 'dark':
             self.colorset = {
+                'credit' : 'Fy',
                 'display_headline' : 'Fy',
                 'display_message' : 'Fc',
                 'output_message' : 'Fy',
@@ -577,10 +631,12 @@ class DualityApp(metaclass = Meta):
                 'tmp_name_list' : 'Fy',
                 'tmp_func' : 'Fc',
                 'warning' : 'Fr',
+                'exit_message' : 'Fy',
             }
         
         elif self.color_mode == 'light':
             self.colorset = {
+                'credit' : 'Fg',
                 'display_headline' : 'Fg',
                 'display_message' : 'Fb',
                 'output_message' : 'Fg',
@@ -588,23 +644,27 @@ class DualityApp(metaclass = Meta):
                 'tmp_name_list' : 'Fg',
                 'tmp_func' : 'Fb',
                 'warning' : 'Fr',
+                'exit_message' : 'Fg',
             }
         
         else:
             self.colorset = self.custom_color_mode
         
+        self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+        print('')
         show_menu = self.display(style = 'function', method = 'descriptive')
         self._paint_text(self.display_headline, self.colorset['display_headline'])
         print('-----------------')
         for line in show_menu:
             print(line)
+        print(str(self.break_key) + ' -> exit.')
         print('')
         
         while True:
             if self.type == 'dynamic':
-                self.config(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
+                self.script(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
             if self.type == 'static':
-                self.config(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
+                self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
  
     def store(
         self,
@@ -617,7 +677,7 @@ class DualityApp(metaclass = Meta):
 
         - variable - name of the function argument input is being passed as.
         - type - type of the data being passed ('int', 'float', 'str' and 'list' supported.)
-        # DEFAULT: Record.store(variable : StringType = '', type : StringType = 'str'.)
+        # DEFAULT: DualityApp.store(variable : StringType = '', type : StringType = 'str'.)
         '''
 
         self.type = type
@@ -747,7 +807,7 @@ class DualityApp(metaclass = Meta):
                 
             self.tmp_list += [self.dictionary_menu[self.option]]
             self.tmp_print_list += [self.print_val_dict[self.option]]
-        
+
         return self.tmp_list
     
     # this is a help function, do not call it when using a package. (WHEEL)
@@ -772,15 +832,12 @@ class DualityApp(metaclass = Meta):
         
         if self.option == self.break_key:
             print('')
+            self._paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
             exit()
 
         while not self.option in self.option_names:
 
             self.option = input(self._paint_text('INVALID OPTION, ENTER THE OPTION: ', self.colorset['warning'], print_trigger = False))
-            
-            if self.option == self.break_key:
-                print('')
-                exit()
             
         
         print('')
@@ -825,7 +882,7 @@ class DualityApp(metaclass = Meta):
         self,
         text : StringType,
         color : StringType,
-        print_trigger : BooleanType = True
+        print_trigger : BooleanType = True,
         ) -> StringType:
         
         '''

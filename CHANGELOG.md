@@ -489,3 +489,10 @@ CHANGELOG
 
 5.0.1 (12/08/2022)
 - all particles put to public testing.
+
+5.0.2 (13/08/2022)
+- first set of changes deployed before official publish.
+
+5.1.0 (13/08/2022)
+- confirmed functionality in all test examples.
+- introduced exit option in the menu.
