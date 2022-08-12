@@ -196,13 +196,14 @@ class DualityApp(metaclass = Meta):
         show_confirmation : BooleanType = False,
         color_mode : StringType = 'dark',
         custom_color_mode : DictionaryType = None,
+        clear_screen : BooleanType = True
         ) -> SpecialType:
 
         '''
         * creates an executable menu from defined entries on top of functions.
 
         - type ('static' - adapts to the execution of static non-self methods and functions.)
-        - type ('dynamic' - adapts to the execution of dynamic class self methods and functions.)
+        - type ('script' - adapts to the execution of an object class self methods and functions as a script.)
         - display_headline - displays the desired headline.
         - display_message - displays input value message.
         - output_message - confirmation of the chosen value.
@@ -214,14 +215,18 @@ class DualityApp(metaclass = Meta):
         - alignment ('newline' -shows all stored option_name and option_description values in a new line.)
         - queue (True/False) - enables stacking of functions and executing them in a chain.
         - show_dtypes (True/False) - shows the dtype of the input value.
-        - show_confirmation : BooleanType = (True/False) - confirmation of the chosen option.
+        - show_confirmation (True/False) - confirmation of the chosen option.
         - color_mode ('dark' - for dark terminal.)
         - color_mode ('light' - for light terminal.)
         - custom_color_mode - custom dictionary set of colors.
-        # DEFAULT: DualityApp.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True, show_confirmation : BooleanType = False, color_mode : StringType = 'dark', custom_color_mode : Dictionarytype = None).
+        - clear_screen (True/False) - clears the screen before starting the app
+        # DEFAULT: DualityApp.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True, show_confirmation : BooleanType = False, color_mode : StringType = 'dark', custom_color_mode : Dictionarytype = None, clear_screen : BooleanType = True).
         '''
 
-        os.system('cls')
+        self.clear_screen = clear_screen
+
+        if self.clear_screen == True:
+            os.system('cls')
 
         self.color_mode = color_mode # dark or ligth appearance.
         self.custom_color_mode = custom_color_mode # option to introduce own color dictionary.
@@ -251,7 +256,6 @@ class DualityApp(metaclass = Meta):
         
         else:
             self.colorset = self.custom_color_mode
-            
 
         self.display_headline = display_headline
         self.display_message = self._paint_text(display_message, self.colorset['display_message'], print_trigger = False)
@@ -261,13 +265,13 @@ class DualityApp(metaclass = Meta):
         self.queue = queue
         self.show_dtypes = show_dtypes
         self.yield_name = 0 # list item counter that enables iterating through the list.
-        self.show_confirmation = show_confirmation # confirmation of chosen option.    
-
+        self.show_confirmation = show_confirmation # confirmation of chosen option.
+        
         # assert type.
-        if type != 'static' and type != 'dynamic':
+        if type != 'static' and type != 'script' and type != 'dynamic':
             type = 'static'
             print('WARNING: Automactically forced type to static due to invalid type choice.')
-            print('Write type = \'static\' or type = \'dynamic\' in the config option to change how this impacts the behaviour of executed functions in the menu.')
+            print('Write type = \'static\', type = \'script\' or type = \'dynamic\' in the config option to change how this impacts the behaviour of executed functions in the menu.')
             print('')
 
         if alignment == 'basic':
@@ -286,8 +290,9 @@ class DualityApp(metaclass = Meta):
                 print(show_menu)
                 print('')
 
-            else:
-                print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
+            elif method == 'none':
+                pass
+
 
         elif alignment == 'newline':
 
@@ -306,10 +311,12 @@ class DualityApp(metaclass = Meta):
                 for line in show_menu:
                     print(line)
                 print('')
-            else:
-                print('INVALID METHOD CHOSEN, THE PROGRAM WILL CONTINUE WITHOUT DISPLAYED OPTIONS.\n')
+                
+            elif method == 'none':
+                pass
 
         if queue == False:
+
             self.option = input(self.display_message)
             self.print_option = self.print_val_dict[self.option]
             
@@ -329,6 +336,7 @@ class DualityApp(metaclass = Meta):
                         self.hidden_dictionary_menu[i]()
 
             # disables a loop of functions.
+
             self._queue_break()
 
             if type == 'static':
@@ -360,32 +368,32 @@ class DualityApp(metaclass = Meta):
                             self.yield_name += 1
 
             elif type == 'dynamic':
-                
-                for tmp_func in self.tmp_list:
-                    self.clone_dict = self.tmp_name_list[self.yield_name]
-                    self.print_option = self.tmp_print_list[self.yield_name]
-                    print(self.tmp_name_list[self.yield_name])
 
-                    self._redefine()
+                    for tmp_func in self.tmp_list:
+                        self.clone_dict = self.tmp_name_list[self.yield_name]
+                        self.print_option = self.tmp_print_list[self.yield_name]
+                        print(self.tmp_name_list[self.yield_name])
 
-                    try:
-                        if self.print_option == False:
-                            tmp_func(self, **self.individual_dict[self.clone_dict])
-                            print('')
-                            self.yield_name += 1
-                        else:
-                            print(tmp_func(self, **self.individual_dict[self.clone_dict]))
-                            print('')
-                            self.yield_name += 1
-                    except:
-                        if self.print_option == False:
-                            tmp_func(**self.individual_dict[self.clone_dict])
-                            print('')
-                            self.yield_name += 1
-                        else:
-                            print(tmp_func(**self.individual_dict[self.clone_dict]))
-                            print('')
-                            self.yield_name += 1
+                        self._redefine()
+
+                        try:
+                            if self.print_option == False:
+                                tmp_func(self, **self.individual_dict[self.clone_dict])
+                                print('')
+                                self.yield_name += 1
+                            else:
+                                print(tmp_func(self, **self.individual_dict[self.clone_dict]))
+                                print('')
+                                self.yield_name += 1
+                        except:
+                            if self.print_option == False:
+                                tmp_func(**self.individual_dict[self.clone_dict])
+                                print('')
+                                self.yield_name += 1
+                            else:
+                                print(tmp_func(**self.individual_dict[self.clone_dict]))
+                                print('')
+                                self.yield_name += 1
 
         if queue == True:
             # executes autoinit functions.
@@ -428,7 +436,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
 
-            elif type == 'dynamic':
+            elif type == 'script':
                 
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
@@ -455,9 +463,148 @@ class DualityApp(metaclass = Meta):
                             self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
+        
+        if queue == 'wheel':
+            
+            # executes autoinit functions.
+            if self.contains_autoinit == True:
+                try:
+                    for i in self.hidden_dictionary_menu:
+                        self.hidden_dictionary_menu[i](self)
+                except:
+                    for i in self.hidden_dictionary_menu:
+                        self.hidden_dictionary_menu[i]()
+
+            # enables a loop to execute functions in a wheel loop.
+            self._wheel_queue_handler()
+                                
+            if type == 'dynamic':
+
+                for tmp_func in self.tmp_list:
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
+                    self.print_option = self.tmp_print_list[self.yield_name]
+                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
+
+                    self._redefine()
+
+                    try:
+                        if self.print_option == False:
+                            tmp_func(self, **self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            print('')
+                            self.yield_name += 1
+                    except:
+                        if self.print_option == False:
+                            tmp_func(**self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            print('')
+                            self.yield_name += 1
+                            
+            if type == 'static':
+
+                for tmp_func in self.tmp_list:
+                    self.clone_dict = self.tmp_name_list[self.yield_name]
+                    self.print_option = self.tmp_print_list[self.yield_name]
+                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
+
+                    self._redefine()
+
+                    try:
+                        if self.print_option == False:
+                            tmp_func(self, **self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            print('')
+                            self.yield_name += 1
+                    except:
+                        if self.print_option == False:
+                            tmp_func(**self.individual_dict[self.clone_dict])
+                            print('')
+                            self.yield_name += 1
+                        else:
+                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            print('')
+                            self.yield_name += 1
 
         return
+    
+    # wheel application.
+    def wheelconfig(
+        self,
+        type = 'dynamic',
+        display_headline : StringType ='AVAILABLE OPTIONS', 
+        display_message : StringType = 'ENTER THE OPTION: ', 
+        output_message : StringType = 'YOU HAVE CHOSEN: ',
+        color_mode : StringType = 'dark',
+        custom_color_mode : DictionaryType = None,
+        clear_screen = True,
+        break_key = '0',
+        ) -> SpecialType:
+        
+        '''
+        Limited changing capabilities, for more information about method variables examine config method.
+        '''
+        
+        self.clear_screen = clear_screen
 
+        if self.clear_screen == True:
+            os.system('cls')
+            
+        self.type = type
+        self.display_headline = display_headline
+        self.display_message = display_message
+        self.output_message = output_message
+        self.color_mode = color_mode # dark or ligth appearance.
+        self.custom_color_mode = custom_color_mode # option to introduce own color dictionary.
+        self.break_key = break_key
+
+        # set up coloring in the CLI.
+        if self.color_mode == 'dark':
+            self.colorset = {
+                'display_headline' : 'Fy',
+                'display_message' : 'Fc',
+                'output_message' : 'Fy',
+                'enter_message' : 'Fc',
+                'tmp_name_list' : 'Fy',
+                'tmp_func' : 'Fc',
+                'warning' : 'Fr',
+            }
+        
+        elif self.color_mode == 'light':
+            self.colorset = {
+                'display_headline' : 'Fg',
+                'display_message' : 'Fb',
+                'output_message' : 'Fg',
+                'enter_message' : 'Fb',
+                'tmp_name_list' : 'Fg',
+                'tmp_func' : 'Fb',
+                'warning' : 'Fr',
+            }
+        
+        else:
+            self.colorset = self.custom_color_mode
+        
+        show_menu = self.display(style = 'function', method = 'descriptive')
+        self._paint_text(self.display_headline, self.colorset['display_headline'])
+        print('-----------------')
+        for line in show_menu:
+            print(line)
+        print('')
+        
+        while True:
+            if self.type == 'dynamic':
+                self.config(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
+            if self.type == 'static':
+                self.config(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
+ 
     def store(
         self,
         variable : StringType = '',
@@ -506,6 +653,7 @@ class DualityApp(metaclass = Meta):
             self.individual_dict[self.clone_dict][i] = self.new_i
 
         return self.individual_dict[self.clone_dict]
+    
 
     # this is a help function, do not call it when using a package.
     def _set_int(
@@ -561,7 +709,7 @@ class DualityApp(metaclass = Meta):
             
         return self.new_i
 
-    # this is a help function, do not call it when using a package.
+    # this is a help function, do not call it when using a package. (SCRIPT)
     def _queue_handler(
         self,
         iterate: BooleanType = True,
@@ -600,8 +748,53 @@ class DualityApp(metaclass = Meta):
             self.tmp_print_list += [self.print_val_dict[self.option]]
         
         return self.tmp_list
+    
+    # this is a help function, do not call it when using a package. (WHEEL)
+    def _wheel_queue_handler(
+        self,
+        iterate: BooleanType = True,
+        ) -> ListType:
 
-    # this is a help function, do not call it when using a package.
+        '''
+        * enables a loop for the queue.
+
+        - iterate (True/False) - enables the functionality of queue, do not change!
+        '''
+
+        self.print_val_list = []
+        self.tmp_list = []
+        self.iterate = iterate
+        self.tmp_name_list = []
+        self.tmp_print_list = []
+            
+        self.option = input(self.display_message)
+        
+        if self.option == self.break_key:
+            print('')
+            exit()
+
+        while not self.option in self.option_names:
+
+            self.option = input(self._paint_text('INVALID OPTION, ENTER THE OPTION: ', self.colorset['warning'], print_trigger = False))
+            
+            if self.option == self.break_key:
+                print('')
+                exit()
+            
+        
+        print('')
+        self.tmp_name_list += [self.option]
+        self.print_val_list += self.option
+        
+        if self.show_confirmation == True:
+            print(self.output_message, self.option + '\n')
+            
+        self.tmp_list += [self.dictionary_menu[self.option]]
+        self.tmp_print_list += [self.print_val_dict[self.option]]
+        
+        return self.tmp_list
+
+    # this is a help function, do not call it when using a package. (NO QUEUE)
     def _queue_break(
         self,
         ) -> ListType:
@@ -626,6 +819,7 @@ class DualityApp(metaclass = Meta):
 
         return self.tmp_list
 
+    # paints text.
     def _paint_text(
         self,
         text : StringType,

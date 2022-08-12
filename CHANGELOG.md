@@ -478,6 +478,11 @@ CHANGELOG
 - added optional arguments.
 - now cleans the interface upon casting.
 
-4.9.0 (07/07/2022)
+4.9.0 (07/08/2022)
 - introduced coloring! WOHOOO!!!
 - autohandling of KeyErrors implemented.
+
+5.0.0 (12/08/2022)
+- type = dynamic is now type = script.
+- introduction of type = dynamic to work with object methods in a loop presented wheelconfig method.
+- wheelconfig is now a primary way to create applications in the terminal, available for static and dynamic class.

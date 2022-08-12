@@ -20,5 +20,5 @@ class Car:
         return f'Car of the brand {self.brand}, speed {self.speed} from the country of {self.country}.'
 
 if __name__ == '__main__':
-    app.config(type = 'dynamic', queue = True)
+    app.config(type = 'script', queue = True)
     print('Executed on:', duality.__version__)
