@@ -486,3 +486,6 @@ CHANGELOG
 - type = dynamic is now type = script.
 - introduction of type = dynamic to work with object methods in a loop presented wheelconfig method.
 - wheelconfig is now a primary way to create applications in the terminal, available for static and dynamic class.
+
+5.0.1 (12/08/2022)
+- all particles put to public testing.

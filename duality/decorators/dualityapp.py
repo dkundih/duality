@@ -191,7 +191,7 @@ class DualityApp(metaclass = Meta):
         enter_message : StringType = 'ENTER THE ',
         method : StringType = 'descriptive', 
         alignment : StringType = 'newline',
-        queue: BooleanType = False,
+        queue: StringType = 'y',
         show_dtypes: BooleanType = True,
         show_confirmation : BooleanType = False,
         color_mode : StringType = 'dark',
@@ -207,20 +207,20 @@ class DualityApp(metaclass = Meta):
         - display_headline - displays the desired headline.
         - display_message - displays input value message.
         - output_message - confirmation of the chosen value.
-        - break_key - key that breaks the loop while queue = True.
+        - break_key - key that breaks the loop while queue = 'y'.
         - enter_message - enter choice message.
         - method ('descriptive' - shows stored option_name and it's description.)
         - method ('basic' - shows only the stored option_name.)
         - alignment ('basic' - shows all stored option_name and option_description values in a row.)
         - alignment ('newline' -shows all stored option_name and option_description values in a new line.)
-        - queue (True/False) - enables stacking of functions and executing them in a chain.
+        - queue - enables stacking of functions and executing them in a chain.
         - show_dtypes (True/False) - shows the dtype of the input value.
         - show_confirmation (True/False) - confirmation of the chosen option.
         - color_mode ('dark' - for dark terminal.)
         - color_mode ('light' - for light terminal.)
         - custom_color_mode - custom dictionary set of colors.
         - clear_screen (True/False) - clears the screen before starting the app
-        # DEFAULT: DualityApp.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : BooleanType = False, show_dtypes : BooleanType = True, show_confirmation : BooleanType = False, color_mode : StringType = 'dark', custom_color_mode : Dictionarytype = None, clear_screen : BooleanType = True).
+        # DEFAULT: DualityApp.config(type : StringType = 'static', display_headline : StringType = 'AVAILABLE OPTIONS', display_message : StringType = 'ENTER THE OPTION: ', output_message : StringType = 'YOU HAVE CHOSEN: ', break_key : StringType = '0', enter_message : StringType = 'ENTER THE: ', method : StringType = 'descriptive', alignment : StringType = 'newline', queue : StringType = 'y', show_dtypes : BooleanType = True, show_confirmation : BooleanType = False, color_mode : StringType = 'dark', custom_color_mode : Dictionarytype = None, clear_screen : BooleanType = True).
         '''
 
         self.clear_screen = clear_screen
@@ -315,7 +315,7 @@ class DualityApp(metaclass = Meta):
             elif method == 'none':
                 pass
 
-        if queue == False:
+        if queue == 'n':
 
             self.option = input(self.display_message)
             self.print_option = self.print_val_dict[self.option]
@@ -394,8 +394,9 @@ class DualityApp(metaclass = Meta):
                                 print(tmp_func(**self.individual_dict[self.clone_dict]))
                                 print('')
                                 self.yield_name += 1
+                                
 
-        if queue == True:
+        if queue == 'y':
             # executes autoinit functions.
             if self.contains_autoinit == True:
                 try:
@@ -464,7 +465,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
         
-        if queue == 'wheel':
+        if queue == 'wheel' or queue == 'w':
             
             # executes autoinit functions.
             if self.contains_autoinit == True:

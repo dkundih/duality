@@ -18,7 +18,11 @@ class Car:
     @app.entry('show info', option_description = 'describes the car.', print_val = True)
     def show_info(self):
         return f'Car of the brand {self.brand}, speed {self.speed} from the country of {self.country}.'
+    
+    @app.entry('text', option_description = 'describes the car.')
+    def show_info(self):
+        return print('nanan')
 
 if __name__ == '__main__':
-    app.config(type = 'script', queue = True)
+    app.config(type = 'script')
     print('Executed on:', duality.__version__)

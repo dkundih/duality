@@ -16,7 +16,7 @@ class App:
         return rez
 
     def initconfig(self):
-        t.config(type = 'static', queue = True)
+        t.config(type = 'static', queue = 'y')
 
 a = App()
 
