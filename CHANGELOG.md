@@ -497,6 +497,12 @@ CHANGELOG
 - confirmed functionality in all test examples.
 - introduced exit option in the menu.
 
-5.1.1 (13/08/2022)
+5.2.0 (13/08/2022)
 - paint_text migrated to and imported from logistics module.
 - coloring set to test.
+
+5.2.1 (13/08/2022)
+- added enter_message to wheel.
+
+5.2.2 (13/08/2022)
+- readded enter_message to wheel.

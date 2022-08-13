@@ -587,6 +587,7 @@ class DualityApp(metaclass = Meta):
         display_headline : StringType ='AVAILABLE OPTIONS', 
         display_message : StringType = 'ENTER THE OPTION: ', 
         output_message : StringType = 'YOU HAVE CHOSEN: ',
+        enter_message : StringType = 'ENTER THE ',
         color_mode : StringType = 'dark',
         custom_color_mode : DictionaryType = None,
         clear_screen = True,
@@ -601,6 +602,7 @@ class DualityApp(metaclass = Meta):
         display_headline : StringType ='AVAILABLE OPTIONS', 
         display_message : StringType = 'ENTER THE OPTION: ', 
         output_message : StringType = 'YOU HAVE CHOSEN: ',
+        enter_message : StringType = 'ENTER THE ',
         color_mode : StringType = 'dark',
         custom_color_mode : DictionaryType = None,
         clear_screen = True,
@@ -618,6 +620,7 @@ class DualityApp(metaclass = Meta):
         self.display_headline = display_headline
         self.display_message = display_message
         self.output_message = output_message
+        self.enter_message = enter_message
         self.color_mode = color_mode # dark or ligth appearance.
         self.custom_color_mode = custom_color_mode # option to introduce own color dictionary.
         self.break_key = break_key
@@ -665,9 +668,9 @@ class DualityApp(metaclass = Meta):
         
         while True:
             if self.type == 'dynamic':
-                self.script(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
+                self.script(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message)
             if self.type == 'static':
-                self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key)
+                self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message)
  
     def store(
         self,
