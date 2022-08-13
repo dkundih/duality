@@ -506,3 +506,6 @@ CHANGELOG
 
 5.2.2 (13/08/2022)
 - readded enter_message to wheel.
+
+5.2.3 (13/08/2022)
+- readded exit_message to wheel.

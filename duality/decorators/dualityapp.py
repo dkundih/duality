@@ -668,9 +668,9 @@ class DualityApp(metaclass = Meta):
         
         while True:
             if self.type == 'dynamic':
-                self.script(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message)
+                self.script(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message, exit_message = self.exit_message)
             if self.type == 'static':
-                self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message)
+                self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message, exit_message = self.exit_message)
  
     def store(
         self,
