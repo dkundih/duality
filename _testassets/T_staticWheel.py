@@ -1,5 +1,7 @@
 ### TEST ENV ###
 import duality
+import time
+from logistics.plugins.coloring import paint_text
 
 app = duality.DualityApp()
 
@@ -15,4 +17,6 @@ class Car:
         return 'This would show some text in general.'
 
 if __name__ == '__main__':
+    paint_text(text = '\n>>> Executed on: ' + str(duality.__version__) + ' <<<', color = 'Fy', print_trigger = True)
+    time.sleep(3)
     app.wheel(type = 'static')

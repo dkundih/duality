@@ -496,3 +496,7 @@ CHANGELOG
 5.1.0 (13/08/2022)
 - confirmed functionality in all test examples.
 - introduced exit option in the menu.
+
+5.1.1 (13/08/2022)
+- paint_text migrated to and imported from logistics module.
+- coloring set to test.

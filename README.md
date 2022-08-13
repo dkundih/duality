@@ -10,16 +10,26 @@
 duality
 =====
 
-Decorator particles for creating an executeable menu from a python file and function execution tracking.
+Decorator library for the creation of CLI applications and scripts.
 Use permitted according to the terms of use and conditions set by the attached license.
 
-**Example of use**
 
-Example code over a Car object. (v4.9.0)
-<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/duality_exmp1.jpg'/>
+**Example of use - SCRIPT**
 
-Example use in the terminal. (v4.9.0)
-<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/duality_exmp2.jpg'/>
+Example code over a Car object. - DualityApp.script (v5.2.0)
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_dynamicScript1.jpg'/>
+
+Example use in the terminal. - DualityApp.script (v5.2.0)
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_dynamicScript2.jpg'/>
+
+
+**Example of use - WHEEL**
+
+Example code over a Car object. - DualityApp.wheel (v5.2.0)
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_dynamicWheel1.jpg'/>
+
+Example use in the terminal. - DualityApp.wheel (v5.2.0)
+<img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_dynamicWheel2.jpg'/>
 
 Visit my Data Library at https://github.com/dkundih/DataLibrary in order to see the demonstration of use in practical examples.
 

@@ -1,5 +1,7 @@
 ### TEST ENV ###
 import duality
+import time
+from logistics.plugins.coloring import paint_text
 
 app = duality.DualityApp()
 
@@ -21,4 +23,6 @@ class Car:
         return f'Car of the brand {self.brand}, speed {self.speed} from the country of {self.country}.'
 
 if __name__ == '__main__':
-    app.wheel(type = 'dynamic')
+    paint_text(text = '\n>>> Executed on: ' + str(duality.__version__) + ' <<<', color = 'Fy', print_trigger = True)
+    time.sleep(3)
+    app.wheel(type = 'dynamic', break_key = 'close')

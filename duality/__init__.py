@@ -51,6 +51,9 @@ from duality.misc._meta import (
 # imports all data types.
 from logistics.plugins.types import *
 
+# imports coloring.
+from logistics.plugins.coloring import *
+
 # imports relevant dependencies.
 from logistics.plugins.metaclass import Meta
 

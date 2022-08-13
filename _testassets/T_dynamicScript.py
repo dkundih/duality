@@ -1,4 +1,7 @@
+### TEST ENV ###
 import duality
+import time
+from logistics.plugins.coloring import paint_text
 
 app = duality.DualityApp()
 
@@ -18,11 +21,8 @@ class Car:
     @app.entry('show info', option_description = 'describes the car.', print_val = True)
     def show_info(self):
         return f'Car of the brand {self.brand}, speed {self.speed} from the country of {self.country}.'
-    
-    @app.entry('text', option_description = 'describes the car.')
-    def show_info(self):
-        return print('nanan')
 
 if __name__ == '__main__':
-    app.script(type = 'dynamic')
-    print('Executed on:', duality.__version__)
+    paint_text(text = '\n>>> Executed on: ' + str(duality.__version__) + ' <<<', color = 'Fy', print_trigger = True)
+    time.sleep(3)
+    app.script(type = 'dynamic', break_key = 'close')

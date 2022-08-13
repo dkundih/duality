@@ -4,6 +4,9 @@ from logistics.plugins.metaclass import Meta
 # imports all data types.
 from logistics.plugins.types import *
 
+# imports coloring.
+from logistics.plugins.coloring import *
+
 # dependencies import.
 import sys
 import json

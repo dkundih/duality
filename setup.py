@@ -35,7 +35,7 @@ from duality.misc._meta import __version__
 setup(
   name = 'duality',
   version = __version__,
-  description = 'Decorator particles for creating an executable menu from a python file and function execution tracking.',
+  description = 'Decorator library for the creation of CLI applications and scripts.',
   long_description_content_type = 'text/markdown',
   long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(), 
   author = 'David Kundih',
@@ -53,7 +53,7 @@ setup(
   keywords = 'script, CLI, data manipulation, decorator, decorator functions, unin, duality, duality-py, duality.py, vandal, vandal.py, vandal-py',
   packages = find_packages(),
   install_requires = [
-    'logistics >= 0.0.11',
+    'logistics >= 0.0.12',
     'colorama',
 ]
   )

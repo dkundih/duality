@@ -1,7 +1,7 @@
 # makes multiple instances of the object available.
 from logistics.plugins.metaclass import Meta
 
-# for CLI functionality and coloring.
+# for CLI functionality.
 import os
 from colorama import (
     Fore,
@@ -14,6 +14,9 @@ init()
 
 # imports all data types.
 from logistics.plugins.types import *
+
+# imports coloring.
+from logistics.plugins.coloring import *
 
 # package.
 class DualityApp(metaclass = Meta):
@@ -78,13 +81,13 @@ class DualityApp(metaclass = Meta):
             if autoinit == False:
                 self.dictionary_menu[self.option_name] = func
                 self.basic_menu += [self.option_name]
-                self.descriptive_function = str(self.option_name) + ' -> ' + str(self.option_description)
+                self.descriptive_function = str(self.option_name) + str(paint_text(' -> ', color = 'Fy', print_trigger = False)) + str(self.option_description)
                 self.descriptive_menu += [self.descriptive_function]
             
             elif autoinit == True:
                 self.hidden_dictionary_menu[self.option_name] = func
                 self.hidden_basic_menu += [self.option_name]
-                self.descriptive_function = str(self.option_name) + ' -> ' + str(self.option_description)
+                self.descriptive_function = str(self.option_name) + str(paint_text(' -> ', color = 'Fy', print_trigger = False)) + str(self.option_description)
                 self.hidden_descriptive_menu += [self.descriptive_function]
                 self.contains_autoinit = True
 
@@ -282,10 +285,10 @@ class DualityApp(metaclass = Meta):
             self.colorset = self.custom_color_mode
 
         self.display_headline = display_headline
-        self.display_message = self._paint_text(display_message, self.colorset['display_message'], print_trigger = False)
-        self.output_message = self._paint_text(output_message, self.colorset['output_message'], print_trigger = False)
+        self.display_message = paint_text(display_message, self.colorset['display_message'], print_trigger = False)
+        self.output_message = paint_text(output_message, self.colorset['output_message'], print_trigger = False)
         self.break_key = break_key
-        self.enter_message = self._paint_text(enter_message, self.colorset['enter_message'], print_trigger = False)
+        self.enter_message = paint_text(enter_message, self.colorset['enter_message'], print_trigger = False)
         self.queue = queue
         self.show_dtypes = show_dtypes
         self.yield_name = 0 # list item counter that enables iterating through the list.
@@ -301,23 +304,23 @@ class DualityApp(metaclass = Meta):
         if alignment == 'basic':
 
             if method == 'basic':
-                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                paint_text(self.credit, self.colorset['credit'], print_trigger = True)
                 print('')
                 show_menu = self.display(style = 'function', method = 'basic')
-                self._paint_text(self.display_headline, self.colorset['display_headline'])
+                paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 print(show_menu)
-                print(str(self.break_key) + ' -> exit.')
+                print(str(self.break_key) + str(paint_text(' -> ', color = 'Fr', print_trigger = False)) + 'exit.')
                 print('')
 
             elif method == 'descriptive':
-                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                paint_text(self.credit, self.colorset['credit'], print_trigger = True)
                 print('')
                 show_menu = self.display(style = 'function', method = 'descriptive')
-                self._paint_text(self.display_headline, self.colorset['display_headline'])
+                paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 print(show_menu)
-                print(str(self.break_key) + ' -> exit.')
+                print(str(self.break_key) + str(paint_text(' -> ', color = 'Fr', print_trigger = False)) + 'exit.')
                 print('')
 
             elif method == 'none':
@@ -327,25 +330,25 @@ class DualityApp(metaclass = Meta):
         elif alignment == 'newline':
 
             if method == 'basic':
-                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                paint_text(self.credit, self.colorset['credit'], print_trigger = True)
                 print('')
                 show_menu = self.display(style = 'function', method = 'basic')
-                self._paint_text(self.display_headline, self.colorset['display_headline'])
+                paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 for line in show_menu:
                     print(line)
-                print(str(self.break_key) + ' -> exit.')
+                print(str(self.break_key) + str(paint_text(' -> ', color = 'Fr', print_trigger = False)) + 'exit.')
                 print('')
                 
             elif method == 'descriptive':
-                self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+                paint_text(self.credit, self.colorset['credit'], print_trigger = True)
                 print('')
                 show_menu = self.display(style = 'function', method = 'descriptive')
-                self._paint_text(self.display_headline, self.colorset['display_headline'])
+                paint_text(self.display_headline, self.colorset['display_headline'])
                 print('-----------------')
                 for line in show_menu:
                     print(line)
-                print(str(self.break_key) + ' -> exit.')
+                print(str(self.break_key) + str(paint_text(' -> ', color = 'Fr', print_trigger = False)) + 'exit.')
                 print('')
                 
             elif method == 'none':
@@ -450,7 +453,7 @@ class DualityApp(metaclass = Meta):
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
                     self.print_option = self.tmp_print_list[self.yield_name]
-                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
+                    paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
 
                     self._redefine()
 
@@ -460,7 +463,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                     except:
@@ -469,18 +472,18 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                               
-                self._paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
+                paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
 
             elif type == 'dynamic':
                 
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
                     self.print_option = self.tmp_print_list[self.yield_name]
-                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
+                    paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
 
                     self._redefine()
 
@@ -490,7 +493,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                     except:
@@ -499,11 +502,11 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                             
-                self._paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
+                paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
         
         if queue == 'wheel' or queue == 'w':
             
@@ -524,7 +527,7 @@ class DualityApp(metaclass = Meta):
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
                     self.print_option = self.tmp_print_list[self.yield_name]
-                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
+                    paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
 
                     self._redefine()
 
@@ -534,7 +537,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                     except:
@@ -543,7 +546,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                             
@@ -552,7 +555,7 @@ class DualityApp(metaclass = Meta):
                 for tmp_func in self.tmp_list:
                     self.clone_dict = self.tmp_name_list[self.yield_name]
                     self.print_option = self.tmp_print_list[self.yield_name]
-                    self._paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
+                    paint_text(self.tmp_name_list[self.yield_name], self.colorset['tmp_name_list'])
 
                     self._redefine()
 
@@ -562,7 +565,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(self, **self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
                     except:
@@ -571,7 +574,7 @@ class DualityApp(metaclass = Meta):
                             print('')
                             self.yield_name += 1
                         else:
-                            self._paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
+                            paint_text(tmp_func(**self.individual_dict[self.clone_dict]), self.colorset['tmp_func'])
                             print('')
                             self.yield_name += 1
 
@@ -650,14 +653,14 @@ class DualityApp(metaclass = Meta):
         else:
             self.colorset = self.custom_color_mode
         
-        self._paint_text(self.credit, self.colorset['credit'], print_trigger = True)
+        paint_text(self.credit, self.colorset['credit'], print_trigger = True)
         print('')
         show_menu = self.display(style = 'function', method = 'descriptive')
-        self._paint_text(self.display_headline, self.colorset['display_headline'])
+        paint_text(self.display_headline, self.colorset['display_headline'])
         print('-----------------')
         for line in show_menu:
             print(line)
-        print(str(self.break_key) + ' -> exit.')
+        print(str(self.break_key) + str(paint_text(' -> ', color = 'Fr', print_trigger = False)) + 'exit.')
         print('')
         
         while True:
@@ -797,7 +800,7 @@ class DualityApp(metaclass = Meta):
                 break
             
             while not self.option in self.option_names:
-                self.option = input(self._paint_text('INVALID OPTION, ENTER THE OPTION: ', self.colorset['warning'], print_trigger = False))
+                self.option = input(paint_text('INVALID OPTION, ENTER THE OPTION: ', self.colorset['warning'], print_trigger = False))
             
             self.tmp_name_list += [self.option]
             self.print_val_list += self.option
@@ -832,12 +835,12 @@ class DualityApp(metaclass = Meta):
         
         if self.option == self.break_key:
             print('')
-            self._paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
+            paint_text(self.exit_message, self.colorset['exit_message'], print_trigger = True)
             exit()
 
         while not self.option in self.option_names:
 
-            self.option = input(self._paint_text('INVALID OPTION, ENTER THE OPTION: ', self.colorset['warning'], print_trigger = False))
+            self.option = input(paint_text('INVALID OPTION, ENTER THE OPTION: ', self.colorset['warning'], print_trigger = False))
             
         
         print('')
@@ -876,45 +879,3 @@ class DualityApp(metaclass = Meta):
         self.tmp_print_list += [self.print_val_dict[self.option]]
 
         return self.tmp_list
-
-    # paints text.
-    def _paint_text(
-        self,
-        text : StringType,
-        color : StringType,
-        print_trigger : BooleanType = True,
-        ) -> StringType:
-        
-        '''
-        * coloring of CLI.
-        
-        - text - desired text to print.
-        - color - desired color to print in.
-        - print_trigger (True/False) - modify return type.
-        '''
-        
-        colors = {
-            # Fore coloring.
-            'Fr' : Fore.RED,
-            'Fg' : Fore.GREEN,
-            'Fb' : Fore.BLUE,
-            'Fk' : Fore.BLACK,
-            'Fm' : Fore.MAGENTA,
-            'Fy' : Fore.YELLOW,
-            'Fc' : Fore.CYAN,
-            
-            # Back coloring.
-            'Br' : Back.RED,
-            'Bg' : Back.GREEN,
-            'Bb' : Back.BLUE,
-            'Bk' : Back.BLACK,
-            'Bm' : Back.MAGENTA,
-            'By' : Back.YELLOW,
-            'Bc' : Back.CYAN,
-            }
-        
-        if print_trigger == True:
-            return print(colors[color] + str(text) + Style.RESET_ALL)
-        
-        elif print_trigger == False:
-            return colors[color] + str(text) + Style.RESET_ALL
