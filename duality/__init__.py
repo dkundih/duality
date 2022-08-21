@@ -12,6 +12,21 @@ AVAILABLE FEATURES IN THE PACKAGE:
 
 	duality.DualityApp is an object decorator class that stores menu options over functions and class methods for listing and executing in a CLI.
 		print(help(duality.DualityApp)) in order to see available features.
+  
+    COLORSET (self.custom_color_mode template)
+    ________
+    
+    self.colorset = {
+        'credit' : 'Fy',
+        'display_headline' : 'Fy',
+        'display_message' : 'Fc',
+        'output_message' : 'Fy',
+        'enter_message' : 'Fc',
+        'tmp_name_list' : 'Fy',
+        'tmp_func' : 'Fc',
+        'warning' : 'Fr',
+        'exit_message' : 'Fy',
+    }
 
 	track (OBJECT/DECORATOR)
 	------------

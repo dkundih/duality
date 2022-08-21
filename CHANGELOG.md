@@ -513,3 +513,9 @@ CHANGELOG
 5.3.0 (21/08/2022)
 - introduced overwrite option to store.
 - stable logistics release integrated.
+
+5.3.1 (21/08/2022)
+- rework of custom coloring.
+
+5.3.2 (21/08/2022)
+- rework of custom coloring in wheel resolved.

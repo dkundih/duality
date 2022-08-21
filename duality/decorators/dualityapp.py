@@ -23,6 +23,21 @@ class DualityApp(metaclass = Meta):
 
     '''
     * stores menu options over functions and class methods for listing.
+    
+    COLORSET (self.custom_color_mode template)
+    ________
+    
+    self.colorset = {
+        'credit' : 'Fy',
+        'display_headline' : 'Fy',
+        'display_message' : 'Fc',
+        'output_message' : 'Fy',
+        'enter_message' : 'Fc',
+        'tmp_name_list' : 'Fy',
+        'tmp_func' : 'Fc',
+        'warning' : 'Fr',
+        'exit_message' : 'Fy',
+    }
     '''
 
     def __init__(
@@ -285,7 +300,7 @@ class DualityApp(metaclass = Meta):
                 'exit_message' : 'Fg',
             }
         
-        else:
+        elif self.color_mode == 'custom':
             self.colorset = self.custom_color_mode
 
         self.display_headline = display_headline
@@ -657,7 +672,7 @@ class DualityApp(metaclass = Meta):
                 'exit_message' : 'Fg',
             }
         
-        else:
+        elif self.color_mode == 'custom':
             self.colorset = self.custom_color_mode
         
         paint_text(self.credit, self.colorset['credit'], print_trigger = True)
@@ -672,9 +687,9 @@ class DualityApp(metaclass = Meta):
         
         while True:
             if self.type == 'dynamic':
-                self.script(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message, exit_message = self.exit_message)
+                self.script(type = 'dynamic', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, custom_color_mode = self.custom_color_mode, break_key = self.break_key, enter_message = self.enter_message, exit_message = self.exit_message)
             if self.type == 'static':
-                self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, break_key = self.break_key, enter_message = self.enter_message, exit_message = self.exit_message)
+                self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, custom_color_mode = self.custom_color_mode, break_key = self.break_key, enter_message = self.enter_message, exit_message = self.exit_message)
  
     def store(
         self,
