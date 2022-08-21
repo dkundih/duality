@@ -16,16 +16,16 @@ AVAILABLE FEATURES IN THE PACKAGE:
     COLORSET (self.custom_color_mode template)
     ________
     
-    self.colorset = {
-        'credit' : 'Fy',
-        'display_headline' : 'Fy',
-        'display_message' : 'Fc',
-        'output_message' : 'Fy',
-        'enter_message' : 'Fc',
-        'tmp_name_list' : 'Fy',
-        'tmp_func' : 'Fc',
-        'warning' : 'Fr',
-        'exit_message' : 'Fy',
+    colorset = {
+        'credit' : 'Fy', - credit pop-up color.
+        'display_headline' : 'Fy', - headline of the menu color.
+        'display_message' : 'Fc', - enter the option color.
+        'output_message' : 'Fy', - confirmation of choice color (DEPRECATED).
+        'enter_message' : 'Fc', - input variables color.
+        'tmp_name_list' : 'Fy', - headline of chosen option color.
+        'tmp_func' : 'Fc', - output of the chosen option color.
+        'warning' : 'Fr', - general warning and error handling color.
+        'exit_message' : 'Fy', - exit out of the application color.
     }
 
 	track (OBJECT/DECORATOR)

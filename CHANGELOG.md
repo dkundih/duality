@@ -519,3 +519,7 @@ CHANGELOG
 
 5.3.2 (21/08/2022)
 - rework of custom coloring in wheel resolved.
+
+5.3.3 (21/08/2022)
+- added docstrings and improved code clarity.
+- added more examples to README.

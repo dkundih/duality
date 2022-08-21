@@ -8,7 +8,7 @@ app = duality.DualityApp()
 class Car:
 
     @app.entry(option_name = 'change speed', option_description = 'this changes the speed of the car.', print_val = True)
-    def set_name(speed = 0, amount = app.store('amount', 'int')):
+    def set_name(speed = 0, amount = app.store('amount', 'int', 'AMOUNT')):
         speed += amount
         return speed
 

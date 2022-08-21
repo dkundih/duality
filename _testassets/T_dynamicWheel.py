@@ -8,13 +8,13 @@ app = duality.DualityApp()
 class Car:
 
     @app.entry(option_name = 'initialize', option_description = 'starts the car object.')
-    def __init__(self, brand = app.store('brand', 'str'), speed = app.store('speed', 'int'), country = app.store('country', 'str')):
+    def __init__(self, brand = app.store('brand', 'str', 'BRAND'), speed = app.store('speed', 'int', 'SPEED'), country = app.store('country', 'str', 'COUNTRY')):
         self.brand = brand
         self.speed = speed
         self.country = country
 
     @app.entry(option_name = 'change speed', option_description = 'this changes the speed of the car.')
-    def set_name(self, amount = app.store('amount', 'int')):
+    def set_name(self, amount = app.store('amount', 'int', 'AMOUNT')):
         self.speed += amount
         return self.speed
 
