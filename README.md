@@ -44,7 +44,7 @@ NOTE: In order to apply custom coloring, define color_mode = 'custom', custom_co
 
 <img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_customColoring1.jpg'/>
 
-Example use in the terminal with custom coloring applies. (v5.3.3)
+Example use in the terminal with custom coloring applied. (v5.3.3)
 <img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_customColoring2.jpg'/>
 
 **Installation**
