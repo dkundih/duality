@@ -509,3 +509,6 @@ CHANGELOG
 
 5.2.3 (13/08/2022)
 - readded exit_message to wheel.
+
+5.3.0 (XX/08/2022) - AWAITING LOGISTICS 0.0.15 TO GET RELEASED FIRST, RELEASE POSTPONED UNTIL THEN.
+- introduced overwrite option to store.

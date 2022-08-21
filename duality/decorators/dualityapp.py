@@ -43,6 +43,8 @@ class DualityApp(metaclass = Meta):
         self.stored_keys : ListType = []
         self.print_val_dict : ListType = {}
         self.option_names : ListType = []
+        self.overwrite_variable : DictionaryType = {}
+        self.overwrite_types : DictionaryType = {}
 
         self.hidden_basic_menu : ListType = []
         self.hidden_descriptive_menu : ListType = []
@@ -74,6 +76,8 @@ class DualityApp(metaclass = Meta):
         self.print_val = print_val
         self.individual_dict[self.dict_name] = {}
         self.reset_dict[self.dict_name] = {}
+        self.overwrite_variable[self.dict_name] = {} # store redefine.
+        self.overwrite_types[self.dict_name] = {} # store redefine.
         self.print_val_dict[self.option_name] = self.print_val
 
         def _record_function(func):
@@ -676,6 +680,7 @@ class DualityApp(metaclass = Meta):
         self,
         variable : StringType = '',
         type : StringType = 'str',
+        overwrite : StringType = None,
         ) -> DictionaryType:
 
         '''
@@ -686,11 +691,17 @@ class DualityApp(metaclass = Meta):
         # DEFAULT: DualityApp.store(variable : StringType = '', type : StringType = 'str'.)
         '''
 
+        if overwrite == None:
+            overwrite = variable
+
         self.type = type
         self.variable = variable
+        self.overwrite = overwrite
         self.individual_dict[self.dict_name][self.variable] = self.type
         self.reset_dict[self.dict_name][self.variable] = self.type
-
+        self.overwrite_variable[self.dict_name][self.variable] = self.overwrite
+        self.overwrite_types[self.dict_name][self.overwrite] = self.type
+        
         return self.dict_name
 
     # this is a help function, do not call it when using a package.
@@ -703,13 +714,17 @@ class DualityApp(metaclass = Meta):
         '''
 
         if self.show_dtypes == True:
-            if self.reset_dict[self.clone_dict]:
+            if self.overwrite_types[self.clone_dict]:
+                print(self.overwrite_types[self.clone_dict])
+                
+            elif self.reset_dict[self.clone_dict]:
                 print(self.reset_dict[self.clone_dict])
 
         for i in self.individual_dict[self.clone_dict]:
+            self.tmp_msg = self.overwrite_variable[self.clone_dict][i]
             self.format = self.reset_dict[self.clone_dict][i]
             if self.format != 'list':
-                self.new_i = input(self.enter_message + f'{i}: ')
+                self.new_i = input(self.enter_message + paint_text(f'{self.tmp_msg}: ', color = self.colorset['enter_message'], print_trigger = False))
             self.dtypes = {
             'int': self._set_int,
             'float': self._set_float,
