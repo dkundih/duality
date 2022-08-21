@@ -38,9 +38,12 @@ Visit my Data Library at https://github.com/dkundih/DataLibrary in order to see 
 Example code for the creation of a university with custom coloring defined in the 'myset' dictionary. (v5.3.3)
 
 NOTE: Fore coloring is defined as F(c, m, y, k, r, g, b) - for example, 'Fr' stands for fore coloring in red.
-NOTE: Background coloring is defined as B(c, m, y, k, r, g, b) - for example, 'Br' stands for background coloring in red.
-NOTE: Dictionary keys must be named as shown, only coloring values are subject to change.
-NOTE: In order to apply custom coloring, define color_mode = 'custom', custom_color_mode = your_dictionary_name_here.
+
+Background coloring is defined as B(c, m, y, k, r, g, b) - for example, 'Br' stands for background coloring in red.
+
+Dictionary keys must be named as shown, only coloring values are subject to change.
+
+In order to apply custom coloring, define color_mode = 'custom', custom_color_mode = your_dictionary_name_here.
 
 <img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_customColoring1.jpg'/>
 
