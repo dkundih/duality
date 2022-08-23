@@ -523,3 +523,6 @@ CHANGELOG
 5.3.3 (21/08/2022)
 - added docstrings and improved code clarity.
 - added more examples to README.
+
+5.3.4 (23/08/2022)
+- various changes set to test, functionality to be confirmed.

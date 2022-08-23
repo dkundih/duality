@@ -54,6 +54,7 @@ setup(
   packages = find_packages(),
   install_requires = [
     'logistics >= 0.0.15',
+    'vandal >= 3.8.11',
     'colorama',
 ]
   )
