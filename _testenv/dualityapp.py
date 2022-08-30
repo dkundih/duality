@@ -1093,12 +1093,13 @@ class DualityApp(metaclass = Meta):
 # VVVV
 
 
-# >>>> **TO DO** <<<<<<
+# >>>> #ID_FUTURE1 <<<<<<
 
 # dodati pandas DF opciju datatypea.
 # omogućiti unos CSV, XLSX, JSON datoteka primjenom pandasa.
 # dodaj svetu malo boje, a isto vredi i za primjenu paint_text u loop datatypeove.
 # razmotriti varijacije int/str/float datatypeove za generičke liste, numpy array i pandas DF.
+# handleati unos krivog tipa da ne baca odmah van, tipa int(x) provesti kroz while loop dok x ne bude == of type int.
 
 
 # ^^^^
