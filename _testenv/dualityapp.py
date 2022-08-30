@@ -815,7 +815,7 @@ class DualityApp(metaclass = Meta):
         for i in self.individual_dict[self.clone_dict]:
             self.tmp_msg = self.overwrite_variable[self.clone_dict][i]
             self.format = self.reset_dict[self.clone_dict][i]
-            if self.format != 'numlist' and self.format != 'strlist' and self.format != 'numpy1darray' and self.format != 'numpy2darray':
+            if self.format != 'numlist' and self.format != 'strlist' and self.format != 'numpy1darray' and self.format != 'numpy2darray' and self.format != 'pandasdf':
                 self.new_i = input(self.enter_message + paint_text(f'{self.tmp_msg}: ', color = self.colorset['enter_message'], print_trigger = False))
             self.dtypes = {
             'int': self._set_int,
@@ -825,6 +825,7 @@ class DualityApp(metaclass = Meta):
             'strlist' : self._set_str_list,
             'numpy1darray' : self._set_numpy_1darray,
             'numpy2darray' : self._set_numpy_2darray,
+            'pandasdf' : self._set_pandas_df,
         }
             self.new_i = self.dtypes[self.format]()
             self.individual_dict[self.clone_dict][i] = self.new_i
@@ -962,6 +963,10 @@ class DualityApp(metaclass = Meta):
     # this is a help function, do not call it when using a package.
     def _set_numpy_2darray(self):
         return self._set_num_list(loop_break = 'X', activate_numpy = '2d')
+    
+    # this is a help function, do not call it when using a package.
+    def _set_pandas_df(self):
+        pass
         
         
     # this is a help function, do not call it when using a package. (SCRIPT)
