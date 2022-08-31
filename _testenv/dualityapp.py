@@ -1,9 +1,11 @@
 # makes multiple instances of the object available.
+from importlib_metadata import re
 from logistics.plugins.metaclass import Meta
 from matplotlib.style import use
 
-# set type of numpy array.
+# set type of numpy array and pandas particles.
 import numpy as np
+import pandas as pd
 
 # for CLI functionality.
 import os
@@ -815,7 +817,7 @@ class DualityApp(metaclass = Meta):
         for i in self.individual_dict[self.clone_dict]:
             self.tmp_msg = self.overwrite_variable[self.clone_dict][i]
             self.format = self.reset_dict[self.clone_dict][i]
-            if self.format != 'numlist' and self.format != 'strlist' and self.format != 'numpy1darray' and self.format != 'numpy2darray' and self.format != 'pandasdf':
+            if self.format != 'numlist' and self.format != 'strlist' and self.format != 'np.1darray' and self.format != 'np.2darray' and self.format != 'pd.df' and self.format != 'pd.columns':
                 self.new_i = input(self.enter_message + paint_text(f'{self.tmp_msg}: ', color = self.colorset['enter_message'], print_trigger = False))
             self.dtypes = {
             'int': self._set_int,
@@ -823,9 +825,10 @@ class DualityApp(metaclass = Meta):
             'str': self._set_str,
             'numlist' : self._set_num_list,
             'strlist' : self._set_str_list,
-            'numpy1darray' : self._set_numpy_1darray,
-            'numpy2darray' : self._set_numpy_2darray,
-            'pandasdf' : self._set_pandas_df,
+            'np.1darray' : self._set_numpy_1darray,
+            'np.2darray' : self._set_numpy_2darray,
+            'pd.df' : self._set_pandas_df,
+            'pd.columns' : self._set_pandas_columns
         }
             self.new_i = self.dtypes[self.format]()
             self.individual_dict[self.clone_dict][i] = self.new_i
@@ -870,7 +873,7 @@ class DualityApp(metaclass = Meta):
         return self.new_i
     
     # this is a help function, do not call it when using a package.
-    def _set_num_list(self, loop_break = 'X', activate_numpy = None):
+    def _set_num_list(self, loop_break = 'X', activate_special = None):
         
         running = True
 
@@ -914,10 +917,10 @@ class DualityApp(metaclass = Meta):
             else:
                 self.tmp_num_list.append(i)
                 
-        if activate_numpy == '1d':
+        if activate_special == '1d':
             self.tmp_num_list = np.array(self.tmp_num_list)
             
-        if activate_numpy == '2d':
+        if activate_special == '2d':
             self.tmp_num_list = np.array([self.tmp_num_list])
                 
         print(self.tmp_num_list)
@@ -957,16 +960,122 @@ class DualityApp(metaclass = Meta):
     
     # this is a help function, do not call it when using a package.
     def _set_numpy_1darray(self):
-        return self._set_num_list(loop_break = 'X', activate_numpy = '1d')
+        return self._set_num_list(loop_break = 'X', activate_special = '1d')
     
 
     # this is a help function, do not call it when using a package.
     def _set_numpy_2darray(self):
-        return self._set_num_list(loop_break = 'X', activate_numpy = '2d')
+        return self._set_num_list(loop_break = 'X', activate_special = '2d')
+    
     
     # this is a help function, do not call it when using a package.
     def _set_pandas_df(self):
-        pass
+        self.filepathinput = paint_text('ENTER THE FILE PATH: ', self.colorset['display_message'], print_trigger = False)
+        self.availablecolumnsinput = paint_text('\nCOLUMNS PASSED TO DATAFRAME', self.colorset['display_headline'], print_trigger = False)
+        self.filesupporterror = paint_text('=== ONLY CSV, XLSX AND JSON FILES SUPPORTED. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dataframeerror = paint_text('=== UNEXPECTED ERROR IN DATAFRAME CREATION. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dfsaved = paint_text('DATAFRAME SAVED.\n', self.colorset['display_headline'], print_trigger = False)
+        
+        file = input(self.filepathinput)
+        file = file.replace("'", '"').strip('"')
+        
+        if str(file).endswith('.csv'):
+            data = pd.read_csv(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.xlsx'):
+            data = pd.read_excel(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.json'):
+            data = pd.read_json(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        else:
+            raise Exception(self.filesupporterror)
+        
+        print('')
+        
+        try:
+            print(self.dfsaved)
+            return data
+        except:
+            raise Exception(self.dataframeerror)
+    
+    
+        # this is a help function, do not call it when using a package.
+    def _set_pandas_columns(self, loopbreak = 'dualityexit'):
+        
+        self.filepathinput = paint_text('ENTER THE FILE PATH: ', self.colorset['display_message'], print_trigger = False)
+        self.availablecolumnsinput = paint_text('\nAVAILABLE COLUMNS', self.colorset['display_headline'], print_trigger = False)
+        self.filecolinput = paint_text('ENTER A COLUMN NAME OR ENTER dualityexit TO QUIT: ', self.colorset['display_message'], print_trigger = False)
+        self.filecolinputerror = paint_text('COLUMN NAME NOT FOUND, TRY AGAIN: ', self.colorset['warning'], print_trigger = False)
+        self.duplicateerror = paint_text('COLUMN ALREADY ADDED, AVOIDED A DUPLICATE.', self.colorset['warning'], print_trigger = False)
+        self.filesupporterror = paint_text('=== ONLY CSV, XLSX AND JSON FILES SUPPORTED. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dataframeerror = paint_text('=== UNEXPECTED ERROR IN DATAFRAME CREATION. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dfsaved = paint_text('DATAFRAME SAVED.\n', self.colorset['display_headline'], print_trigger = False)
+        
+        file = input(self.filepathinput)
+        file = file.replace("'", '"').strip('"')
+        
+        if str(file).endswith('.csv'):
+            data = pd.read_csv(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.xlsx'):
+            data = pd.read_excel(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.json'):
+            data = pd.read_json(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        else:
+            raise Exception(self.filesupporterror)
+        
+        print('')
+        
+        running = True
+        tmp_cols = []
+        
+        while running:
+            file_col = input(self.filecolinput).replace("'", '"').strip('"')
+            
+            if file_col == loopbreak:
+                break
+            
+            elif file_col in data.columns:
+                if file_col not in tmp_cols:
+                    tmp_cols.append(file_col)
+                else:
+                    print(self.duplicateerror)
+                    
+            else:
+                while file_col not in data.columns:
+                    file_col = input(self.filecolinputerror)
+                if file_col not in tmp_cols:
+                    tmp_cols.append(file_col)
+                else:
+                    print(self.duplicateerror)
+        
+        try:
+            data = data[tmp_cols]
+            print(self.dfsaved)
+            return data
+        except:
+            raise Exception(self.dataframeerror)
         
         
     # this is a help function, do not call it when using a package. (SCRIPT)
@@ -1100,9 +1209,8 @@ class DualityApp(metaclass = Meta):
 
 # >>>> #ID_FUTURE1 <<<<<<
 
-# dodati pandas DF opciju datatypea.
-# omogućiti unos CSV, XLSX, JSON datoteka primjenom pandasa.
-# dodaj svetu malo boje, a isto vredi i za primjenu paint_text u loop datatypeove.
+
+# dodaj svetu malo boje, a isto vredi i za primjenu paint_text u NEloop datatypeove.
 # razmotriti varijacije int/str/float datatypeove za generičke liste, numpy array i pandas DF.
 # handleati unos krivog tipa da ne baca odmah van, tipa int(x) provesti kroz while loop dok x ne bude == of type int.
 
@@ -1117,7 +1225,7 @@ class MonteCarlo:
     @app.entry('init')
     def __init__(
         self, 
-        list_of_values : NumberVectorAlike = app.store('list_of_values', 'numpy1darray', 'VALUES'), 
+        list_of_values : NumberVectorAlike = app.store('list_of_values', 'pd.df', 'VALUES'), 
         time_seq : IntegerType = app.store('time_seq', 'int'), 
         num_sims : IntegerType = app.store('num_sims', 'int'),
         ref_col : IntegerType = 0, 
