@@ -1,7 +1,5 @@
 # makes multiple instances of the object available.
-from importlib_metadata import re
 from logistics.plugins.metaclass import Meta
-from matplotlib.style import use
 
 # set type of numpy array and pandas particles.
 import numpy as np
@@ -15,7 +13,6 @@ from colorama import (
     Style,
     init,
 )
-from sqlalchemy import types
 
 init()
 
@@ -817,7 +814,7 @@ class DualityApp(metaclass = Meta):
         for i in self.individual_dict[self.clone_dict]:
             self.tmp_msg = self.overwrite_variable[self.clone_dict][i]
             self.format = self.reset_dict[self.clone_dict][i]
-            if self.format != 'numlist' and self.format != 'strlist' and self.format != 'np.1darray' and self.format != 'np.2darray' and self.format != 'pd.df' and self.format != 'pd.columns':
+            if self.format != 'numlist' and self.format != 'strlist' and self.format != 'np.1darray' and self.format != 'np.2darray' and self.format != 'pd.df' and self.format != 'pd.columns' and self.format != 'path':
                 self.new_i = input(self.enter_message + paint_text(f'{self.tmp_msg}: ', color = self.colorset['enter_message'], print_trigger = False))
             self.dtypes = {
             'int': self._set_int,
@@ -828,7 +825,8 @@ class DualityApp(metaclass = Meta):
             'np.1darray' : self._set_numpy_1darray,
             'np.2darray' : self._set_numpy_2darray,
             'pd.df' : self._set_pandas_df,
-            'pd.columns' : self._set_pandas_columns
+            'pd.columns' : self._set_pandas_columns,
+            'path' : self._set_path,
         }
             self.new_i = self.dtypes[self.format]()
             self.individual_dict[self.clone_dict][i] = self.new_i
@@ -1078,6 +1076,20 @@ class DualityApp(metaclass = Meta):
             raise Exception(self.dataframeerror)
         
         
+    # this is a help function, do not call it when using a package.
+    def _set_path(self):
+        self.filepathinput = paint_text('ENTER THE FILE PATH: ', self.colorset['display_message'], print_trigger = False)
+        self.filepatherror = paint_text('=== UNEXPECTED ERROR OCCURED WHILE LOCATING THE PATH. ===\n', self.colorset['warning'], print_trigger = False)
+        
+        try:
+            file = input(self.filepathinput)
+            file = file.replace("'", '"').strip('"')
+        except:
+            raise Exception(self.filepatherror)
+        
+        return file
+        
+        
     # this is a help function, do not call it when using a package. (SCRIPT)
     def _queue_handler(
         self,
@@ -1211,7 +1223,6 @@ class DualityApp(metaclass = Meta):
 
 
 # dodaj svetu malo boje, a isto vredi i za primjenu paint_text u NEloop datatypeove.
-# razmotriti varijacije int/str/float datatypeove za generičke liste, numpy array i pandas DF.
 # handleati unos krivog tipa da ne baca odmah van, tipa int(x) provesti kroz while loop dok x ne bude == of type int.
 
 
