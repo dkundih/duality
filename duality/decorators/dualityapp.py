@@ -1,6 +1,10 @@
 # makes multiple instances of the object available.
 from logistics.plugins.metaclass import Meta
 
+# set type of numpy array and pandas particles.
+import numpy as np
+import pandas as pd
+
 # for CLI functionality.
 import os
 from colorama import (
@@ -18,7 +22,8 @@ from logistics.plugins.types import *
 # imports coloring.
 from logistics.plugins.coloring import *
 
-# package.
+
+# main object.
 class DualityApp(metaclass = Meta):
 
     '''
@@ -76,6 +81,7 @@ class DualityApp(metaclass = Meta):
         self.hidden_dictionary_menu : DictionaryType = {}
         self.contains_autoinit : BooleanType = False
 
+
     def entry(
         self, 
         option_name : StringType = '', 
@@ -127,6 +133,7 @@ class DualityApp(metaclass = Meta):
             return _wrap
 
         return _record_function
+
 
     def display(
         self,
@@ -214,6 +221,7 @@ class DualityApp(metaclass = Meta):
 
             elif method == 'dictionary':
                 return self.dictionary_menu
+
 
     def script(
         self, 
@@ -659,6 +667,7 @@ class DualityApp(metaclass = Meta):
 
         return
     
+    
     # wheel application.
     def wheel(
         self,
@@ -762,6 +771,7 @@ class DualityApp(metaclass = Meta):
             if self.type == 'static':
                 self.script(type = 'static', queue = 'wheel', method = 'none', clear_screen = False, verbose_display_message = self.verbose_display_message, display_message = self.display_message, output_message = self.output_message, color_mode = self.color_mode, custom_color_mode = self.custom_color_mode, break_key = self.break_key, enter_message = self.enter_message, exit_message = self.exit_message)
  
+ 
     def store(
         self,
         variable : StringType = '',
@@ -791,6 +801,7 @@ class DualityApp(metaclass = Meta):
         
         return self.dict_name
 
+
     # this is a help function, do not call it when using a package.
     def _redefine(
         self,
@@ -800,6 +811,8 @@ class DualityApp(metaclass = Meta):
         * function that casts an input of a certain data type and formats it before sending as a function argument.
         '''
 
+        self._ignore_list = ['list', 'numlist', 'strlist', 'np.1darray', 'np.2darray', 'pd.df', 'pd.columns', 'path'] # ignores initial input and replaces it with a loop type/special type input.
+        
         if self.show_dtypes == True:
             if self.overwrite_types[self.clone_dict]:
                 print(self.overwrite_types[self.clone_dict])
@@ -810,13 +823,21 @@ class DualityApp(metaclass = Meta):
         for i in self.individual_dict[self.clone_dict]:
             self.tmp_msg = self.overwrite_variable[self.clone_dict][i]
             self.format = self.reset_dict[self.clone_dict][i]
-            if self.format != 'list':
-                self.new_i = input(self.enter_message + paint_text(f'{self.tmp_msg}: ', color = self.colorset['enter_message'], print_trigger = False))
+            
+            if self.format not in self._ignore_list:
+                self.new_i = input(self.enter_message + paint_text(f'{self.tmp_msg}: ', color = self.colorset['enter_message'], print_trigger = False)) # initial input before transformation.
             self.dtypes = {
-            'int': self._set_int,
-            'float': self._set_float,
-            'str': self._set_str,
-            'list' : self._set_list,
+            'int': self._set_int, # -> single integer value.
+            'float': self._set_float, # -> single float value.
+            'str': self._set_str, # -> single text value.
+            'list' : self._set_list, # -> list that supports both textual and numerical inputs.
+            'numlist' : self._set_num_list, # -> list that supports numerical inputs only.
+            'strlist' : self._set_str_list, # -> list that supports textual inputs only.
+            'np.1darray' : self._set_numpy_1darray, # -> list that supports numerical inputs only and transforms it into a numpy array of 1 dimension.
+            'np.2darray' : self._set_numpy_2darray, # -> list that supports numerical inputs only and transforms it into a numpy array of 2 dimensions.
+            'pd.df' : self._set_pandas_df, # -> creates a pandas dataframe from a whole file path file (.csv, .xlsx, .json).
+            'pd.columns' : self._set_pandas_columns, # -> creates a pandas dataframe from a file path file with certain column/s only (.csv, .xlsx, .json).
+            'path' : self._set_path, # -> stores the file path only without any transformation.
         }
             self.new_i = self.dtypes[self.format]()
             self.individual_dict[self.clone_dict][i] = self.new_i
@@ -832,9 +853,23 @@ class DualityApp(metaclass = Meta):
         '''
         * converts input to integer.
         '''
+        
+        self.input_error = paint_text('INVALID ENTRY, ENTER AN INTEGER: ', self.colorset['warning'], print_trigger = False)
 
-        self.new_i = int(self.new_i)
+        try:
+            self.new_i = int(self.new_i)
+        except:
+            while not isinstance(self.new_i, (int,float)):
+                    
+                self.new_i = input(self.input_error)
+                
+                try:
+                    self.new_i = int(self.new_i)
+                except:
+                    pass
+                  
         return self.new_i
+
 
     # this is a help function, do not call it when using a package.
     def _set_float(
@@ -845,8 +880,22 @@ class DualityApp(metaclass = Meta):
         * converts input to float.
         '''
 
-        self.new_i = float(self.new_i)
+        self.input_error = paint_text('INVALID ENTRY, ENTER A FLOAT VALUE: ', self.colorset['warning'], print_trigger = False)
+
+        try:
+            self.new_i = float(self.new_i)
+        except:
+            while not isinstance(self.new_i, float):
+                    
+                self.new_i = input(self.input_error)
+                
+                try:
+                    self.new_i = float(self.new_i)
+                except:
+                    pass
+                  
         return self.new_i
+
 
     # this is a help function, do not call it when using a package.
     def _set_str(
@@ -859,25 +908,280 @@ class DualityApp(metaclass = Meta):
 
         self.new_i = str(self.new_i)
         return self.new_i
+    
+    
+    # this is a help function, do not call it when using a package.
+    def _set_num_list(self, loop_break = 'X', activate_special = None):
+        
+        self.num_input = paint_text(f'ENTER A NUMBER OR ENTER {loop_break} TO QUIT: ', self.colorset['display_message'], print_trigger = False)
+        self.input_error = paint_text('INVALID ENTRY, ENTER A NUMBER: ', self.colorset['warning'], print_trigger = False)
+        self.save_confirm = paint_text('LIST SAVED WITH FOLLOWING CONTENTS: ', self.colorset['display_headline'], print_trigger = False)
+        
+        running = True
+
+        num_list = []
+
+        while running:
+             
+            tmp_user_input = input(self.num_input)
+            
+            try:
+                user_input = float(tmp_user_input)
+            except:
+                user_input = tmp_user_input.upper()
+            
+            if str(user_input) == loop_break:
+                print(self.save_confirm)
+                running = False
+                
+            elif isinstance(user_input, (int, float)):
+                num_list.append(float(user_input))
+                print(num_list)
+                
+            else:
+                while not isinstance(user_input, (int,float)):
+                    
+                    tmp_user_input = input(self.input_error)
+            
+                    try:
+                        user_input = float(tmp_user_input)
+                    except:
+                        user_input = tmp_user_input.upper()
+                        
+                num_list.append(float(user_input))
+
+        self.tmp_num_list = []
+        
+        for i in num_list:
+            if str(i).endswith('.0'):
+                i = int(i)
+                self.tmp_num_list.append(i)
+            else:
+                self.tmp_num_list.append(i)
+                
+        if activate_special == '1d':
+            self.tmp_num_list = np.array(self.tmp_num_list)
+            
+        if activate_special == '2d':
+            self.tmp_num_list = np.array([self.tmp_num_list])
+                
+        paint_text(self.tmp_num_list, self.colorset['display_headline'])
+        print('')
+
+        return self.tmp_num_list
+    
+    
+    # this is a help function, do not call it when using a package.
+    def _set_str_list(self, loop_break = '0'):
+        
+        self.text_input = paint_text(f'ENTER A TEXT OR ENTER {loop_break} TO QUIT: ', self.colorset['display_message'], print_trigger = False)
+        self.input_error = paint_text('INVALID ENTRY, ENTER A TEXT: ', self.colorset['warning'], print_trigger = False)
+        self.save_confirm = paint_text('LIST SAVED WITH FOLLOWING CONTENTS: ', self.colorset['display_headline'], print_trigger = False)
+        
+        running = True
+        
+        str_list = []
+
+        while running:
+            user_input = input(self.text_input)
+            
+            if user_input == loop_break:
+                print(self.save_confirm)
+                running = False
+                
+            elif user_input.isalpha():
+                str_list.append(str(user_input))
+                print(str_list)
+                
+            else:
+                while not user_input.isalpha():
+                    user_input = input(self.input_error)
+                str_list.append(str(user_input))
+                print(str_list)
+                
+        self.tmp_str_list = str_list
+        
+        paint_text(self.tmp_str_list, self.colorset['display_headline'])
+        print('')
+        
+        return self.tmp_str_list
+    
+    
+    # this is a help function, do not call it when using a package.
+    def _set_list(self, loop_break = 'dualityexit'):
+        
+        self._tmp_list_input = paint_text(f'ENTER ANY VALUE/TEXT OR ENTER {loop_break} TO QUIT: ', self.colorset['display_message'], print_trigger = False)
+        self.save_confirm = paint_text('LIST SAVED WITH FOLLOWING CONTENTS: ', self.colorset['display_headline'], print_trigger = False)
+        
+        running = True
+        
+        initial_list = []
+
+        while running:
+            user_input = input(self._tmp_list_input)
+
+            if user_input == loop_break:
+                print(self.save_confirm)
+                running = False
+                
+            else:
+                try:
+                    user_input = float(user_input)
+                except:
+                    pass
+                    
+                initial_list.append(user_input)
+                print(initial_list)
+                
+        self._tmp_list = []
+        
+        for i in initial_list:
+            if str(i).endswith('.0'):
+                i = int(i)
+                self._tmp_list.append(i)
+            else:
+                self._tmp_list.append(i)
+        
+        paint_text(self._tmp_list, self.colorset['display_headline'])
+        print('')
+        
+        return self._tmp_list
+    
+    
+    # this is a help function, do not call it when using a package.
+    def _set_numpy_1darray(self):
+        return self._set_num_list(loop_break = 'X', activate_special = '1d')
+    
 
     # this is a help function, do not call it when using a package.
-    def _set_list(
-        self,
-        ) -> ReturnType:
+    def _set_numpy_2darray(self):
+        return self._set_num_list(loop_break = 'X', activate_special = '2d')
+    
+    
+    # this is a help function, do not call it when using a package.
+    def _set_pandas_df(self):
+        self.filepathinput = paint_text('ENTER THE FILE PATH: ', self.colorset['display_message'], print_trigger = False)
+        self.availablecolumnsinput = paint_text('\nCOLUMNS PASSED TO DATAFRAME', self.colorset['display_headline'], print_trigger = False)
+        self.filesupporterror = paint_text('=== ONLY CSV, XLSX AND JSON FILES SUPPORTED. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dataframeerror = paint_text('=== UNEXPECTED ERROR IN DATAFRAME CREATION. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dfsaved = paint_text('DATAFRAME SAVED.\n', self.colorset['display_headline'], print_trigger = False)
         
-        '''
-        * converts input to list.
-        '''
-
-        self.range = int(input('Number of list values: '))
-        self.new_i = []
-
-        for i in range(0, self.range):
-            tmp_list_element = int(input(f'Enter the value: '))
-            self.new_i.append(tmp_list_element)
+        file = input(self.filepathinput)
+        file = file.replace("'", '"').strip('"')
+        
+        if str(file).endswith('.csv'):
+            data = pd.read_csv(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.xlsx'):
+            data = pd.read_excel(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.json'):
+            data = pd.read_json(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        else:
+            raise Exception(self.filesupporterror)
+        
+        print('')
+        
+        try:
+            print(self.dfsaved)
+            return data
+        except:
+            raise Exception(self.dataframeerror)
+    
+    
+    # this is a help function, do not call it when using a package.
+    def _set_pandas_columns(self, loopbreak = 'dualityexit'):
+        
+        self.filepathinput = paint_text('ENTER THE FILE PATH: ', self.colorset['display_message'], print_trigger = False)
+        self.availablecolumnsinput = paint_text('\nAVAILABLE COLUMNS', self.colorset['display_headline'], print_trigger = False)
+        self.filecolinput = paint_text('ENTER A COLUMN NAME OR ENTER dualityexit TO QUIT: ', self.colorset['display_message'], print_trigger = False)
+        self.filecolinputerror = paint_text('COLUMN NAME NOT FOUND, TRY AGAIN: ', self.colorset['warning'], print_trigger = False)
+        self.duplicateerror = paint_text('COLUMN ALREADY ADDED, AVOIDED A DUPLICATE.', self.colorset['warning'], print_trigger = False)
+        self.filesupporterror = paint_text('=== ONLY CSV, XLSX AND JSON FILES SUPPORTED. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dataframeerror = paint_text('=== UNEXPECTED ERROR IN DATAFRAME CREATION. ===\n', self.colorset['warning'], print_trigger = False)
+        self.dfsaved = paint_text('DATAFRAME SAVED.\n', self.colorset['display_headline'], print_trigger = False)
+        
+        file = input(self.filepathinput)
+        file = file.replace("'", '"').strip('"')
+        
+        if str(file).endswith('.csv'):
+            data = pd.read_csv(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.xlsx'):
+            data = pd.read_excel(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        elif str(file).endswith('.json'):
+            data = pd.read_json(file)
+            print(self.availablecolumnsinput)
+            for col in data.columns:
+                print(col)
+                
+        else:
+            raise Exception(self.filesupporterror)
+        
+        print('')
+        
+        running = True
+        tmp_cols = []
+        
+        while running:
+            file_col = input(self.filecolinput).replace("'", '"').strip('"')
             
-        return self.new_i
-
+            if file_col == loopbreak:
+                break
+            
+            elif file_col in data.columns:
+                if file_col not in tmp_cols:
+                    tmp_cols.append(file_col)
+                else:
+                    print(self.duplicateerror)
+                    
+            else:
+                while file_col not in data.columns:
+                    file_col = input(self.filecolinputerror)
+                if file_col not in tmp_cols:
+                    tmp_cols.append(file_col)
+                else:
+                    print(self.duplicateerror)
+        
+        try:
+            data = data[tmp_cols]
+            print(self.dfsaved)
+            return data
+        except:
+            raise Exception(self.dataframeerror)
+        
+        
+    # this is a help function, do not call it when using a package.
+    def _set_path(self):
+        self.filepathinput = paint_text('ENTER THE FILE PATH: ', self.colorset['display_message'], print_trigger = False)
+        self.filepatherror = paint_text('=== UNEXPECTED ERROR OCCURED WHILE LOCATING THE PATH. ===\n', self.colorset['warning'], print_trigger = False)
+        
+        try:
+            file = input(self.filepathinput)
+            file = file.replace("'", '"').strip('"')
+        except:
+            raise Exception(self.filepatherror)
+        
+        return file
+        
+        
     # this is a help function, do not call it when using a package. (SCRIPT)
     def _queue_handler(
         self,
@@ -925,6 +1229,7 @@ class DualityApp(metaclass = Meta):
                 self.tmp_print_list += [self.print_val_dict[self.option]]
 
         return self.tmp_list
+    
     
     # this is a help function, do not call it when using a package. (WHEEL)
     def _wheel_queue_handler(
@@ -976,6 +1281,7 @@ class DualityApp(metaclass = Meta):
         
         return self.tmp_list
 
+
     # this is a help function, do not call it when using a package. (NO QUEUE)
     def _queue_break(
         self,
@@ -1000,3 +1306,37 @@ class DualityApp(metaclass = Meta):
         self.tmp_print_list += [self.print_val_dict[self.option]]
 
         return self.tmp_list
+
+
+    # function that outputs available data types of _redefine function.
+    def datatypes(
+        self,
+        print_trigger = True,
+        ) -> ListType:
+        
+        '''
+        * returns a dictionary of function argument transformation options. 
+        '''
+        
+        self._redefine_dtypes_list = {
+            'int': '-> single integer value.',
+            'float': ' -> single float value.',
+            'str': '-> single text value.',
+            'list' : '-> list that supports both textual and numerical inputs.',
+            'numlist' : '-> list that supports numerical inputs only.',
+            'strlist' : '-> list that supports textual inputs only.',
+            'np.1darray' : '-> list that supports numerical inputs only and transforms it into a numpy array of 1 dimension.',
+            'np.2darray' : '-> list that supports numerical inputs only and transforms it into a numpy array of 2 dimensions.',
+            'pd.df' : '-> creates a pandas dataframe from a whole file path file (.csv, .xlsx, .json).',
+            'pd.columns' : '-> creates a pandas dataframe from a file path file with certain column/s only (.csv, .xlsx, .json).',
+            'path' : '-> stores the file path only without any transformation.',
+        }
+        
+        if print_trigger == True:
+            
+            print('')
+            for k, v in self._redefine_dtypes_list.items():
+                print(k, v)
+            print('')
+        
+        return self._redefine_dtypes_list

@@ -529,3 +529,11 @@ CHANGELOG
 
 5.3.5 (23/08/2022)
 - various changes set to test, functionality to be confirmed.
+
+5.4.0 (22/09/2022) - put to test, functionality to be confirmed.
+- autohandling the wrong type introduced.
+- introduction of complex non-primitive data types in inputs (list, numlist, strlist, path, pd.df, pd.columns, np.1darray, np.2darray)
+- coloring applied across the whole DualityApp object.
+- datatypes method added.
+- code readability and stability improved.
+- all changes put to the global test.

@@ -28,6 +28,23 @@ AVAILABLE FEATURES IN THE PACKAGE:
         'exit_message' : 'Fy', - exit out of the application color.
     }
 
+    DATATYPES (self._redefine_dtypes_list template)
+    ________
+
+    self._redefine_dtypes_list = {
+        'int': '-> single integer value.',
+        'float': ' -> single float value.',
+        'str': '-> single text value.',
+        'list' : '-> list that supports both textual and numerical inputs.',
+        'numlist' : '-> list that supports numerical inputs only.',
+        'strlist' : '-> list that supports textual inputs only.',
+        'np.1darray' : '-> list that supports numerical inputs only and transforms it into a numpy array of 1 dimension.',
+        'np.2darray' : '-> list that supports numerical inputs only and transforms it into a numpy array of 2 dimensions.',
+        'pd.df' : '-> creates a pandas dataframe from a whole file path file (.csv, .xlsx, .json).',
+        'pd.columns' : '-> creates a pandas dataframe from a file path file with certain column/s only (.csv, .xlsx, .json).',
+        'path' : '-> stores the file path only without any transformation.',
+    }
+
 	track (OBJECT/DECORATOR)
 	------------
 
