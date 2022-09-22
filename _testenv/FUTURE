@@ -1,1 +1,7 @@
+ID_AUTOINIT:1
+____________
 Autohandling of missing files in autoinit will be resolved.
+
+ID_DUALITYAPPS:1
+________________
+DualityApp will serve as a framework for various application creation and development (vandal and kundih library particles.) and maybe pandas/sqlite3 database manipulation.
