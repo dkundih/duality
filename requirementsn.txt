@@ -1,3 +1,0 @@
-colorama
-logistics >= 0.0.17
-vandal >= 3.8.11
