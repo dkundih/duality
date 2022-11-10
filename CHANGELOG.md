@@ -537,3 +537,18 @@ CHANGELOG
 - datatypes method added.
 - code readability and stability improved.
 - all changes put to the global test.
+
+5.4.1 (10/11/2022)
+- clean init test.
+
+5.4.2 (10/11/2022)
+- clean init test.
+
+5.4.3 (10/11/2022)
+- clean init test.
+
+5.4.4 (10/11/2022)
+- clean init test.
+
+5.4.5 (10/11/2022)
+- clean init test.

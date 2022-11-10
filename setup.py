@@ -53,8 +53,8 @@ setup(
   keywords = 'script, CLI, data manipulation, decorator, decorator functions, unin, duality, duality-py, duality.py, vandal, vandal.py, vandal-py',
   packages = find_packages(),
   install_requires = [
-    'logistics >= 0.0.15',
-    'vandal >= 3.8.11',
     'colorama',
+    'logistics >= 0.0.17',
+    'vandal >= 3.8.11',
 ]
   )
