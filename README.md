@@ -31,8 +31,6 @@ Example code over a Car object. - DualityApp.wheel (v5.3.3)
 Example use in the terminal. - DualityApp.wheel (v5.3.3)
 <img src='https://raw.githubusercontent.com/dkundih/duality/main/_logistics/T_dynamicWheel2.jpg'/>
 
-Visit my Data Library at https://github.com/dkundih/DataLibrary in order to see the demonstration of use in practical examples.
-
 **Example of use - APPLY CUSTOM COLORING**
 
 Example code for the creation of a university with custom coloring defined in the 'myset' dictionary. (v5.3.3)
