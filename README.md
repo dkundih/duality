@@ -63,7 +63,7 @@ import duality
 
 **A word from the author!**
 
-The module itself, it's maintenance, updates and stability, logo, videos, promotional materials and everything associated with duality are done by **David Kundih** from **Croatia**.
+The module itself, its maintenance, updates and stability, logo, videos, promotional materials and everything associated with duality are done by **David Kundih** from **Croatia**.
 
 <h1 align='center'> Hi! :wave:</h1>
  
